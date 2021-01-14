@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="node,Nestjs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nestjs入门（二）">
+<meta property="og:url" content="https://tc9011.com/2019/07/22/Nestjs入门（二）/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/nest%20入门/nest-og.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/nest%20入门/2019-07-18_11-20-22.png">
+<meta property="og:updated_time" content="2019-07-22T16:45:27.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nestjs入门（二）">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/nest%20入门/nest-og.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2019/07/22/Nestjs入门（二）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Nestjs入门（二） | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2019/07/22/Nestjs入门（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Nestjs入门（二）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-22 20:19:03" itemprop="dateCreated datePublished" datetime="2019-07-22T20:19:03+08:00">2019-07-22</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/22/Nestjs入门（二）/" class="leancloud_visitors" data-flag-title="Nestjs入门（二）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/nest 入门/nest-og.png" alt="nest-og"></p>
+<a id="more"></a>
+<blockquote>
+<p>源码：<a href="https://github.com/tc9011/awsome-nest" rel="external nofollow noopener noreferrer" target="_blank">awesome-nest</a></p>
+</blockquote>
+<p>在 <a href="https://tc9011.com/2019/07/14/nestjs入门（一）/">nestjs入门（一）</a> 中，对 Nestjs 一些重要的概念有了一些了解，现在我们开始创建一个基于 Nestjs 的应用吧。</p>
+<p>Nestjs 和 Angular 一样，提供了 CLI 工具帮助我们初始化和开发应用程序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g @nestjs/cli</span><br><span class="line">$ nest new my-awesome-app</span><br></pre></td></tr></table></figure>
+<p>这时候你会得到这样的一个目录结构：</p>
+<p><img src="/assets/images/nest 入门/2019-07-18_11-20-22.png" alt="2019-07-18_11-20-22"></p>
+<p>运行<code>npm start</code>后，在浏览器访问<code>http://localhost:3000/</code>就可以看到<code>Hello World!</code>。</p>
+<h2 id="Controller-和-Service"><a href="#Controller-和-Service" class="headerlink" title="Controller 和 Service"></a>Controller 和 Service</h2><p>在 Nestjs 中，所有的 controller 和 service 都要在对应的 module 中注册，就像这样：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppController &#125; <span class="keyword">from</span> <span class="string">'./app.controller'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppService &#125; <span class="keyword">from</span> <span class="string">'./app.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [],</span><br><span class="line">  controllers: [AppController],</span><br><span class="line">  providers: [AppService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>在 MVC 模式中，controller 通过 model 获取数据。对应的，在 Nestjs 中，controller 负责处理传入的请求, 并调用对应的 service 完成业务处理，返回对客户端的响应。</p>
+<p>通常可以通过 CLI 命令来创建一个 controller：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nest g co cats</span><br></pre></td></tr></table></figure>
+<p>这时候，CLI 会自动生成 controller 文件，并且把 controller 注册到对应的 module 中。</p>
+<p>和其他一些 node 框架不一样，Nestjs 路由不是集中式管理，而是分散在 controller 中，通过<code>@controller()</code>中声明的（可选）前缀和请求装饰器中指定的任何路由来确定的。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Controller, Get &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; CatsService &#125; <span class="keyword">from</span> <span class="string">'./cats.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly catsService: CatsService</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>(<span class="string">':id'</span>)</span><br><span class="line">  findOne(<span class="meta">@Param</span>(<span class="string">'id'</span>) id: <span class="built_in">string</span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.getCat();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这段代码中，通过 Get 请求去请求<code>http://localhost:3000/cats/1</code>就会调用<code>findOne</code>方法。</p>
+<p>如果需要在所有请求之前加上 prefix，可以在<code>main.ts</code>中直接设置 GlobalPrefix：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NestFactory &#125; <span class="keyword">from</span> <span class="string">'@nestjs/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppModule &#125; <span class="keyword">from</span> <span class="string">'./app.module'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(AppModule);</span><br><span class="line">  app.setGlobalPrefix(<span class="string">'api/v1'</span>);</span><br><span class="line">  <span class="keyword">await</span> app.listen(<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br><span class="line">bootstrap();</span><br></pre></td></tr></table></figure>
+<p>在 Nestjs 中，controller 就像是调用 service 的指挥者，把对应的请求分发到相应的 service 中去处理。</p>
+<p>在 controller 中，我们注意到，在构造函数中注入了<code>CatsService</code>实例，来调用对应 service 中的方法。这就是 Nestjs 中依赖注入的注入方式 — 构造函数注入。</p>
+<p>service 可以看做夹在 controller 和 model 之间的一层，在 service 调用 DAO （在 Nestjs 中是各种 ORM 工具或者自己封装的 DAO 层）实现数据库的访问，进行数据的处理整合。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsService &#123;</span><br><span class="line">  getCat(id: <span class="built_in">string</span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`This action returns <span class="subst">$&#123;id&#125;</span> cats`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中通过<code>@Injectable()</code>定义了一个 service，这样你就可以在其他 controller 或者 service 中注入这个 service。</p>
+<h2 id="DTO-和-Pipe"><a href="#DTO-和-Pipe" class="headerlink" title="DTO 和 Pipe"></a>DTO 和 Pipe</h2><p>通过<a href="https://tc9011.com/2019/07/14/nestjs入门（一）/">nestjs入门（一）</a>已经介绍了 DTO 的概念，在Nestjs 中，DTO 主要定义如何通过网络发送数据的对象，通常会配合<code>class-validator</code>和<code>class-transformer</code>做校验。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; IsString, IsInt &#125; <span class="keyword">from</span> <span class="string">'class-validator'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CreateCatDto &#123;</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  readonly name: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@IsInt</span>()</span><br><span class="line">  readonly age: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  readonly breed: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Controller, Get, Query, Post, Body, Put, Param, Delete &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CreateCatDto &#125; <span class="keyword">from</span> <span class="string">'./dto'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="meta">@Post</span>()</span><br><span class="line">  create(<span class="meta">@Body</span>() createCatDto: CreateCatDto) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'This action adds a new cat'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面对请求<code>body</code> 定义了一个 DTO，并且在 DTO 中对参数类型进行了限制，如果<code>body</code>中传过来的类型不符合要求，会直接报错。</p>
+<p>DTO 中的<code>class-validator</code> 还需要配合 pipe 才能完成校验功能：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  PipeTransform,</span><br><span class="line">  ArgumentMetadata,</span><br><span class="line">  BadRequestException,</span><br><span class="line">  Injectable,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; validate &#125; <span class="keyword">from</span> <span class="string">'class-validator'</span></span><br><span class="line"><span class="keyword">import</span> &#123; plainToClass &#125; <span class="keyword">from</span> <span class="string">'class-transformer'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ValidationPipe <span class="keyword">implements</span> PipeTransform&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">async</span> transform(value, metadata: ArgumentMetadata) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; metatype &#125; = metadata</span><br><span class="line">    <span class="keyword">if</span> (!metatype || !<span class="keyword">this</span>.toValidate(metatype)) &#123;</span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> object = plainToClass(metatype, value)</span><br><span class="line">    <span class="keyword">const</span> errors = <span class="keyword">await</span> validate(object)</span><br><span class="line">    <span class="keyword">if</span> (errors.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> errorMessage = _.values(errors[<span class="number">0</span>].constraints)[<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> BadRequestException(errorMessage)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> toValidate(metatype): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> types = [<span class="built_in">String</span>, <span class="built_in">Boolean</span>, <span class="built_in">Number</span>, <span class="built_in">Array</span>, <span class="built_in">Object</span>]</span><br><span class="line">    <span class="keyword">return</span> !types.find(<span class="function"><span class="params">type</span> =&gt;</span> metatype === <span class="keyword">type</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个 pipe 会根据元数据和对象实例，去构建原有类型，然后通过<code>validate</code>去校验。</p>
+<p>这个 pipe 一般会作为全局的 pipe 去使用：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(ApplicationModule);</span><br><span class="line">  app.setGlobalPrefix(<span class="string">'api/v1'</span>);</span><br><span class="line">  </span><br><span class="line">  app.useGlobalPipes(<span class="keyword">new</span> ValidationPipe());</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">await</span> app.listen(<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br><span class="line">bootstrap();</span><br></pre></td></tr></table></figure>
+<p>假设我们没有这层 pipe，那在 controller 中就会进行参数校验，这样就会打破单一职责的原则。有了这一层 pipe 帮助我们校验参数，有效地降低了类的复杂度，提高了可读性和可维护性。</p>
+<h2 id="Interceptor-和-Exception-Filter"><a href="#Interceptor-和-Exception-Filter" class="headerlink" title="Interceptor 和 Exception Filter"></a>Interceptor 和 Exception Filter</h2><p>代码写到这里，我们发现直接返回了字符串，这样有点太粗暴，需要把正确和错误的响应包装一下。假设我希望返回的格式是这样的：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 请求成功</span><br><span class="line">&#123;</span><br><span class="line">    status: 0,</span><br><span class="line">    message: '请求成功',</span><br><span class="line">    data: any</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 请求失败</span><br><span class="line">&#123;</span><br><span class="line">    status: 1,</span><br><span class="line">    message: string,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时，可以利用 AOP 的思想去做这件事。首先，我们需要全局捕获错误的切片层去处理所有的 exception；其次，如果是一个成功的请求，需要把这个返回结果通过一个切片层包装一下。</p>
+<p>在 Nestjs 中，返回请求结果时，Interceptor 会在 Exception Filter 之前触发，所以 Exception Filter 会是最后捕获 exception的机会。我们把它作为处理全局错误的切片层。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  Catch,</span><br><span class="line">  ArgumentsHost,</span><br><span class="line">  HttpException,</span><br><span class="line">  ExceptionFilter,</span><br><span class="line">  HttpStatus,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Catch</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ExceptionsFilter <span class="keyword">implements</span> ExceptionFilter &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="keyword">catch</span>(exception, host: ArgumentsHost) &#123;</span><br><span class="line">    <span class="keyword">const</span> ctx = host.switchToHttp()</span><br><span class="line">    <span class="keyword">const</span> response = ctx.getResponse()</span><br><span class="line">    <span class="keyword">const</span> request = ctx.getRequest()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> message = exception.message</span><br><span class="line">    <span class="keyword">let</span> isDeepestMessage = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">while</span> (!isDeepestMessage) &#123;</span><br><span class="line">      isDeepestMessage = !message.message</span><br><span class="line">      message = isDeepestMessage ? message : message.message</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> errorResponse = &#123;</span><br><span class="line">      message: message || <span class="string">'请求失败'</span>,</span><br><span class="line">      status: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> status = exception <span class="keyword">instanceof</span> HttpException ? </span><br><span class="line">          exception.getStatus() :</span><br><span class="line">    			HttpStatus.INTERNAL_SERVER_ERROR</span><br><span class="line">    </span><br><span class="line">    response.status(status)</span><br><span class="line">    response.header(<span class="string">'Content-Type'</span>, <span class="string">'application/json; charset=utf-8'</span>)</span><br><span class="line">    response.send(errorResponse)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而 Interceptor 则负责对成功请求结果进行包装：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  Injectable,</span><br><span class="line">  NestInterceptor,</span><br><span class="line">  ExecutionContext,</span><br><span class="line">  CallHandler,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs'</span></span><br><span class="line"><span class="keyword">import</span> &#123; map &#125; <span class="keyword">from</span> <span class="string">'rxjs/operators'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Response&lt;T&gt; &#123;</span><br><span class="line">  data: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> TransformInterceptor&lt;T&gt;</span><br><span class="line">  <span class="keyword">implements</span> NestInterceptor&lt;T, Response&lt;T&gt;&gt; &#123;</span><br><span class="line">  intercept(</span><br><span class="line">    context: ExecutionContext,</span><br><span class="line">    next: CallHandler,</span><br><span class="line">  ): Observable&lt;Response&lt;T&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> next.handle().pipe(</span><br><span class="line">      map(<span class="function"><span class="params">rawData</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            data: rawData,</span><br><span class="line">            status: <span class="number">0</span>,</span><br><span class="line">            message: <span class="string">'请求成功'</span>,</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样 Interceptor 和 Exception Filter 需要把它定义在全局范围内：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(AppModule);</span><br><span class="line">  app.setGlobalPrefix(<span class="string">'api/v1'</span>);</span><br><span class="line"></span><br><span class="line">  app.useGlobalFilters(<span class="keyword">new</span> ExceptionsFilter());</span><br><span class="line">  app.useGlobalInterceptors(<span class="keyword">new</span> TransformInterceptor());</span><br><span class="line">  app.useGlobalPipes(<span class="keyword">new</span> ValidationPipe());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> app.listen(<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h2><p>TypeORM 相当于 Nestjs 中的 DAO 层，它支持多种数据库，如 PostgreSQL，SQLite 甚至MongoDB（NoSQL）。这里我们以 MySQL 为例，首先在 MySQL 中手动创建一个数据库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; CREATE DATABASE <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>然后安装 typeorm：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save @nestjs/typeorm typeorm mysql</span><br></pre></td></tr></table></figure>
+<p>通常我们开发的时候，会有多套环境，这些环境中会有不同的数据库配置，所以先建一个<code>config</code>文件夹，放置不同的数据库配置：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> &#123; resolve &#125; <span class="keyword">from</span> <span class="string">'path'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> productionConfig <span class="keyword">from</span> <span class="string">'./prod.config'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isProd = process.env.NODE_ENV === <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">  port: <span class="number">3000</span>,</span><br><span class="line">  hostName: <span class="string">'localhost'</span>,</span><br><span class="line"></span><br><span class="line">  orm: &#123;</span><br><span class="line">    <span class="keyword">type</span>: <span class="string">'mysql'</span>,</span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    port: <span class="number">3310</span>,</span><br><span class="line">    username: <span class="string">'root'</span>,</span><br><span class="line">    password: <span class="string">'123456'</span>,</span><br><span class="line">    database: <span class="string">'test'</span>,</span><br><span class="line">    entities: [resolve(<span class="string">`./**/*.entity.ts`</span>)],</span><br><span class="line">    migrations: [<span class="string">'migration/*.ts'</span>],</span><br><span class="line">    timezone: <span class="string">'UTC'</span>,</span><br><span class="line">    charset: <span class="string">'utf8mb4'</span>,</span><br><span class="line">    multipleStatements: <span class="literal">true</span>,</span><br><span class="line">    dropSchema: <span class="literal">false</span>,</span><br><span class="line">    synchronize: <span class="literal">true</span>,</span><br><span class="line">    logging: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (isProd) &#123;</span><br><span class="line">  config = _.merge(config, productionConfig)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; config &#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> config</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// prod.config.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; resolve &#125; <span class="keyword">from</span> <span class="string">'path'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  port: <span class="number">3210</span>,</span><br><span class="line"></span><br><span class="line">  orm: &#123;</span><br><span class="line">    <span class="keyword">type</span>: <span class="string">'mysql'</span>,</span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    port: <span class="number">3312</span>,</span><br><span class="line">    username: <span class="string">'root'</span>,</span><br><span class="line">    password: <span class="string">'123456'</span>,</span><br><span class="line">    database: <span class="string">'test'</span>,</span><br><span class="line">    entities: [resolve(<span class="string">'./**/*.entity.js'</span>)],</span><br><span class="line">    migrations: [<span class="string">'migration/*.ts'</span>],</span><br><span class="line">    dropSchema: <span class="literal">false</span>,</span><br><span class="line">    synchronize: <span class="literal">false</span>,</span><br><span class="line">    logging: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在线上环境强烈不建议开启 orm 的 <code>synchronize</code>功能。本地如果要开启，要注意一点，如果 entity 中定义的字段类型和数据库原有类型不一样，在开启<code>synchronize</code> 后 orm 会执行 <code>drop</code>然后再<code>add</code>的操作，这会导致本地测试的时候数据丢失（这里为了方便，本地测试就把<code>synchronize</code>功能打开，这样写完 entity 就会自动同步到数据库）。</p>
+<p>在<code>app.module.ts</code>中导入<code>TypeOrmModule</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; AppController &#125; <span class="keyword">from</span> <span class="string">'./app.controller'</span></span><br><span class="line"><span class="keyword">import</span> &#123; AppService &#125; <span class="keyword">from</span> <span class="string">'./app.service'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CatsController &#125; <span class="keyword">from</span> <span class="string">'./cats/cats.controller'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CatsService &#125; <span class="keyword">from</span> <span class="string">'./cats/cats.service'</span></span><br><span class="line"><span class="keyword">import</span> &#123; TypeOrmModule, TypeOrmModuleOptions &#125; <span class="keyword">from</span> <span class="string">'@nestjs/typeorm'</span></span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'./config'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    TypeOrmModule.forRoot(config.orm <span class="keyword">as</span> TypeOrmModuleOptions),</span><br><span class="line">  ],</span><br><span class="line">  controllers: [AppController, CatsController],</span><br><span class="line">  providers: [AppService, CatsService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来就是写 entity，下面我们定义了一个叫<code>cat</code>的表，<code>id</code>为自增主键：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Entity, PrimaryGeneratedColumn, Column &#125; <span class="keyword">from</span> <span class="string">'typeorm'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>(<span class="string">'cat'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatEntity &#123;</span><br><span class="line">  <span class="meta">@PrimaryGeneratedColumn</span>()</span><br><span class="line">  id: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">50</span> &#125;)</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>()</span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">100</span>, nullable: <span class="literal">true</span> &#125;)</span><br><span class="line">  breed: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候，entity 就会同步到数据库，在<code>test</code>数据库中，就能看到<code>cat</code>这张表了。</p>
+<p>在某个模块使用这个 entity 的时候，需要在对应的模块中注册，使用 <code>forFeature()</code> 方法定义定义哪些存储库应在当前范围内注册：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; AppController &#125; <span class="keyword">from</span> <span class="string">'./app.controller'</span></span><br><span class="line"><span class="keyword">import</span> &#123; AppService &#125; <span class="keyword">from</span> <span class="string">'./app.service'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CatsController &#125; <span class="keyword">from</span> <span class="string">'./cats/cats.controller'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CatsService &#125; <span class="keyword">from</span> <span class="string">'./cats/cats.service'</span></span><br><span class="line"><span class="keyword">import</span> &#123; TypeOrmModule, TypeOrmModuleOptions &#125; <span class="keyword">from</span> <span class="string">'@nestjs/typeorm'</span></span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'./config'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CatEntity &#125; <span class="keyword">from</span> <span class="string">'./cats/cat.entity'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ENTITIES = [</span><br><span class="line">  CatEntity,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    TypeOrmModule.forRoot(config.orm <span class="keyword">as</span> TypeOrmModuleOptions),</span><br><span class="line">    TypeOrmModule.forFeature([...ENTITIES]),</span><br><span class="line">  ],</span><br><span class="line">  controllers: [AppController, CatsController],</span><br><span class="line">  providers: [AppService, CatsService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候就可以用<code>@InjectRepository()</code> 修饰器向 <code>CatService</code> 注入 <code>CatRepository</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; InjectRepository &#125; <span class="keyword">from</span> <span class="string">'@nestjs/typeorm'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CatEntity &#125; <span class="keyword">from</span> <span class="string">'./cat.entity'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Repository &#125; <span class="keyword">from</span> <span class="string">'typeorm'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(CatEntity) </span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> readonly catRepository: Repository&lt;CatEntity&gt;,</span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> getCat(id: <span class="built_in">number</span>): <span class="built_in">Promise</span>&lt;CatEntity[]&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.catRepository.find(&#123; id &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候去请求<code>http://localhost:3000/api/v1/cats/1</code>这个 API，就会返回下面结果：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"data"</span>: [],</span><br><span class="line">    <span class="string">"status"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">"message"</span>: <span class="string">"请求成功"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 typeorm 中，如果需要用到比较复杂的 sql 语句，可以使用 <code>createQueryBuilder</code>帮助你构建：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.catRepository</span><br><span class="line">  .createQueryBuilder(<span class="string">'cat'</span>)</span><br><span class="line">  .Where(<span class="string">'name != ""'</span>)</span><br><span class="line">  .andWhere(<span class="string">'age &gt; 2'</span>)</span><br><span class="line">	.getMany()</span><br></pre></td></tr></table></figure>
+<p>如果 <code>createQueryBuilder</code>不能满足你的要求，可以直接使用<code>query</code>写 sql 语句：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.catRepository.query(</span><br><span class="line">  <span class="string">'select * from cat where name != ? and age &gt; ?'</span>,</span><br><span class="line">  [age],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="Migration"><a href="#Migration" class="headerlink" title="Migration"></a>Migration</h2><p>在持续交付项目中，项目会不断迭代上线，这时候就会出现数据库改动的问题，对一个投入使用的系统，通常会使用 migration 帮我们同步数据库。TypeORM 也自带了一个 <a href="https://github.com/typeorm/typeorm/blob/master/docs/zh_CN/using-cli.md" rel="external nofollow noopener noreferrer" target="_blank">CLI 工具</a>帮助我们进行数据库的同步。</p>
+<p>首先在本地创建一个<code>ormconfig.json</code>文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"mysql"</span>,</span><br><span class="line">  <span class="attr">"host"</span>: <span class="string">"localhost"</span>,</span><br><span class="line">  <span class="attr">"port"</span>: <span class="number">3310</span>,</span><br><span class="line">  <span class="attr">"username"</span>: <span class="string">"root"</span>,</span><br><span class="line">  <span class="attr">"password"</span>: <span class="string">"123456"</span>,</span><br><span class="line">  <span class="attr">"database"</span>: <span class="string">"test"</span>,</span><br><span class="line">  <span class="attr">"entities"</span>: [<span class="string">"./**/*.entity.ts"</span>],</span><br><span class="line">  <span class="attr">"migrations"</span>: [<span class="string">"migrations/*.ts"</span>],</span><br><span class="line">  <span class="attr">"cli"</span>: &#123;</span><br><span class="line">    <span class="attr">"migrationsDir"</span>: <span class="string">"migrations"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"timezone"</span>: <span class="string">"UTC"</span>,</span><br><span class="line">  <span class="attr">"charset"</span>: <span class="string">"utf8mb4"</span>,</span><br><span class="line">  <span class="attr">"multipleStatements"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"dropSchema"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"synchronize"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"logging"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个 json 文件中指定了 entity 和 migration 文件的匹配规则，并且在 CLI 中配置了 migration 文件放置的位置。</p>
+<p>这时候运行下面命令就会在 migrations 文件夹下面自动生成<code>1563725408398-update-cat.ts</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ts-node node_modules/.bin/typeorm migration:create -n update-cat</span><br></pre></td></tr></table></figure>
+<p>文件名中<code>1563725408398</code>是生成文件的时间戳。这个文件中会有<code>up</code>和<code>down</code>这两个方法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;MigrationInterface, QueryRunner&#125; <span class="keyword">from</span> <span class="string">"typeorm"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> updateCat1563725408398 <span class="keyword">implements</span> MigrationInterface &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">async</span> up(queryRunner: QueryRunner): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">async</span> down(queryRunner: QueryRunner): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>up</code>必须包含执行 migration 所需的代码。 <code>down</code>必须恢复任何<code>up</code>改变。在<code>up</code>和<code>down</code>里面有一个<code>QueryRunner</code>对象。 使用此对象执行所有数据库操作。比如我们在 cat 这张表中写入一个假数据：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;MigrationInterface, QueryRunner&#125; <span class="keyword">from</span> <span class="string">"typeorm"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> updateCat1563725408398 <span class="keyword">implements</span> MigrationInterface &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">async</span> up(queryRunner: QueryRunner): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">await</span> queryRunner.query(<span class="string">`insert into cat (id, name, age, breed) values (2, 'test', 3, 'cat') `</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">async</span> down(queryRunner: QueryRunner): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候，在 <code>package.json</code>中写入下面 script 并运行<code>npm run migration:run</code>，这时候 cat 表里面就会有一个<code>id</code>为<code>2</code>的假数据。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"migration:run"</span>: <span class="string">"ts-node node_modules/.bin/typeorm migration:run"</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，这个<code>ormconfig.json</code>文件的配置是本地环境的配置，如果需要在生成环境使用，可以重新写一份<code>ormconfig-prod.json</code>，然后运行<code>migration</code>命名的时候加上<code>--config ormconfig-prod.json</code>。</p>
+<p>用 typeorm 生成的 migration 有一个缺点，sql 和代码都耦合在一起，最好还是 sql 是单独一个文件，migration 脚本是一个文件，这样如果特殊情况下，方便直接在 MySQL 中运行这些 sql 文件。这时候，可以用<a href="https://github.com/db-migrate/node-db-migrate#readme" rel="external nofollow noopener noreferrer" target="_blank">db-migrate</a>来代替 typeorm 来管理 migration 脚本，db-migrate 会在 migration 目录下面生成一个 js 脚本和两个 sql 文件，这两个 sql 文件一个是<code>up</code>的 sql，一个是<code>down</code>的 sql。</p>
+<p>对于已有项目，如果根据数据库从头开始创建对应的 entity 是一件很麻烦的事情，这时候，可以使用<a href="https://github.com/Kononnable/typeorm-model-generator" rel="external nofollow noopener noreferrer" target="_blank">typeorm-model-generator</a>来自动生成这些 entity 。比如运行下面命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ typeorm-model-generator -h 127.0.0.1 -d arya -p 3310 -u root -x 123456 -e mysql -d <span class="built_in">test</span> -o <span class="string">'src/entities/'</span> --noConfig <span class="literal">true</span> --cf param --ce pascal</span><br></pre></td></tr></table></figure>
+<p>这时候就会在<code>src/entities/</code>下面生成<code>cat.ts</code>的 entity 文件：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId&#125; <span class="keyword">from</span> <span class="string">"typeorm"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>(<span class="string">"cat"</span>,&#123;schema:<span class="string">"test"</span>, database:<span class="string">"test"</span> &#125; )</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Cat &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PrimaryGeneratedColumn</span>(&#123;</span><br><span class="line">        <span class="keyword">type</span>:<span class="string">"int"</span>, </span><br><span class="line">        name:<span class="string">"id"</span></span><br><span class="line">        &#125;)</span><br><span class="line">    id:<span class="built_in">number</span>;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>(<span class="string">"varchar"</span>,&#123; </span><br><span class="line">        nullable:<span class="literal">false</span>,</span><br><span class="line">        length:<span class="number">50</span>,</span><br><span class="line">        name:<span class="string">"name"</span></span><br><span class="line">        &#125;)</span><br><span class="line">    name:<span class="built_in">string</span>;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>(<span class="string">"int"</span>,&#123; </span><br><span class="line">        nullable:<span class="literal">false</span>,</span><br><span class="line">        name:<span class="string">"age"</span></span><br><span class="line">        &#125;)</span><br><span class="line">    age:<span class="built_in">number</span>;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>(<span class="string">"varchar"</span>,&#123; </span><br><span class="line">        nullable:<span class="literal">true</span>,</span><br><span class="line">        length:<span class="number">100</span>,</span><br><span class="line">        name:<span class="string">"breed"</span></span><br><span class="line">        &#125;)</span><br><span class="line">    breed:<span class="built_in">string</span> | <span class="literal">null</span>;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>官方给出了日志的解决方案，不过这里我们参照<a href="https://github.com/ZhiXiao-Lin/nestify" rel="external nofollow noopener noreferrer" target="_blank">nestify</a>，使用<a href="https://github.com/log4js-node/log4js-node" rel="external nofollow noopener noreferrer" target="_blank">log4js</a>做日志处理。主要原因是 log4js 对日志进行了分级、分盘和落盘，方便我们更好地管理日志。</p>
+<p>在 log4js 中日志分为九个等级：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">enum</span> LoggerLevel &#123;</span><br><span class="line">  ALL = <span class="string">'ALL'</span>,</span><br><span class="line">  MARK = <span class="string">'MARK'</span>,</span><br><span class="line">  TRACE = <span class="string">'TRACE'</span>,</span><br><span class="line">  DEBUG = <span class="string">'DEBUG'</span>,</span><br><span class="line">  INFO = <span class="string">'INFO'</span>,</span><br><span class="line">  WARN = <span class="string">'WARN'</span>,</span><br><span class="line">  ERROR = <span class="string">'ERROR'</span>,</span><br><span class="line">  FATAL = <span class="string">'FATAL'</span>,</span><br><span class="line">  OFF = <span class="string">'OFF'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>ALL</code>和<code>OFF</code> 这两个等级一般不会直接在业务代码中使用。剩下的七个即分别对应 <code>Logger</code> 实例的七个方法，也就是说，在调用这些方法的时候，就相当于为这些日志定了级。</p>
+<p>对于不同的日志级别，在 log4js 中通过不同颜色输出，并且输出时候带上日志输出时间和对应的 module name：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">Log4js.addLayout(<span class="string">'Awesome-nest'</span>, <span class="function">(<span class="params">logConfig: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (logEvent: Log4js.LoggingEvent): <span class="function"><span class="params">string</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> moduleName: <span class="built_in">string</span> = <span class="string">''</span></span><br><span class="line">    <span class="keyword">let</span> position: <span class="built_in">string</span> = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> messageList: <span class="built_in">string</span>[] = []</span><br><span class="line">    logEvent.data.forEach(<span class="function">(<span class="params">value: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (value <span class="keyword">instanceof</span> ContextTrace) &#123;</span><br><span class="line">        moduleName = value.context</span><br><span class="line">        <span class="keyword">if</span> (value.lineNumber &amp;&amp; value.columnNumber) &#123;</span><br><span class="line">          position = <span class="string">`<span class="subst">$&#123;value.lineNumber&#125;</span>, <span class="subst">$&#123;value.columnNumber&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> value !== <span class="string">'string'</span>) &#123;</span><br><span class="line">        value = Util.inspect(value, <span class="literal">false</span>, <span class="number">3</span>, <span class="literal">true</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      messageList.push(value)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> messageOutput: <span class="built_in">string</span> = messageList.join(<span class="string">' '</span>)</span><br><span class="line">    <span class="keyword">const</span> positionOutput: <span class="built_in">string</span> = position ? <span class="string">` [<span class="subst">$&#123;position&#125;</span>]`</span> : <span class="string">''</span></span><br><span class="line">    <span class="keyword">const</span> typeOutput: <span class="built_in">string</span> = <span class="string">`[<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="string"><span class="subst">      logConfig.type</span></span></span><br><span class="line"><span class="string"><span class="subst">    &#125;</span>] <span class="subst">$&#123;logEvent.pid.toString()&#125;</span>   - `</span></span><br><span class="line">    <span class="keyword">const</span> dateOutput: <span class="built_in">string</span> = <span class="string">`<span class="subst">$&#123;Moment(logEvent.startTime).format(</span></span></span><br><span class="line"><span class="string"><span class="subst">      'YYYY-MM-DD HH:mm:ss',</span></span></span><br><span class="line"><span class="string"><span class="subst">    )&#125;</span>`</span></span><br><span class="line">    <span class="keyword">const</span> moduleOutput: <span class="built_in">string</span> = moduleName</span><br><span class="line">      ? <span class="string">`[<span class="subst">$&#123;moduleName&#125;</span>] `</span></span><br><span class="line">      : <span class="string">'[LoggerService] '</span></span><br><span class="line">    <span class="keyword">let</span> levelOutput: <span class="built_in">string</span> = <span class="string">`[<span class="subst">$&#123;logEvent.level&#125;</span>] <span class="subst">$&#123;messageOutput&#125;</span>`</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (logEvent.level.toString()) &#123;</span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.DEBUG:</span><br><span class="line">        levelOutput = Chalk.green(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.INFO:</span><br><span class="line">        levelOutput = Chalk.cyan(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.WARN:</span><br><span class="line">        levelOutput = Chalk.yellow(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.ERROR:</span><br><span class="line">        levelOutput = Chalk.red(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.FATAL:</span><br><span class="line">        levelOutput = Chalk.hex(<span class="string">'#DD4C35'</span>)(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        levelOutput = Chalk.grey(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;Chalk.green(typeOutput)&#125;</span><span class="subst">$&#123;dateOutput&#125;</span>    <span class="subst">$&#123;Chalk.yellow(</span></span></span><br><span class="line"><span class="string"><span class="subst">      moduleOutput,</span></span></span><br><span class="line"><span class="string"><span class="subst">    )&#125;</span><span class="subst">$&#123;levelOutput&#125;</span><span class="subst">$&#123;positionOutput&#125;</span>`</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在 log4js 中，日志的出口问题（即日志输出到哪里）由 Appender 来解决：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Log4js.configure(&#123;</span><br><span class="line">  appenders: &#123;</span><br><span class="line">    <span class="built_in">console</span>: &#123;</span><br><span class="line">      <span class="keyword">type</span>: <span class="string">'stdout'</span>,</span><br><span class="line">      layout: &#123; <span class="keyword">type</span>: <span class="string">'Awesome-nest'</span> &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  categories: &#123;</span><br><span class="line">    <span class="keyword">default</span>: &#123;</span><br><span class="line">      appenders: [<span class="string">'console'</span>],</span><br><span class="line">      level: <span class="string">'debug'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>config 中配置了<code>debug</code>级别以上的日志会通过<code>console</code>输出。</p>
+<p>接下来就是<code>export</code>一个 <code>log class</code>，对外暴露出 log4js 中不同等级的 log 方法以供调用，完整代码如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Path <span class="keyword">from</span> <span class="string">'path'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Log4js <span class="keyword">from</span> <span class="string">'log4js'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Util <span class="keyword">from</span> <span class="string">'util'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Moment <span class="keyword">from</span> <span class="string">'moment'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> StackTrace <span class="keyword">from</span> <span class="string">'stacktrace-js'</span></span><br><span class="line"><span class="keyword">import</span> Chalk <span class="keyword">from</span> <span class="string">'chalk'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">enum</span> LoggerLevel &#123;</span><br><span class="line">  ALL = <span class="string">'ALL'</span>,</span><br><span class="line">  MARK = <span class="string">'MARK'</span>,</span><br><span class="line">  TRACE = <span class="string">'TRACE'</span>,</span><br><span class="line">  DEBUG = <span class="string">'DEBUG'</span>,</span><br><span class="line">  INFO = <span class="string">'INFO'</span>,</span><br><span class="line">  WARN = <span class="string">'WARN'</span>,</span><br><span class="line">  ERROR = <span class="string">'ERROR'</span>,</span><br><span class="line">  FATAL = <span class="string">'FATAL'</span>,</span><br><span class="line">  OFF = <span class="string">'OFF'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ContextTrace &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> readonly context: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> readonly path?: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> readonly lineNumber?: <span class="built_in">number</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">public</span> readonly columnNumber?: <span class="built_in">number</span>,</span></span><br><span class="line"><span class="params">  </span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Log4js.addLayout(<span class="string">'Awesome-nest'</span>, <span class="function">(<span class="params">logConfig: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (logEvent: Log4js.LoggingEvent): <span class="function"><span class="params">string</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> moduleName: <span class="built_in">string</span> = <span class="string">''</span></span><br><span class="line">    <span class="keyword">let</span> position: <span class="built_in">string</span> = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> messageList: <span class="built_in">string</span>[] = []</span><br><span class="line">    logEvent.data.forEach(<span class="function">(<span class="params">value: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (value <span class="keyword">instanceof</span> ContextTrace) &#123;</span><br><span class="line">        moduleName = value.context</span><br><span class="line">        <span class="keyword">if</span> (value.lineNumber &amp;&amp; value.columnNumber) &#123;</span><br><span class="line">          position = <span class="string">`<span class="subst">$&#123;value.lineNumber&#125;</span>, <span class="subst">$&#123;value.columnNumber&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> value !== <span class="string">'string'</span>) &#123;</span><br><span class="line">        value = Util.inspect(value, <span class="literal">false</span>, <span class="number">3</span>, <span class="literal">true</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      messageList.push(value)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> messageOutput: <span class="built_in">string</span> = messageList.join(<span class="string">' '</span>)</span><br><span class="line">    <span class="keyword">const</span> positionOutput: <span class="built_in">string</span> = position ? <span class="string">` [<span class="subst">$&#123;position&#125;</span>]`</span> : <span class="string">''</span></span><br><span class="line">    <span class="keyword">const</span> typeOutput: <span class="built_in">string</span> = <span class="string">`[<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="string"><span class="subst">      logConfig.type</span></span></span><br><span class="line"><span class="string"><span class="subst">    &#125;</span>] <span class="subst">$&#123;logEvent.pid.toString()&#125;</span>   - `</span></span><br><span class="line">    <span class="keyword">const</span> dateOutput: <span class="built_in">string</span> = <span class="string">`<span class="subst">$&#123;Moment(logEvent.startTime).format(</span></span></span><br><span class="line"><span class="string"><span class="subst">      'YYYY-MM-DD HH:mm:ss',</span></span></span><br><span class="line"><span class="string"><span class="subst">    )&#125;</span>`</span></span><br><span class="line">    <span class="keyword">const</span> moduleOutput: <span class="built_in">string</span> = moduleName</span><br><span class="line">      ? <span class="string">`[<span class="subst">$&#123;moduleName&#125;</span>] `</span></span><br><span class="line">      : <span class="string">'[LoggerService] '</span></span><br><span class="line">    <span class="keyword">let</span> levelOutput: <span class="built_in">string</span> = <span class="string">`[<span class="subst">$&#123;logEvent.level&#125;</span>] <span class="subst">$&#123;messageOutput&#125;</span>`</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (logEvent.level.toString()) &#123;</span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.DEBUG:</span><br><span class="line">        levelOutput = Chalk.green(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.INFO:</span><br><span class="line">        levelOutput = Chalk.cyan(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.WARN:</span><br><span class="line">        levelOutput = Chalk.yellow(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.ERROR:</span><br><span class="line">        levelOutput = Chalk.red(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> LoggerLevel.FATAL:</span><br><span class="line">        levelOutput = Chalk.hex(<span class="string">'#DD4C35'</span>)(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        levelOutput = Chalk.grey(levelOutput)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;Chalk.green(typeOutput)&#125;</span><span class="subst">$&#123;dateOutput&#125;</span>    <span class="subst">$&#123;Chalk.yellow(</span></span></span><br><span class="line"><span class="string"><span class="subst">      moduleOutput,</span></span></span><br><span class="line"><span class="string"><span class="subst">    )&#125;</span><span class="subst">$&#123;levelOutput&#125;</span><span class="subst">$&#123;positionOutput&#125;</span>`</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Log4js.configure(&#123;</span><br><span class="line">  appenders: &#123;</span><br><span class="line">    <span class="built_in">console</span>: &#123;</span><br><span class="line">      <span class="keyword">type</span>: <span class="string">'stdout'</span>,</span><br><span class="line">      layout: &#123; <span class="keyword">type</span>: <span class="string">'Awesome-nest'</span> &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  categories: &#123;</span><br><span class="line">    <span class="keyword">default</span>: &#123;</span><br><span class="line">      appenders: [<span class="string">'console'</span>],</span><br><span class="line">      level: <span class="string">'debug'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> logger = Log4js.getLogger()</span><br><span class="line">logger.level = LoggerLevel.TRACE</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Logger &#123;</span><br><span class="line">  <span class="keyword">static</span> trace(...args) &#123;</span><br><span class="line">    logger.trace(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> debug(...args) &#123;</span><br><span class="line">    logger.debug(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> log(...args) &#123;</span><br><span class="line">    logger.info(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> info(...args) &#123;</span><br><span class="line">    logger.info(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> warn(...args) &#123;</span><br><span class="line">    logger.warn(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> warning(...args) &#123;</span><br><span class="line">    logger.warn(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> error(...args) &#123;</span><br><span class="line">    logger.error(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> fatal(...args) &#123;</span><br><span class="line">    logger.fatal(Logger.getStackTrace(), ...args)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> getStackTrace(deep: <span class="built_in">number</span> = <span class="number">2</span>): ContextTrace &#123;</span><br><span class="line">    <span class="keyword">const</span> stackList: StackTrace.StackFrame[] = StackTrace.getSync()</span><br><span class="line">    <span class="keyword">const</span> stackInfo: StackTrace.StackFrame = stackList[deep]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> lineNumber: <span class="built_in">number</span> = stackInfo.lineNumber</span><br><span class="line">    <span class="keyword">const</span> columnNumber: <span class="built_in">number</span> = stackInfo.columnNumber</span><br><span class="line">    <span class="keyword">const</span> fileName: <span class="built_in">string</span> = stackInfo.fileName</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> extnameLength: <span class="built_in">number</span> = Path.extname(fileName).length</span><br><span class="line">    <span class="keyword">let</span> basename: <span class="built_in">string</span> = Path.basename(fileName)</span><br><span class="line">    basename = basename.substr(<span class="number">0</span>, basename.length - extnameLength)</span><br><span class="line">    <span class="keyword">const</span> context: <span class="built_in">string</span> = _.upperFirst(_.camelCase(basename))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ContextTrace(context, fileName, lineNumber, columnNumber)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在需要输出日志的地方只要这样调用就行：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logger.info(id)</span><br></pre></td></tr></table></figure>
+<p>可是我们并不希望每个请求都自己打 log，这时候可以把这个 log 作为中间件：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Logger &#125; <span class="keyword">from</span> <span class="string">'../../shared/utils/logger'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">logger</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> statusCode = res.statusCode</span><br><span class="line">  <span class="keyword">const</span> logFormat = <span class="string">`<span class="subst">$&#123;req.method&#125;</span> <span class="subst">$&#123;req.originalUrl&#125;</span> ip: <span class="subst">$&#123;req.ip&#125;</span> statusCode: <span class="subst">$&#123;statusCode&#125;</span>`</span></span><br><span class="line"></span><br><span class="line">  next()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (statusCode &gt;= <span class="number">500</span>) &#123;</span><br><span class="line">    Logger.error(logFormat)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (statusCode &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">    Logger.warn(logFormat)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Logger.log(logFormat)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>main.ts</code>中注册：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(AppModule)</span><br><span class="line">  app.setGlobalPrefix(<span class="string">'api/v1'</span>)</span><br><span class="line"></span><br><span class="line">  app.use(logger)</span><br><span class="line">  app.useGlobalFilters(<span class="keyword">new</span> ExceptionsFilter())</span><br><span class="line">  app.useGlobalInterceptors(<span class="keyword">new</span> TransformInterceptor())</span><br><span class="line">  app.useGlobalPipes(<span class="keyword">new</span> ValidationPipe())</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> app.listen(config.port, config.hostName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并且在<code>ExceptionsFilter</code>中也对捕捉到的 Exception 进行日志输出：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ExceptionsFilter <span class="keyword">implements</span> ExceptionFilter &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="keyword">catch</span>(exception, host: ArgumentsHost) &#123;</span><br><span class="line">    <span class="keyword">const</span> ctx = host.switchToHttp()</span><br><span class="line">    <span class="keyword">const</span> response = ctx.getResponse()</span><br><span class="line">    <span class="keyword">const</span> request = ctx.getRequest()</span><br><span class="line"></span><br><span class="line">    Logger.error(<span class="string">'exception'</span>, <span class="built_in">JSON</span>.stringify(exception))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> message = exception.message</span><br><span class="line">    <span class="keyword">let</span> isDeepestMessage = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">while</span> (!isDeepestMessage) &#123;</span><br><span class="line">      isDeepestMessage = !message.message</span><br><span class="line">      message = isDeepestMessage ? message : message.message</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> errorResponse = &#123;</span><br><span class="line">      message: message || <span class="string">'请求失败'</span>,</span><br><span class="line">      status: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> status = exception <span class="keyword">instanceof</span> HttpException ?</span><br><span class="line">      exception.getStatus() :</span><br><span class="line">      HttpStatus.INTERNAL_SERVER_ERROR</span><br><span class="line"></span><br><span class="line">    Logger.error(</span><br><span class="line">      <span class="string">`Catch http exception at <span class="subst">$&#123;request.method&#125;</span> <span class="subst">$&#123;request.url&#125;</span> <span class="subst">$&#123;status&#125;</span>`</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    response.status(status)</span><br><span class="line">    response.header(<span class="string">'Content-Type'</span>, <span class="string">'application/json; charset=utf-8'</span>)</span><br><span class="line">    response.send(errorResponse)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一个基础的日志输出系统差不多就完成了。当然，log4js 的<code>appender</code>还支持下面几种：</p>
+<ul>
+<li><p>DateFile：日志输出到文件，日志文件可以安特定的日期模式滚动，例如今天输出到 <code>default-2016-08-21.log</code>，明天输出到 <code>default-2016-08-22.log</code>；</p>
+</li>
+<li><p>SMTP：输出日志到邮件；</p>
+</li>
+<li><p>Mailgun：通过 Mailgun API 输出日志到 Mailgun；</p>
+</li>
+<li><p>levelFilter 可以通过 level 过滤；</p>
+</li>
+<li><p>等等其他一些 appender，到<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fnomiddlename%2Flog4js-node%2Fwiki%2FAppenders" rel="external nofollow noopener noreferrer" target="_blank">这里</a>可以看到全部的列表。</p>
+</li>
+</ul>
+<p>比如，下面配置就会把日志输出到加上日期后缀的文件中，并且保留 60 天：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Log4js.configure(&#123;</span><br><span class="line">    appenders: &#123;</span><br><span class="line">      fileAppender: &#123;</span><br><span class="line">        <span class="keyword">type</span>: <span class="string">'DateFile'</span>,</span><br><span class="line">        filename: <span class="string">'./logs/prod.log'</span>,</span><br><span class="line">        pattern: <span class="string">'-yyyy-MM-dd.log'</span>,</span><br><span class="line">        alwaysIncludePattern: <span class="literal">true</span>,</span><br><span class="line">        layout: &#123; <span class="keyword">type</span>: <span class="string">'Flash'</span> &#125;,</span><br><span class="line">        daysToKeep: <span class="number">60</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    categories: &#123;</span><br><span class="line">      <span class="keyword">default</span>: &#123;</span><br><span class="line">        appenders: [<span class="string">'fileAppender'</span>],</span><br><span class="line">        level: <span class="string">'info'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><p>对于一般的 CRUD 的操作，在 Nestjs 中可以使用<a href="https://github.com/nestjsx/crud/wiki/Controllers#getting-started" rel="external nofollow noopener noreferrer" target="_blank">@nestjsx/crud</a>这个库来帮我们减少开发量。</p>
+<p>首先安装相关依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @nestjsx/crud @nestjsx/crud-typeorm class-transformer class-validator --save</span><br></pre></td></tr></table></figure>
+<p>然后新建<code>dog.entity.ts</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Entity, PrimaryGeneratedColumn, Column &#125; <span class="keyword">from</span> <span class="string">'typeorm'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>(<span class="string">'dog'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> DogEntity &#123;</span><br><span class="line">  <span class="meta">@PrimaryGeneratedColumn</span>()</span><br><span class="line">  id: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">50</span> &#125;)</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>()</span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">100</span>, nullable: <span class="literal">true</span> &#125;)</span><br><span class="line">  breed: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>dog.service.ts</code>中只需写下面几行代码：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; InjectRepository &#125; <span class="keyword">from</span> <span class="string">'@nestjs/typeorm'</span></span><br><span class="line"><span class="keyword">import</span> &#123; TypeOrmCrudService &#125; <span class="keyword">from</span> <span class="string">'@nestjsx/crud-typeorm'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; DogEntity &#125; <span class="keyword">from</span> <span class="string">'./dog.entity'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> DogsService <span class="keyword">extends</span> TypeOrmCrudService&lt;DogEntity&gt; &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="meta">@InjectRepository</span>(DogEntity) repo</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(repo)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>dog.controller.ts</code>中，使用<code>@crud</code>帮助自动生成API：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Controller &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Crud, CrudController &#125; <span class="keyword">from</span> <span class="string">'@nestjsx/crud'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; DogEntity &#125; <span class="keyword">from</span> <span class="string">'./dog.entity'</span></span><br><span class="line"><span class="keyword">import</span> &#123; DogsService &#125; <span class="keyword">from</span> <span class="string">'./dogs.service'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Crud</span>(&#123;</span><br><span class="line">  model: &#123;</span><br><span class="line">    <span class="keyword">type</span>: DogEntity,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'dogs'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> DogsController <span class="keyword">implements</span> CrudController&lt;DogEntity&gt; &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> service: DogsService</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候，就可以按照<a href="https://github.com/nestjsx/crud/wiki/Controllers#getting-started" rel="external nofollow noopener noreferrer" target="_blank">@nestjsx/crud的文档</a>中 API 规则去请求对应的 CRUD 的操作。比如，请求<code>GET api/v1/dogs</code>，就会返回所有 <code>dog</code> 的数组；请求<code>GET api/v1/dogs/1</code>，就会返回 <code>id</code>为<code>1</code>的 <code>dog</code>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/typeorm/typeorm/blob/master/docs/zh_CN/using-cli.md" rel="external nofollow noopener noreferrer" target="_blank">使用 CLI</a></p>
+<p><a href="https://github.com/typeorm/typeorm/blob/master/docs/zh_CN/migrations.md" rel="external nofollow noopener noreferrer" target="_blank">迁移</a></p>
+<p><a href="https://juejin.im/post/57b962af7db2a200542a0fb3#heading-1" rel="external nofollow noopener noreferrer" target="_blank">Node.js 之 log4js 完全讲解</a></p>
+<p><a href="https://github.com/ZhiXiao-Lin/nestify" rel="external nofollow noopener noreferrer" target="_blank">nestify</a></p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2019/07/22/Nestjs入门（二）/" title="Nestjs入门（二）">https://tc9011.com/2019/07/22/Nestjs入门（二）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/Nestjs/" rel="tag"># Nestjs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/14/Nestjs入门（一）/" rel="next" title="Nestjs入门（一）">
+                <i class="fa fa-chevron-left"></i> Nestjs入门（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/31/Nestjs入门（三）/" rel="prev" title="Nestjs入门（三）">
+                Nestjs入门（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller-和-Service"><span class="nav-number">1.</span> <span class="nav-text">Controller 和 Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DTO-和-Pipe"><span class="nav-number">2.</span> <span class="nav-text">DTO 和 Pipe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interceptor-和-Exception-Filter"><span class="nav-number">3.</span> <span class="nav-text">Interceptor 和 Exception Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeORM"><span class="nav-number">4.</span> <span class="nav-text">TypeORM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Migration"><span class="nav-number">5.</span> <span class="nav-text">Migration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志"><span class="nav-number">6.</span> <span class="nav-text">日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRUD"><span class="nav-number">7.</span> <span class="nav-text">CRUD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2019/07/22/Nestjs入门（二）/';
+        this.page.identifier = '2019/07/22/Nestjs入门（二）/';
+        this.page.title = 'Nestjs入门（二）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

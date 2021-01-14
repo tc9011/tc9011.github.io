@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="description" content="第十七章：错误处理与调试 第二十章：JSON">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript高级程序设计》学习笔记（七）">
+<meta property="og:url" content="https://tc9011.com/2017/12/21/《JavaScript高级程序设计》学习笔记（七）/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:description" content="第十七章：错误处理与调试 第二十章：JSON">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/《JavaScript高级程序设计》学习笔记（七）/20171211151292542444640.jpg">
+<meta property="og:image" content="https://tc9011.com/assets/images/《JavaScript高级程序设计》学习笔记（七）/20171214151318141818676.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/《JavaScript高级程序设计》学习笔记（七）/20171214151318276195924.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript高级程序设计》学习笔记（七）">
+<meta name="twitter:description" content="第十七章：错误处理与调试 第二十章：JSON">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/《JavaScript高级程序设计》学习笔记（七）/20171211151292542444640.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2017/12/21/《JavaScript高级程序设计》学习笔记（七）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript高级程序设计》学习笔记（七） | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2017/12/21/《JavaScript高级程序设计》学习笔记（七）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》学习笔记（七）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-21 00:53:43" itemprop="dateCreated datePublished" datetime="2017-12-21T00:53:43+08:00">2017-12-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/21/《JavaScript高级程序设计》学习笔记（七）/" class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》学习笔记（七）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/《JavaScript高级程序设计》学习笔记（七）/20171211151292542444640.jpg" alt="20171211151292542444640.jpg"></p>
+<blockquote>
+<p>第十七章：错误处理与调试</p>
+<p>第二十章：JSON</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="错误处理与调试"><a href="#错误处理与调试" class="headerlink" title="错误处理与调试"></a>错误处理与调试</h2><h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><h4 id="try-catch语句"><a href="#try-catch语句" class="headerlink" title="try-catch语句"></a>try-catch语句</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">// 可能会导致错误的代码</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="comment">// 在错误发生时怎么处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果<code>try</code>块中的任何代码发生了错误，就会立刻退出代码执行过程，然后执行<code>catch</code>块。此时，<code>catch</code>块会接收到一个包含错误信息的对象。即使不想使用这个错误对象，也要给它起个名字。这个对象中包含的实际信息会因浏览器而异，但共同的是有一个保存着错误消息的<code>message</code>属性。ECMA-262还规定一个保存错误类型的<code>name</code>属性；当前所有浏览器都支持这个属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.someNoneexistentFunction();</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    alert(error.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="finally子句"><a href="#finally子句" class="headerlink" title="finally子句"></a>finally子句</h5><p>虽然在<code>try-catch</code>语句中是可选的，但<code>finally</code>子句一经使用，其代码无论如何都会执行。只要代码中包含<code>finally</code>子句，则无论<code>try</code>或<code>catch</code>语句块中包含什么代码—甚至<code>return</code>语句，都不会阻止<code>finally</code>子句的执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFinally</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;		<span class="comment">// 返回0</span></span><br></pre></td></tr></table></figure>
+<h5 id="错误类型"><a href="#错误类型" class="headerlink" title="错误类型"></a>错误类型</h5><p>ECMA-262定义了下列7种错误类型：</p>
+<ul>
+<li>Error</li>
+<li>EvalError</li>
+<li>RangeError </li>
+<li>ReferenceError</li>
+<li>SyntaxError</li>
+<li>TypeError</li>
+<li>URIError</li>
+</ul>
+<p>其中，Error是基本类型，其他错误类型都继承自该类型。因此，所有错误类型共享一组相同的属性。Error类型的错误很少见，如果有也是浏览器抛出的；这个基本类型的主要目的是供开发人员抛出自定义错误。</p>
+<p>EvalError类型的错误会在使用<code>eval()</code>函数而发生异常时被抛出。ECMA-262中对这个错误有如下描述：如果以非直接调用的方式使用<code>eval</code>属性的值（换句话说，没有明确地将其名称为作一个Identifier，即用作callExpression中的MemberExpression），或者为<code>eval</code>属性赋值。简单地说，如果没有把<code>eval()</code>当成函数调用，就会抛出错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">eval</span>(); 	<span class="comment">// 抛出EvalError</span></span><br><span class="line"><span class="built_in">eval</span> = foo		<span class="comment">// 抛出EvalError</span></span><br></pre></td></tr></table></figure>
+<p>在实践中，浏览器不一定会在应该抛出错误时就抛出EvalError。加上实际开发中极少用到<code>eval()</code>，所以遇到这种错误类型的可能性极小。</p>
+<p>RangeError类型的错误会在数值超出相应范围时触发：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">-20</span>);    <span class="comment">// 抛出RangeError</span></span><br><span class="line"><span class="keyword">var</span> items2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="built_in">Number</span>.MAX_VALUE);   <span class="comment">// 抛出RangeError</span></span><br></pre></td></tr></table></figure>
+<p>在找不到对象的情况下，会发生ReferenceError。通常，在访问不存在的变量时，就会发生这种错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = x;		<span class="comment">// 在x并未声明的情况下抛出ReferenceError</span></span><br></pre></td></tr></table></figure>
+<p>当把语法错误的JavaScript字符串传入<code>eval()</code>函数时，会导致SyntaxError：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">'a ++ b'</span>);     <span class="comment">// 抛出SyntaxError</span></span><br></pre></td></tr></table></figure>
+<p>TypeError类型在JavaScript中经常用到，在变量中保存着意外的类型时，或者在访问不存在的方法时，都会导致这种错误。错误的原因虽然多种多样，但归根结底还是由于在执行特定于类型的操作时，变量的类型并不符合要求所致：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="number">10</span>;     <span class="comment">// 抛出TypeError</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'name'</span> <span class="keyword">in</span> <span class="literal">true</span>);    <span class="comment">// 抛出TypeError</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.toString.call(<span class="string">'name'</span>);   <span class="comment">// 抛出TypeError</span></span><br></pre></td></tr></table></figure>
+<p>在使用<code>encodeURI()</code>和<code>decodeURI()</code>，而URI格式不正确时，就会导致URIError错误。</p>
+<p>可以像下面这样在<code>try-catch</code>语句的<code>catch</code>语句中使用<code>instanceof</code>操作符：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  someFunction();</span><br><span class="line">&#125;<span class="keyword">catch</span> (error)&#123;</span><br><span class="line">  <span class="keyword">if</span> (error <span class="keyword">instanceof</span> <span class="built_in">TypeError</span>)&#123;</span><br><span class="line">    <span class="comment">// 处理类型错误</span></span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> <span class="built_in">ReferenceError</span>)&#123;</span><br><span class="line">    <span class="comment">// 处理引用错误</span></span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 处理其他类型错误</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在跨浏览器编程中，检查错误类型是确定处理方式的最简便途经；包含在<code>message</code>属性中的错误消息会因浏览器而异。</p>
+<h5 id="合理使用try-catch"><a href="#合理使用try-catch" class="headerlink" title="合理使用try-catch"></a>合理使用try-catch</h5><p>使用<code>try-catch</code>最适合处理那些无法控制的错误。在明白地知道自己的代码会发生错误时，再使用<code>try-catch</code>语句就不太合适。</p>
+<h4 id="抛出错误"><a href="#抛出错误" class="headerlink" title="抛出错误"></a>抛出错误</h4><p>与<code>try-catch</code>语句相匹配的还有一个<code>throw</code>操作符，用于随时抛出自定义错误。抛出错误时，必须要给<code>throw</code>操作符指定一个值，这个值是什么类型，没有要求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">throw</span> <span class="string">'hello'</span>;</span><br><span class="line"><span class="keyword">throw</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">throw</span> &#123;<span class="attr">name</span>: <span class="string">'JavaScript'</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>在遇到<code>throw</code>操作符时，代码会立即停止执行。仅当<code>try-catch</code>语句捕获到被抛出的值时，代码才会继续执行。</p>
+<p>通过使用某种内置错误类型，可以更真实地模拟浏览器错误。每种错误类型的构造函数接收一个参数，即实际的错误消息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'something bad happened'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/images/《JavaScript高级程序设计》学习笔记（七）/20171214151318141818676.png" alt="20171214151318141818676.png"></p>
+<p>还可以使用其他错误类型，模拟出类似的浏览器错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">SyntaxError</span>(<span class="string">"i don't like your syntax"</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'what type of variable do you take me for'</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'Sorry, you just do not have the range'</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">EvalError</span>(<span class="string">'that does not evaluate'</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">URIError</span>(<span class="string">'uri, is that you'</span>);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">ReferenceError</span>(<span class="string">'you do not cite your references properly'</span>);</span><br></pre></td></tr></table></figure>
+<p>另外，利用原型链还可以通过继承Error来创建自定义错误类型。此时，需要为新创建的错误类型指定<code>name</code>和<code>message</code>属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CustomError</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'CustomError'</span>;</span><br><span class="line">  <span class="keyword">this</span>.message = message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CustomError.prototype = <span class="keyword">new</span> <span class="built_in">Error</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> CustomError(<span class="string">'My message'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/images/《JavaScript高级程序设计》学习笔记（七）/20171214151318276195924.png" alt="20171214151318276195924.png"></p>
+<h4 id="抛出错误的时机"><a href="#抛出错误的时机" class="headerlink" title="抛出错误的时机"></a>抛出错误的时机</h4><p>浏览器会在某种特定的条件下自习函数时抛出错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果values不是数组，浏览器会报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">process</span>(<span class="params">values</span>) </span>&#123;</span><br><span class="line">  values.sort();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = values.length; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (values[i] &gt; <span class="number">100</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> values[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但错误消息没有清楚的告诉我们到底出了什么问题。当面对复杂的Web应用时，要想查找错误来源就没有那么容易。这种情况下，带有适当信息的自定义错误能够显著提升代码的可维护性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">process</span>(<span class="params">values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!(values <span class="keyword">instanceof</span> <span class="built_in">Array</span>)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'process(): Argument must be an array'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  values.sort();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = values.length; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (values[i] &gt; <span class="number">100</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> values[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>建议重点关注函数和可能导致函数执行失败的因素。</p>
+<h5 id="抛出错误与使用try-catch"><a href="#抛出错误与使用try-catch" class="headerlink" title="抛出错误与使用try-catch"></a>抛出错误与使用try-catch</h5><p>在编写一个要在很多应用程序中使用的JavaScript库，甚至编写一个可能会在应用内部多个地方使用的辅助函数，强烈建议在抛出错误时提供详尽的信息。然后，即可在应用程序中捕获并适当处理这些错误。</p>
+<p>只应该捕获那些确切知道该如何处理的错误。捕获错误的目的在于避免浏览器以默认方式处理它们；而抛出错误的目的在于提供错误发生具体原因的消息。</p>
+<h4 id="错误事件"><a href="#错误事件" class="headerlink" title="错误事件"></a>错误事件</h4><p>任何没有通过<code>try-catch</code>处理的错误都会触发<code>window</code>对象的<code>error</code>事件。在任何浏览器中，<code>onerror</code>事件处理程序都不会创建<code>event</code>对象，但它可以接收三个参数：错误消息、错误所在的URL和行号。要使用<code>onerror</code>事件处理程序，必须使用如下DOM0级技术，它没有遵循DOM2级事件的标准格式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">message, url, line</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只要发生错误，无论是不是浏览器生成的，都会触发<code>error</code>事件，并执行这个事件处理程序。然后，浏览器默认的机制发挥作用，像往常一样显示错误消息。像下面这样在事件处理程序中返回<code>false</code>，可以阻止浏览器报告错误的默认行为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">message, url, line</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只要适当地使用<code>try-catch</code>语句，就不会有错误交给浏览器，也就不会触发<code>error</code>事件。</p>
+<p>图像也支持<code>error</code>事件。只要图像的<code>src</code>特性中的URL不能返回可以被识别的图像格式，就会触发<code>error</code>事件。此时的<code>error</code>事件遵循DOM格式，会返回一个以图像为目标的<code>event</code>对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> image = <span class="keyword">new</span> Image();</span><br><span class="line">EventUtil.addHandler(image, <span class="string">'load'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'image loaded'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">EventUtil.addHandler(image, <span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'image not loaded'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">image.src = <span class="string">'test.gif'</span>;     <span class="comment">// 指定不存在的文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="常见的错误类型"><a href="#常见的错误类型" class="headerlink" title="常见的错误类型"></a>常见的错误类型</h4><p>一般来说，需要关注三种错误：</p>
+<ul>
+<li>类型转换错误</li>
+<li>数据类型错误</li>
+<li>通信错误</li>
+</ul>
+<h5 id="类型转换错误"><a href="#类型转换错误" class="headerlink" title="类型转换错误"></a>类型转换错误</h5><p>类型转换错误发生在使用某个操作符，或者使用其他可能会自动转换值的数据类型的语言结构时。在使用<code>==</code>和<code>!=</code>，或者在<code>if</code>、<code>for</code>和<code>while</code>等流控制语句中使用非布尔值时，最常发生类型转换错误。</p>
+<p>多数情况下，建议使用<code>===</code>和<code>!==</code>，以避免类型转换。</p>
+<p>流控制语句会在确定下一步操作前，把任何值转换为布尔值，尤其是<code>if</code>语句，使用不当，容易出错：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">str1, str2, str3</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = str1 + str2;</span><br><span class="line">  <span class="keyword">if</span> (str3) &#123;             <span class="comment">// 绝对不要这样, 如果str是0也会是false</span></span><br><span class="line">    result += str3;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在流控制语句中使用非布尔值，是极为常见的错误来源。为了避免此类错误，就要做到在条件比较时切实传入布尔值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">str1, str2, str3</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = str1 + str2;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> str3 == <span class="string">'string'</span>) &#123;             <span class="comment">// 恰当比较</span></span><br><span class="line">    result += str3;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="数据类型错误"><a href="#数据类型错误" class="headerlink" title="数据类型错误"></a>数据类型错误</h5><p>JavaScript在使用变量和函数参数之前，不会对它们进行比较以确保它们的数据类型正确。在将预料之外的值传递给函数的情况下，最容易发送数据类型错误。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不安全的函数，任何非字符串值都会导致错误</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pos = url.indexOf(<span class="string">'?'</span>);</span><br><span class="line">  <span class="keyword">if</span> (pos &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> url.substring(pos + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*--------------重写后----------------*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> url == <span class="string">'string'</span>) &#123;       <span class="comment">// 通过检查类型确保安全</span></span><br><span class="line">    <span class="keyword">var</span> pos = url.indexOf(<span class="string">'?'</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> url.substring(pos + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在流控制语句中使用非布尔值作为条件很容易导致数据类型错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseSort</span>(<span class="params">values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (values) &#123;               <span class="comment">// 任何会转换为true的非数组值都会导致错误</span></span><br><span class="line">    values.sort();</span><br><span class="line">    values.reverse();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一个常见错误是将参数与<code>null</code>比较：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseSort</span>(<span class="params">values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (values != <span class="literal">null</span>) &#123;               <span class="comment">// 与null比较只能确保相应的值不少null和undefined</span></span><br><span class="line">    values.sort();</span><br><span class="line">    values.reverse();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一种错误做法，就是只针对要使用的某一个特性执行检测：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseSort</span>(<span class="params">values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> values.sort == <span class="string">'function'</span>) &#123;    <span class="comment">// 如果传入一个包含sort()方法的对象(而不是数组)也会通过检测</span></span><br><span class="line">    values.sort();</span><br><span class="line">    values.reverse();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在知道应该传入什么类型的情况下，最好使用<code>instanceof</code>来检测其数据类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseSort</span>(<span class="params">values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (values <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;               <span class="comment">// 问题解决了</span></span><br><span class="line">    values.sort();</span><br><span class="line">    values.reverse();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大体上，基本类型的值应该用<code>typeof</code>来检测，而对象类型的值应该使用<code>instanceof</code>来检测。</p>
+<h5 id="通信错误"><a href="#通信错误" class="headerlink" title="通信错误"></a>通信错误</h5><p>第一种通信错误与格式不正确的URL或发送的数据有关。最常见的问题是在将数据发送给服务器之前，没有使用<code>encodeURIComponent()</code>对数据进行编码。可以定义一个处理查询字符串的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addQueryStringArg</span>(<span class="params">url, name, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (url.indexOf(<span class="string">'?'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">    url += <span class="string">'?'</span>;</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    url += <span class="string">'&amp;'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  url += <span class="built_in">encodeURIComponent</span>(name) + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(value);</span><br><span class="line">  <span class="keyword">return</span> url;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://www.tc9011.com'</span>;</span><br><span class="line"><span class="keyword">var</span> newUrl = addQueryStringArg(url, <span class="string">'redir'</span>, <span class="string">'http://www.someotherdomain.com?a=b&amp;c=d'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(newUrl);</span><br></pre></td></tr></table></figure>
+<p>另外，在服务器响应的数据不正确时，也会发生通信错误。</p>
+<h4 id="区分致命错误和非致命错误"><a href="#区分致命错误和非致命错误" class="headerlink" title="区分致命错误和非致命错误"></a>区分致命错误和非致命错误</h4><p>对于非致命错误，可以根据下列一或多个条件来确定：</p>
+<ul>
+<li>不影响用户的主要任务</li>
+<li>只影响页面的一部分</li>
+<li>可以恢复</li>
+<li>重复相同操作可以消除错误</li>
+</ul>
+<p>致命错误，可以通过下列一或多个条件来确定：</p>
+<ul>
+<li>应用程序根本无法继续运行</li>
+<li>错误明显影响到了用户的主要操作</li>
+<li>会导致其他连带错误</li>
+</ul>
+<p>区分非致命错误和致命错误的主要依据，就是看它们对用户的影响。设计良好的代码，可以做到应用程序某一部分发生错误不会不必要地影响另一个实际上毫不相干的部分。</p>
+<h3 id="调试技术"><a href="#调试技术" class="headerlink" title="调试技术"></a>调试技术</h3><h4 id="将消息记录到控制台"><a href="#将消息记录到控制台" class="headerlink" title="将消息记录到控制台"></a>将消息记录到控制台</h4><p><code>console</code>对象有下列方法：</p>
+<ul>
+<li><code>error(message)</code>：将错误消息记录到控制台</li>
+<li><code>info(message)</code>：将信息性消息记录到控制台</li>
+<li><code>log(message)</code>：将一般消息记录到控制台</li>
+<li><code>warn(message)</code>：将警告消息记录到控制台</li>
+</ul>
+<h4 id="抛出错误-1"><a href="#抛出错误-1" class="headerlink" title="抛出错误"></a>抛出错误</h4><p>对大型应用程序来说，自定义的错误通常都使用<code>assert()</code>函数抛出。这个函数接受两个参数，一个是求值结果应该为<code>true</code>的条件，另一个是条件为<code>false</code>时要抛出的错误。以下就是一个非常基本的<code>assert()</code>函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assert</span>(<span class="params">condition, message</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!condition) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">divide</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  assert(<span class="keyword">typeof</span> num1 == <span class="string">'number'</span> &amp;&amp; <span class="keyword">typeof</span> num2 ==<span class="string">'number'</span>, <span class="string">'divide():Both arguments must be numbers'</span>);</span><br><span class="line">  <span class="keyword">return</span> num1/num2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>JSON语法可以表示下列三种类型的值：</p>
+<ul>
+<li>简单值：使用与JavaScript相同的语法，可以在JSON中表示字符串、数值、布尔值和<code>null</code>，但JSON不支持JavaScript中的特殊值<code>unefined</code>。</li>
+<li>对象：对象作为一种复杂数据类型，表示的是一组有序的键值对。而每个键值对中的值可以是简单值，也可以是复杂数据类型的值。</li>
+<li>数组：数组也是一种复杂数据类型，表示一组有序的值的列表，可以通过数值索引来访问其中的值。数组的值也可以是任意类型。</li>
+</ul>
+<p>JSON不支持变量、函数或对象实例，它就是一种表示结构化数据的格式。</p>
+<h4 id="简单值"><a href="#简单值" class="headerlink" title="简单值"></a>简单值</h4><p>最简单的JSON数据形式就是简单值。例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>这是JSON表示数值5的方式。类似地，下面是JSON表示字符串的方式：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello world"</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript字符串与JSON字符串的最大区别在于，JSON字符串必须使用双引号（单引号会导致语法错误）。</p>
+<p>布尔值和<code>null</code>也是有效的JSON形式。</p>
+<h4 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h4><p>JSON中的对象要求给属性加引号：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"tc"</span>,</span><br><span class="line">  	<span class="attr">"age"</span>: <span class="number">29</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>属性的值可以是简单值，也可以是复杂类型值：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"tc"</span>,</span><br><span class="line">  	<span class="attr">"age"</span>: <span class="number">29</span>,</span><br><span class="line">  	<span class="attr">"school"</span>: &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"aaa"</span>,</span><br><span class="line">      	<span class="attr">"location"</span>: <span class="string">"uuu"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>在JSON中，可以采用JavaScript同样的语法表示同一个数组：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">25</span>, <span class="string">"hi"</span>, <span class="literal">true</span>]</span><br></pre></td></tr></table></figure>
+<p>JSON数组没有变量和分号。把数组和对象结合起来，可以构成更复杂的数据集合：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"tc"</span>,</span><br><span class="line">        <span class="attr">"age"</span>: <span class="number">29</span>,</span><br><span class="line">        <span class="attr">"school"</span>: &#123;</span><br><span class="line">          <span class="attr">"name"</span>: <span class="string">"aaa"</span>,</span><br><span class="line">          <span class="attr">"location"</span>: <span class="string">"uuu"</span></span><br><span class="line">        &#125; </span><br><span class="line">    &#125;,</span><br><span class="line">  	&#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"tc1"</span>,</span><br><span class="line">        <span class="attr">"age"</span>: <span class="number">27</span>,</span><br><span class="line">        <span class="attr">"school"</span>: &#123;</span><br><span class="line">          <span class="attr">"name"</span>: <span class="string">"aaa"</span>,</span><br><span class="line">          <span class="attr">"location"</span>: <span class="string">"uuu"</span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="解析与序列化"><a href="#解析与序列化" class="headerlink" title="解析与序列化"></a>解析与序列化</h3><h4 id="JSON对象"><a href="#JSON对象" class="headerlink" title="JSON对象"></a>JSON对象</h4><p>JSON对象有两个方法：<code>stringfy()</code>和<code>parse()</code>。在最简单的情况下，这两个方法分别用于把JavaScript对象序列化为JSON字符串和把JSON字符串解析为原生JavaScript值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title: <span class="string">"professional javascript"</span>,</span><br><span class="line">  authors: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br></pre></td></tr></table></figure>
+<p>默认情况下，<code>JSON.stringify()</code>输出的JSON字符串不包含任何空格字符或缩进：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"title"</span>:<span class="string">"professional javascript"</span>,<span class="attr">"authors"</span>:[<span class="string">"Nicholas C. Zakas"</span>],<span class="attr">"edition"</span>:<span class="number">3</span>,<span class="attr">"year"</span>:<span class="number">2011</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>在序列化JavaScript对象时，所有函数及原型成员都会被有意忽略，不体现在结果中。此外，值为<code>undefined</code>的任何属性也都会被跳过。</p>
+<p>将JSON字符串直接传递给<code>JSON.parse()</code>就可以得到相应的JavaScript值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bookCopy = <span class="built_in">JSON</span>.parse(jsonText);</span><br></pre></td></tr></table></figure>
+<p>如果传给<code>JSON.parse()</code>的字符串不是有效的JSON，该方法会抛出错误。</p>
+<h4 id="序列化选项"><a href="#序列化选项" class="headerlink" title="序列化选项"></a>序列化选项</h4><p><code>JSON.stringify()</code>还可以接收另外两个参数，这两个参数用于指定以不同的方式序列化JavaScript对象。第一个参数是个过滤器，可以是个数组，也可以是个函数；第二个参数是一个选项，表示是否在JSON字符串中保留缩进。单独或组合使用这两个参数，可以更全面深入地控制JSON的序列化。</p>
+<h5 id="过滤结果"><a href="#过滤结果" class="headerlink" title="过滤结果"></a>过滤结果</h5><p>如果过滤器参数是数组，那么<code>JSON.stringify()</code>的结果中将只包含数组中列出的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title: <span class="string">"professional javascript"</span>,</span><br><span class="line">  authors: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, [<span class="string">'title'</span>, <span class="string">'edition'</span>]);</span><br><span class="line"><span class="comment">// &#123;"title":"professional javascript","edition":3&#125;</span></span><br></pre></td></tr></table></figure>
+<p>如果第二个参数是函数，传入的函数接受两个参数，属性（键）名和属性值。根据属性（键）名可以知道应该如何处理要序列化的对象中的属性。属性名只能是字符串，而在值并非键值对结构的值时，键名可以是空字符串。</p>
+<p>为了改变序列化对象的结果，函数返回的值就是相应键的值。如果函数返回了<code>undefined</code>，那么相应的属性会被忽略：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title: <span class="string">"professional javascript"</span>,</span><br><span class="line">  authors: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (key) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'authors'</span>:</span><br><span class="line">      <span class="keyword">return</span> value.join(<span class="string">","</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'year'</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="number">5000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"edition"</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span>:				<span class="comment">// 一定要提供default项</span></span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;"title":"professional javascript","authors":"Nicholas C. Zakas","year":5000&#125;</span></span><br></pre></td></tr></table></figure>
+<h5 id="字符串缩进"><a href="#字符串缩进" class="headerlink" title="字符串缩进"></a>字符串缩进</h5><p><code>JSON.stringify()</code>方法的第三个参数用于控制结果中的缩进和空白符。如果这个参数是一个数值，那它表示的是每个级别缩进的空格数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title: <span class="string">"professional javascript"</span>,</span><br><span class="line">  authors: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);	<span class="comment">// 每个级别缩进4个空格</span></span><br><span class="line"><span class="comment">/*&#123;</span></span><br><span class="line"><span class="comment">    "title": "professional javascript",</span></span><br><span class="line"><span class="comment">    "authors": [</span></span><br><span class="line"><span class="comment">        "Nicholas C. Zakas"</span></span><br><span class="line"><span class="comment">    ],</span></span><br><span class="line"><span class="comment">    "edition": 3,</span></span><br><span class="line"><span class="comment">    "year": 2011</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+<p><code>JSON.stringify()</code>也在结果字符串中插入了换行符以提高可读性。只要传入有效的控制缩进的参数值，结果字符串就会包含换行符。最大缩进空格数为10，所有大于10的值都会自动转换为10.</p>
+<p>如果缩进参数是一个字符串而非数值，则这个字符串将在JSON字符串中被用作缩进字符。在使用字符串的情况下，可以将缩进字符设置为制表符，或者两个短划线之类的任意字符：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="string">'- -'</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">- -"title": "professional javascript",</span></span><br><span class="line"><span class="comment">- -"authors": [</span></span><br><span class="line"><span class="comment">- -- -"Nicholas C. Zakas"</span></span><br><span class="line"><span class="comment">- -],</span></span><br><span class="line"><span class="comment">- -"edition": 3,</span></span><br><span class="line"><span class="comment">- -"year": 2011</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h5 id="toJSON-方法"><a href="#toJSON-方法" class="headerlink" title="toJSON()方法"></a>toJSON()方法</h5><p>可以调用<code>toJSON()</code>方法，返回其自身的JSON数据格式。原生Date对象有一个<code>toJSON()</code>方法，能够将JavaScript的Date对象自动转换成ISO 8601日期字符串。</p>
+<p>可以为任何对象添加<code>toJSON()</code>方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title: <span class="string">"professional javascript"</span>,</span><br><span class="line">  authors: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span>,</span><br><span class="line">  toJSON: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.title;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"><span class="comment">// "professional javascript"</span></span><br></pre></td></tr></table></figure>
+<p>可以让<code>toJSON()</code>方法返回任何序列化的值，它都能正常工作。也可以让这个方法返回<code>undefined</code>，此时如果包含它的对象嵌入在另一个对象中，会导致该对象的值变成<code>null</code>，而如果包含它的对象是顶级对象，结果就是<code>undefined</code>。</p>
+<p><code>toJSON()</code>可以作为函数过滤器的补充，因此理解序列化的内部顺序十分重要。假设把一个对象传入<code>JSON.stringify()</code>，序列化该对象的顺序如下：</p>
+<ol>
+<li>如果存在<code>toJSON()</code>方法而且能通过它取得有效值，则调用该方法。否则按默认顺序执行序列化</li>
+<li>如果提供了第二个参数，应用这个函数过滤器。传入函数过滤器的值是第一步返回的值</li>
+<li>对第二部返回的每个值进行相应的序列化</li>
+<li>如果提供了第三个参数，执行相应的格式化</li>
+</ol>
+<h4 id="解析选项"><a href="#解析选项" class="headerlink" title="解析选项"></a>解析选项</h4><p><code>JSON.parse()</code>方法也可以接收另一个参数，该参数是一个函数，将每个键值对上调用。为了区别<code>JSON.stringify()</code>接收的过滤函数，这个函数被称为还原函数，但实际上两个函数的签名是相同的—它们都接收两个参数，一个键和一个值，而且都需要返回一个值。</p>
+<p>如果还原函数返回<code>undefined</code>，则表示要从结果中删除相应的键；如果返回其他值，则将该值插入到结果中。在将日期字符串转换为Date对象时，经常要用到还原函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title: <span class="string">"professional javascript"</span>,</span><br><span class="line">  authors: [</span><br><span class="line">    <span class="string">"Nicholas C. Zakas"</span></span><br><span class="line">  ],</span><br><span class="line">  edition: <span class="number">3</span>,</span><br><span class="line">  year: <span class="number">2011</span>,</span><br><span class="line">  releaseDate: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2011</span>, <span class="number">11</span>, <span class="number">1</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bookCopy = <span class="built_in">JSON</span>.parse(jsonText, <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (key == <span class="string">'releaseDate'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(value);</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bookCopy.releaseDate.getFullYear());	<span class="comment">// 2011</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2017/12/21/《JavaScript高级程序设计》学习笔记（七）/" title="《JavaScript高级程序设计》学习笔记（七）">https://tc9011.com/2017/12/21/《JavaScript高级程序设计》学习笔记（七）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/16/Angular中ngx-translate使用简介/" rel="next" title="Angular中ngx-translate使用简介">
+                <i class="fa fa-chevron-left"></i> Angular中ngx-translate使用简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/19/《JavaScript高级程序设计》学习笔记（八）/" rel="prev" title="《JavaScript高级程序设计》学习笔记（八）">
+                《JavaScript高级程序设计》学习笔记（八） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#错误处理与调试"><span class="nav-number">1.</span> <span class="nav-text">错误处理与调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误处理"><span class="nav-number">1.1.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#try-catch语句"><span class="nav-number">1.1.1.</span> <span class="nav-text">try-catch语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#finally子句"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">finally子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误类型"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">错误类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#合理使用try-catch"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">合理使用try-catch</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抛出错误"><span class="nav-number">1.1.2.</span> <span class="nav-text">抛出错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抛出错误的时机"><span class="nav-number">1.1.3.</span> <span class="nav-text">抛出错误的时机</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#抛出错误与使用try-catch"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">抛出错误与使用try-catch</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误事件"><span class="nav-number">1.1.4.</span> <span class="nav-text">错误事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的错误类型"><span class="nav-number">1.1.5.</span> <span class="nav-text">常见的错误类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类型转换错误"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">类型转换错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型错误"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">数据类型错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通信错误"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">通信错误</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区分致命错误和非致命错误"><span class="nav-number">1.1.6.</span> <span class="nav-text">区分致命错误和非致命错误</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试技术"><span class="nav-number">1.2.</span> <span class="nav-text">调试技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将消息记录到控制台"><span class="nav-number">1.2.1.</span> <span class="nav-text">将消息记录到控制台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抛出错误-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">抛出错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">2.</span> <span class="nav-text">JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单值"><span class="nav-number">2.1.1.</span> <span class="nav-text">简单值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象"><span class="nav-number">2.1.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">2.1.3.</span> <span class="nav-text">数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析与序列化"><span class="nav-number">2.2.</span> <span class="nav-text">解析与序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON对象"><span class="nav-number">2.2.1.</span> <span class="nav-text">JSON对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#序列化选项"><span class="nav-number">2.2.2.</span> <span class="nav-text">序列化选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#过滤结果"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">过滤结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串缩进"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">字符串缩进</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#toJSON-方法"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">toJSON()方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析选项"><span class="nav-number">2.2.3.</span> <span class="nav-text">解析选项</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2017/12/21/《JavaScript高级程序设计》学习笔记（七）/';
+        this.page.identifier = '2017/12/21/《JavaScript高级程序设计》学习笔记（七）/';
+        this.page.title = '《JavaScript高级程序设计》学习笔记（七）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

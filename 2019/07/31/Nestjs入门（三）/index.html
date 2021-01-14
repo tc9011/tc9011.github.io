@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="node,Nestjs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nestjs入门（三）">
+<meta property="og:url" content="https://tc9011.com/2019/07/31/Nestjs入门（三）/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/nest%20入门/GLOBAL-BIZ-SUMMIT.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/nest%20入门/5258bc6b-80ab-4701-bcad-4407bc703c07.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/nest%20入门/2019-07-31_21-49-08.png">
+<meta property="og:updated_time" content="2019-07-31T15:46:18.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nestjs入门（三）">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/nest%20入门/GLOBAL-BIZ-SUMMIT.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2019/07/31/Nestjs入门（三）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Nestjs入门（三） | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2019/07/31/Nestjs入门（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Nestjs入门（三）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-31 10:16:12" itemprop="dateCreated datePublished" datetime="2019-07-31T10:16:12+08:00">2019-07-31</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/31/Nestjs入门（三）/" class="leancloud_visitors" data-flag-title="Nestjs入门（三）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/nest 入门/GLOBAL-BIZ-SUMMIT.png" alt="GLOBAL-BIZ-SUMMIT"></p>
+<a id="more"></a>
+<p>在<a href="https://tc9011.com/2019/07/22/nestjs入门（二）/">Nestjs 入门（二）</a>中，我们创建了一个基本的 Nestjs 应用。下面我们基于此进行扩展。</p>
+<p>源码地址：<a href="https://github.com/tc9011/awesome-nest" rel="external nofollow noopener noreferrer" target="_blank">awesome-nest</a></p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>在 entity 中，有时候有些字段不一定要返还给前端，通常我们需要自己做一次筛选，而 Nestjs 中，配合 <a href="https://github.com/typestack/class-transformer" rel="external nofollow noopener noreferrer" target="_blank">class-transformer</a>，可以很方便的实现这个功能。</p>
+<p>例如，我们有个 entity 的基类<code>common.entity.ts</code>，返还数据的时候，我们不希望把<code>create_at</code>和<code>update_at</code>也带上，这时候就可以使用<code>@Exclude()</code>排除<code>CommonEntity</code>中的这两个字段：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn &#125; <span class="keyword">from</span> <span class="string">'typeorm'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Exclude &#125; <span class="keyword">from</span> <span class="string">'class-transformer'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CommonEntity &#123;</span><br><span class="line">  <span class="meta">@PrimaryGeneratedColumn</span>(<span class="string">'uuid'</span>)</span><br><span class="line">  id: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Exclude</span>()</span><br><span class="line">  <span class="meta">@CreateDateColumn</span>(&#123;</span><br><span class="line">    comment: <span class="string">'创建时间'</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  create_at: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Exclude</span>()</span><br><span class="line">  <span class="meta">@UpdateDateColumn</span>(&#123;</span><br><span class="line">    comment: <span class="string">'更新时间'</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  update_at: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在对应请求的地方标记使用<code>ClassSerializerInterceptor</code>，此时，<code>GET /api/v1/cats/1</code>这个请求返回的数据中，就不会包含<code>create_at</code>和<code>update_at</code>这两个字段。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly catsService: CatsService</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>(<span class="string">':id'</span>)</span><br><span class="line">  <span class="meta">@UseInterceptors</span>(ClassSerializerInterceptor)</span><br><span class="line">  findOne(<span class="meta">@Param</span>(<span class="string">'id'</span>) id: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;<span class="built_in">Array</span>&lt;Partial&lt;CatEntity&gt;&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.getCat(id)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果某个 controller 中都需要使用<code>ClassSerializerInterceptor</code>来帮我们做一些序列化的工作，可以把 Interceptor 提升到整个 controller：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@UseInterceptors</span>(ClassSerializerInterceptor)</span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly catsService: CatsService</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>(<span class="string">':id'</span>)</span><br><span class="line">  findOne(<span class="meta">@Param</span>(<span class="string">'id'</span>) id: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;<span class="built_in">Array</span>&lt;Partial&lt;CatEntity&gt;&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.getCat(id)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Post</span>()</span><br><span class="line">  create(<span class="meta">@Body</span>() createCatDto: CreateCatDto): <span class="built_in">Promise</span>&lt;<span class="built_in">void</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.createCat(createCatDto)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>甚至可以在<code>main.ts</code>中把它作为全局的 Interceptor，不过这样不方便进行细粒度地控制。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(AppModule)</span><br><span class="line">  app.setGlobalPrefix(<span class="string">'api/v1'</span>)</span><br><span class="line"></span><br><span class="line">  app.useGlobalInterceptors(<span class="keyword">new</span> ClassSerializerInterceptor(app.get(Reflector)))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> app.listen(config.port, config.hostName, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    Logger.log(</span><br><span class="line">      <span class="string">`Awesome-nest API server has been started on http://<span class="subst">$&#123;config.hostName&#125;</span>:<span class="subst">$&#123;config.port&#125;</span>`</span>,</span><br><span class="line">    )</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bootstrap()</span><br></pre></td></tr></table></figure>
+<p>在某些场景下，我们需要对 entity 中某个字段处理后再返回，可以使用<code>@Transform()</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(<span class="string">'dog'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> DogEntity <span class="keyword">extends</span> CommonEntity &#123;</span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">50</span> &#125;)</span><br><span class="line">  <span class="meta">@Transform</span>(<span class="function"><span class="params">value</span> =&gt;</span> <span class="string">`dog: <span class="subst">$&#123;value&#125;</span>`</span>)</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>()</span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">100</span>, nullable: <span class="literal">true</span> &#125;)</span><br><span class="line">  breed: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时，<code>name</code>字段经过<code>@Transform</code>的包装就会变成<code>dog: name</code>的格式。如果我们需要根据已有字段构造一个新的字段，可以使用<code>@Expose()</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(<span class="string">'dog'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> DogEntity <span class="keyword">extends</span> CommonEntity &#123;</span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">50</span> &#125;)</span><br><span class="line">  <span class="meta">@Transform</span>(<span class="function"><span class="params">value</span> =&gt;</span> <span class="string">`dog: <span class="subst">$&#123;value&#125;</span>`</span>)</span><br><span class="line">  name: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>()</span><br><span class="line">  age: <span class="built_in">number</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; length: <span class="number">100</span>, nullable: <span class="literal">true</span> &#125;)</span><br><span class="line">  breed: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Expose</span>()</span><br><span class="line">  <span class="keyword">get</span> isOld(): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.age &gt; <span class="number">10</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码会根据查询到的<code>age</code>字段动态计算<code>isOld</code>的值，此时通过 GET 方法请求返回的结果如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"data"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="string">"15149ec5-cddf-4981-89a0-62215b30ab81"</span>,</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"dog: nana"</span>,</span><br><span class="line">            <span class="attr">"age"</span>: <span class="number">12</span>,</span><br><span class="line">            <span class="attr">"breed"</span>: <span class="string">"corgi"</span>,</span><br><span class="line">            <span class="attr">"isOld"</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"status"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"请求成功"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>在使用 MySQL 的时候，有时候我们需要使用事务，借助 TypeORM 中可以这样使用事务：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Delete</span>(<span class="string">':name'</span>)</span><br><span class="line"><span class="meta">@Transaction</span>()</span><br><span class="line"><span class="keyword">delete</span>(</span><br><span class="line">  <span class="meta">@Param</span>(<span class="string">'name'</span>) name: <span class="built_in">string</span>,</span><br><span class="line">  <span class="meta">@TransactionManager</span>() manager: EntityManager,</span><br><span class="line">): <span class="built_in">Promise</span>&lt;<span class="built_in">void</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.deleteCat(name, manager)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>@Transaction()</code>将 controller 或者 service 中所有执行包装到一个数据库事务中，<code>@TransportManager</code>提供了一个事务实体管理器，它必须用于在该事务中执行查询：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> deleteCat(name: <span class="built_in">string</span>, manager: EntityManager): <span class="built_in">Promise</span>&lt;<span class="built_in">void</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> manager.delete(CatEntity, &#123; name &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码通过装饰器很方便地进行了事务的操作，如果事务执行过程中有任何错误会自动回滚。</p>
+<p>当然，我们也可以手动创建查询运行程序实例，并使用它来手动控制事务状态：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getConnection &#125; <span class="keyword">from</span> <span class="string">"typeorm"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取连接并创建新的queryRunner</span></span><br><span class="line"><span class="keyword">const</span> connection = getConnection();</span><br><span class="line"><span class="keyword">const</span> queryRunner = connection.createQueryRunner();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用我们的新queryRunner建立真正的数据库连</span></span><br><span class="line"><span class="keyword">await</span> queryRunner.connect();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在我们可以在queryRunner上执行任何查询，例如：</span></span><br><span class="line"><span class="keyword">await</span> queryRunner.query(<span class="string">"SELECT * FROM users"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们还可以访问与queryRunner创建的连接一起使用的实体管理器：</span></span><br><span class="line"><span class="keyword">const</span> users = <span class="keyword">await</span> queryRunner.manager.find(User);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始事务：</span></span><br><span class="line"><span class="keyword">await</span> queryRunner.startTransaction();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">// 对此事务执行一些操作：</span></span><br><span class="line">  <span class="keyword">await</span> queryRunner.manager.save(user1);</span><br><span class="line">  <span class="keyword">await</span> queryRunner.manager.save(user2);</span><br><span class="line">  <span class="keyword">await</span> queryRunner.manager.save(photos);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 提交事务：</span></span><br><span class="line">  <span class="keyword">await</span> queryRunner.commitTransaction();</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="comment">// 有错误做出回滚更改</span></span><br><span class="line">  <span class="keyword">await</span> queryRunner.rollbackTransaction();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>QueryRunner</code>提供单个数据库连接。 使用查询运行程序组织事务。 单个事务只能在单个查询运行器上建立。 </p>
+<h2 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h2><p>在这个应用内，现在对用户还没有进行认证，通过用户认证可以判断该访问角色的合法性和权限。通常认证要么基于 Session，要么基于 Token。这里就以基于 Token 的 JWT（JSON Web Token） 方式进行用户认证。</p>
+<p>首先安装相关依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save @nestjs/passport passport @nestjs/jwt passport-jwt</span><br></pre></td></tr></table></figure>
+<p>然后创建<code>jwt.strategy.ts</code>，用来验证 token，当 token 有效时，允许进一步处理请求，否则返回<code>401(Unanthorized)</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ExtractJwt, Strategy &#125; <span class="keyword">from</span> <span class="string">'passport-jwt'</span></span><br><span class="line"><span class="keyword">import</span> &#123; PassportStrategy &#125; <span class="keyword">from</span> <span class="string">'@nestjs/passport'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Injectable, UnauthorizedException &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'../../config'</span></span><br><span class="line"><span class="keyword">import</span> &#123; UserEntity &#125; <span class="keyword">from</span> <span class="string">'../entities/user.entity'</span></span><br><span class="line"><span class="keyword">import</span> &#123; AuthService &#125; <span class="keyword">from</span> <span class="string">'./auth.service'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> JwtStrategy <span class="keyword">extends</span> PassportStrategy(Strategy) &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly authService: AuthService</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(&#123;</span><br><span class="line">      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),</span><br><span class="line">      secretOrKey: config.jwt.secret,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> validate(payload: UserEntity) &#123;</span><br><span class="line">    <span class="keyword">const</span> user = <span class="keyword">await</span> <span class="keyword">this</span>.authService.validateUser(payload)</span><br><span class="line">    <span class="keyword">if</span> (!user) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> UnauthorizedException(<span class="string">'身份验证失败'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> user</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后创建<code>auth.service.ts</code>，上面的<code>jwt.strategy.ts</code>会使用这个服务校验 token，并且提供了创建 token 的方法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; JwtService &#125; <span class="keyword">from</span> <span class="string">'@nestjs/jwt'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; UserEntity &#125; <span class="keyword">from</span> <span class="string">'../entities/user.entity'</span></span><br><span class="line"><span class="keyword">import</span> &#123; InjectRepository &#125; <span class="keyword">from</span> <span class="string">'@nestjs/typeorm'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Repository &#125; <span class="keyword">from</span> <span class="string">'typeorm'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Token &#125; <span class="keyword">from</span> <span class="string">'./auth.interface'</span></span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'../../config'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(UserEntity)</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> readonly userRepository: Repository&lt;UserEntity&gt;,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> readonly jwtService: JwtService,</span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  createToken(email: <span class="built_in">string</span>): Token &#123;</span><br><span class="line">    <span class="keyword">const</span> accessToken = <span class="keyword">this</span>.jwtService.sign(&#123; email &#125;)</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      expires_in: config.jwt.signOptions.expiresIn,</span><br><span class="line">      access_token: accessToken,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> validateUser(payload: UserEntity): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.userRepository.find(&#123; email: payload.email &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两个文件都会作为服务在对应的<code>module</code>中注册，并且引入<code>PassportModule</code>和<code>JwtModule</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; AuthService &#125; <span class="keyword">from</span> <span class="string">'./auth/auth.service'</span></span><br><span class="line"><span class="keyword">import</span> &#123; PassportModule &#125; <span class="keyword">from</span> <span class="string">'@nestjs/passport'</span></span><br><span class="line"><span class="keyword">import</span> &#123; JwtModule &#125; <span class="keyword">from</span> <span class="string">'@nestjs/jwt'</span></span><br><span class="line"><span class="keyword">import</span> &#123; JwtStrategy &#125; <span class="keyword">from</span> <span class="string">'./auth/jwt.strategy'</span></span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'../config'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    PassportModule.register(&#123; defaultStrategy: <span class="string">'jwt'</span> &#125;),</span><br><span class="line">    JwtModule.register(config.jwt),</span><br><span class="line">  ],</span><br><span class="line">  providers: [</span><br><span class="line">    AuthService,</span><br><span class="line">    JwtStrategy,</span><br><span class="line">  ],</span><br><span class="line">  exports: [],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> FeaturesModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候，就可以使用<code>@UseGuards(AuthGuard())</code>来对需要认证的 API 进行身份校验：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  Body,</span><br><span class="line">  ClassSerializerInterceptor,</span><br><span class="line">  Controller,</span><br><span class="line">  Get,</span><br><span class="line">  Param,</span><br><span class="line">  Post,</span><br><span class="line">  UseGuards,</span><br><span class="line">  UseInterceptors,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; CatsService &#125; <span class="keyword">from</span> <span class="string">'./cats.service'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CreateCatDto &#125; <span class="keyword">from</span> <span class="string">'./cat.dto'</span></span><br><span class="line"><span class="keyword">import</span> &#123; CatEntity &#125; <span class="keyword">from</span> <span class="string">'../entities/cat.entity'</span></span><br><span class="line"><span class="keyword">import</span> &#123; AuthGuard &#125; <span class="keyword">from</span> <span class="string">'@nestjs/passport'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="meta">@UseGuards</span>(AuthGuard())</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly catsService: CatsService</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>(<span class="string">':id'</span>)</span><br><span class="line">  <span class="meta">@UseInterceptors</span>(ClassSerializerInterceptor)</span><br><span class="line">  findOne(<span class="meta">@Param</span>(<span class="string">'id'</span>) id: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;<span class="built_in">Array</span>&lt;Partial&lt;CatEntity&gt;&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.getCat(id)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Post</span>()</span><br><span class="line">  create(<span class="meta">@Body</span>() createCatDto: CreateCatDto): <span class="built_in">Promise</span>&lt;<span class="built_in">void</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.createCat(createCatDto)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 Postman 模拟请求时，如果没有带上 token，就会返回下面结果：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"message"</span>: &#123;</span><br><span class="line">        <span class="string">"statusCode"</span>: <span class="number">401</span>,</span><br><span class="line">        <span class="string">"error"</span>: <span class="string">"Unauthorized"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"status"</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>Web 安全中，常见有两种攻击方式：XSS（跨站脚本攻击） 和 CSRF（跨站点请求伪造）。</p>
+<p>对 JWT 的认证方式，因为没有 cookie，所以也就不存在 CSRF。如果你不是用的 JWT 认证方式，可以使用<a href="https://github.com/expressjs/csurf" rel="external nofollow noopener noreferrer" target="_blank">csurf</a>这个库去解决这个安全问题。</p>
+<p>对于 XSS，可以使用<a href="https://github.com/helmetjs/helmet" rel="external nofollow noopener noreferrer" target="_blank">helmet</a>去做安全防范。helmet 中有 12 个中间件，它们会设置一些安全相关的 HTTP 头。比如<code>xssFilter</code>就是用来做一些 XSS 相关的保护。</p>
+<p>对于单 IP 大量请求的暴力攻击，可以用<a href="https://github.com/nfriedly/express-rate-limit" rel="external nofollow noopener noreferrer" target="_blank">express-rate-limit</a>来进行限速。</p>
+<p>对于常见的跨域问题，Nestjs 提供了两种方式解决，一种通过<code>app.enableCors()</code>的方式启用跨域，另一种像下面一样，在 Nest 选项对象中启用。</p>
+<p>最后，所有这些设置都是作为全局的中间件启用，最后<code>main.ts</code>中，和安全相关的设置如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> helmet <span class="keyword">from</span> <span class="string">'helmet'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> rateLimit <span class="keyword">from</span> <span class="string">'express-rate-limit'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(AppModule, &#123; cors: <span class="literal">true</span> &#125;)</span><br><span class="line"></span><br><span class="line">  app.use(helmet())</span><br><span class="line">  app.use(</span><br><span class="line">    rateLimit(&#123;</span><br><span class="line">      windowMs: <span class="number">15</span> * <span class="number">60</span> * <span class="number">1000</span>, <span class="comment">// 15 minutes</span></span><br><span class="line">      max: <span class="number">100</span>, <span class="comment">// limit each IP to 100 requests per windowMs</span></span><br><span class="line">    &#125;),</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> app.listen(config.port, config.hostName, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    Logger.log(</span><br><span class="line">      <span class="string">`Awesome-nest API server has been started on http://<span class="subst">$&#123;config.hostName&#125;</span>:<span class="subst">$&#123;config.port&#125;</span>`</span>,</span><br><span class="line">    )</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h2><p>Nestjs 中对<a href="https://github.com/axios/axios" rel="external nofollow noopener noreferrer" target="_blank">Axios</a>进行了封装，并把它作为 <code>HttpService</code> 内置到<code>HttpModule</code>中。<code>HttpService</code>返回的类型和 Angular 的 <code>HttpClient Module</code>一样，都是<code>observables</code>，所以可以使用 <a href="https://rxjs.dev/" rel="external nofollow noopener noreferrer" target="_blank">rxjs</a> 中的操作符处理各种异步操作。</p>
+<p>首先，我们需要导入<code>HttpModule</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Global, HttpModule, Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; LunarCalendarService &#125; <span class="keyword">from</span> <span class="string">'./services/lunar-calendar/lunar-calendar.service'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Global</span>()</span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [HttpModule],</span><br><span class="line">  providers: [LunarCalendarService],</span><br><span class="line">  exports: [HttpModule, LunarCalendarService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> SharedModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们把 <code>HttpModule</code>作为全局模块，在<code>sharedModule</code>中导入并导出以便其他模块使用。这时候我们就可以使用<code>HttpService</code>，比如我们在<code>LunarCalendarService</code>中注入<code>HttpService</code>，然后调用其 <code>get</code>方法请求当日的农历信息。这时候<code>get</code>返回的是 <code>Observable</code>。</p>
+<p>对于这个 <code>Observable</code>流，可以通过<code>pipe</code>进行一系列的操作，比如我们直接可以使用 rxjs 的<code>map</code>操作符帮助我们对数据进行一层筛选，并且超过 5s 后就会报 timeout 错误，<code>catchError</code>会帮我们捕获所有的错误，返回的值通过<code>of</code>操作符转换为<code>observable</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; HttpService, Injectable &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; of, Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs'</span></span><br><span class="line"><span class="keyword">import</span> &#123; catchError, map, timeout &#125; <span class="keyword">from</span> <span class="string">'rxjs/operators'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> LunarCalendarService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly httpService: HttpService</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getLunarCalendar(): Observable&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.httpService</span><br><span class="line">      .get(<span class="string">'https://www.sojson.com/open/api/lunar/json.shtml'</span>)</span><br><span class="line">      .pipe(</span><br><span class="line">        map(<span class="function"><span class="params">res</span> =&gt;</span> res.data.data),</span><br><span class="line">        timeout(<span class="number">5000</span>),</span><br><span class="line">        catchError(<span class="function"><span class="params">error</span> =&gt;</span> of(<span class="string">`Bad Promise: <span class="subst">$&#123;error&#125;</span>`</span>))</span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果需要对axios 进行<a href="https://github.com/axios/axios#request-config" rel="external nofollow noopener noreferrer" target="_blank">配置</a>，可以直接在 Module 注册的时候设置：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Global, HttpModule, Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; LunarCalendarService &#125; <span class="keyword">from</span> <span class="string">'./services/lunar-calendar/lunar-calendar.service'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Global</span>()</span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    HttpModule.register(&#123;</span><br><span class="line">      timeout: <span class="number">5000</span>,</span><br><span class="line">      maxRedirects: <span class="number">5</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">  providers: [LunarCalendarService],</span><br><span class="line">  exports: [HttpModule, LunarCalendarService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> SharedModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模板渲染"><a href="#模板渲染" class="headerlink" title="模板渲染"></a>模板渲染</h2><p>在 Nestjs 中，可以使用 hbs 作为模板渲染引擎：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hbs</span><br></pre></td></tr></table></figure>
+<p>在<code>main.ts</code>中，我们告诉 express，<code>static</code>文件夹用来存储静态文件，<code>views</code>中含了模板文件：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NestFactory &#125; <span class="keyword">from</span> <span class="string">'@nestjs/core'</span></span><br><span class="line"><span class="keyword">import</span> &#123; NestExpressApplication &#125; <span class="keyword">from</span> <span class="string">'@nestjs/platform-express'</span></span><br><span class="line"><span class="keyword">import</span> &#123; join &#125; <span class="keyword">from</span> <span class="string">'path'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppModule &#125; <span class="keyword">from</span> <span class="string">'./app.module'</span></span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'./config'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Logger &#125; <span class="keyword">from</span> <span class="string">'./shared/utils/logger'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create&lt;NestExpressApplication&gt;(AppModule, &#123;</span><br><span class="line">    cors: <span class="literal">true</span>,</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  app.setGlobalPrefix(<span class="string">'api/v1'</span>)</span><br><span class="line"></span><br><span class="line">  app.useStaticAssets(join(__dirname, <span class="string">'..'</span>, <span class="string">'static'</span>))</span><br><span class="line">  app.setBaseViewsDir(join(__dirname, <span class="string">'..'</span>, <span class="string">'views'</span>))</span><br><span class="line">  app.setViewEngine(<span class="string">'hbs'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> app.listen(config.port, config.hostName, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    Logger.log(</span><br><span class="line">      <span class="string">`Awesome-nest API server has been started on http://<span class="subst">$&#123;config.hostName&#125;</span>:<span class="subst">$&#123;config.port&#125;</span>`</span>,</span><br><span class="line">    )</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>views</code>下新建一个<code>catsPage.hbs</code>的文件，假设，我们需要在里面填充的数据结构是这样：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  cats: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: <span class="number">1</span>,</span><br><span class="line">      name: <span class="string">'yyy'</span>,</span><br><span class="line">      age: <span class="number">12</span>,</span><br><span class="line">      breed: <span class="string">'black cats'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  title: <span class="string">'Cats List'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时，可以这样写模板：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.table</span> <span class="selector-class">.default-td</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.table</span> <span class="selector-tag">tbody</span>&gt;<span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(2n-1)</span> &#123;</span></span><br><span class="line"><span class="undefined">            background-color: rgb(219, 212, 212);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.table</span> <span class="selector-tag">tbody</span>&gt;<span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(2n)</span> &#123;</span></span><br><span class="line"><span class="undefined">            background-color: rgb(172, 162, 162);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; title &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"id default-td"</span>&gt;</span>id<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"name default-td"</span>&gt;</span>name<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"age default-td"</span>&gt;</span>age<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"breed default-td"</span>&gt;</span>breed<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    &#123;&#123;#each cats&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;id&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;age&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;breed&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    &#123;&#123;/each&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，如果你有拦截器，数据会先经过拦截器的处理，然后再填充到模板中。</p>
+<p>在 controller 中，通过<code>@Render</code>指定模板的名称，并且在 <code>return</code> 中返回需要填充的数据：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Get</span>(<span class="string">'page'</span>)</span><br><span class="line"><span class="meta">@Render</span>(<span class="string">'catsPage'</span>)</span><br><span class="line">getCatsPage() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    cats: [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">1</span>,</span><br><span class="line">        name: <span class="string">'yyy'</span>,</span><br><span class="line">        age: <span class="number">12</span>,</span><br><span class="line">        breed: <span class="string">'black cats'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    title: <span class="string">'Cats List'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Nestjs 还支持和其他 SSR 框架集成，比如 Next，Angular Universal，Nuxt。具体使用 Demo 可以分别查看这几个项目<a href="https://github.com/ZhiXiao-Lin/nestify" rel="external nofollow noopener noreferrer" target="_blank">nestify</a>，<a href="https://github.com/bojidaryovchev/nest-angular" rel="external nofollow noopener noreferrer" target="_blank">nest-angular</a>，<a href="https://github.com/chanlito/simple-todos" rel="external nofollow noopener noreferrer" target="_blank">simple-todos</a>。</p>
+<h2 id="Swagger-文档"><a href="#Swagger-文档" class="headerlink" title="Swagger 文档"></a>Swagger 文档</h2><p>Nestjs 中也提供了对 swagger 文档的支持，方便我们对 API 进行追踪和测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save @nestjs/swagger swagger-ui-express</span><br></pre></td></tr></table></figure>
+<p>在<code>main.ts</code>中构件文档：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options = <span class="keyword">new</span> DocumentBuilder()</span><br><span class="line">    .setTitle(<span class="string">'Awesome-nest'</span>)</span><br><span class="line">    .setDescription(<span class="string">'The Awesome-nest API Documents'</span>)</span><br><span class="line">    .setBasePath(<span class="string">'api/v1'</span>)</span><br><span class="line">    .addBearerAuth()</span><br><span class="line">    .setVersion(<span class="string">'0.0.1'</span>)</span><br><span class="line">    .build()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">document</span> = SwaggerModule.createDocument(app, options)</span><br><span class="line">SwaggerModule.setup(<span class="string">'docs'</span>, app, <span class="built_in">document</span>)</span><br></pre></td></tr></table></figure>
+<p>此时，访问<code>http://localhost:3300/docs</code>就可以看到 swagger 文档的页面。</p>
+<p>对于不同的 API 可以在 controller 中使用<code>@ApiUseTags()</code>进行分类，对于需要认证的 API，可以加上<code>@ApiBearerAuth()</code>，这样在 swagger 中填完 token 后，就可以直接测试 API：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiUseTags</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="meta">@ApiBearerAuth</span>()</span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="meta">@UseGuards</span>(AuthGuard())</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly catsService: CatsService</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>(<span class="string">'page'</span>)</span><br><span class="line">  <span class="meta">@Render</span>(<span class="string">'catsPage'</span>)</span><br><span class="line">  getCatsPage(): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.getCats()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/images/nest 入门/5258bc6b-80ab-4701-bcad-4407bc703c07.png" alt="5258bc6b-80ab-4701-bcad-4407bc703c07"></p>
+<p>对于我们定于的 DTO，为了使 <code>SwaggerModule</code> 可以访问类属性，我们必须用 <code>@ApiModelProperty()</code> 装饰器标记所有这些属性：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ApiModelProperty &#125; <span class="keyword">from</span> <span class="string">'@nestjs/swagger'</span></span><br><span class="line"><span class="keyword">import</span> &#123; IsEmail, IsString &#125; <span class="keyword">from</span> <span class="string">'class-validator'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AccountDto &#123;</span><br><span class="line">  <span class="meta">@ApiModelProperty</span>()</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  <span class="meta">@IsEmail</span>()</span><br><span class="line">  readonly email: <span class="built_in">string</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@ApiModelProperty</span>()</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  readonly password: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/images/nest 入门/2019-07-31_21-49-08.png" alt="2019-07-31_21-49-08"></p>
+<p>对于 swagger 文档更多的用法，可以看官网<a href="https://docs.nestjs.com/recipes/swagger" rel="external nofollow noopener noreferrer" target="_blank">OpenAPI (Swagger)</a>的内容。</p>
+<h2 id="热重载"><a href="#热重载" class="headerlink" title="热重载"></a>热重载</h2><p>在开发的时候，运行<code>npm run start:dev</code>的时候，是进行全量编译，如果项目比较大，全量编译耗时会比较长，这时候我们可以利用 webpack 来帮我们做增量编译，这样会大大增加开发效率。</p>
+<p>首先，安装 webpack 相关依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i --save-dev webpack webpack-cli webpack-node-externals ts-loader</span><br></pre></td></tr></table></figure>
+<p>在根目录下创建一个<code>webpack.config.js</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> nodeExternals = <span class="built_in">require</span>(<span class="string">'webpack-node-externals'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: [<span class="string">'webpack/hot/poll?100'</span>, <span class="string">'./src/main.ts'</span>],</span><br><span class="line">  watch: <span class="literal">true</span>,</span><br><span class="line">  target: <span class="string">'node'</span>,</span><br><span class="line">  externals: [</span><br><span class="line">    nodeExternals(&#123;</span><br><span class="line">      whitelist: [<span class="string">'webpack/hot/poll?100'</span>],</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">  <span class="keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/.tsx?$/</span>,</span><br><span class="line">        use: <span class="string">'ts-loader'</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.tsx'</span>, <span class="string">'.ts'</span>, <span class="string">'.js'</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [<span class="keyword">new</span> webpack.HotModuleReplacementPlugin()],</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'server.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在<code>main.ts</code>中启用 HMR：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">const</span> <span class="keyword">module</span>: any;</span><br><span class="line"></span><br><span class="line">async function bootstrap() &#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create(ApplicationModule);</span><br><span class="line">  <span class="keyword">await</span> app.listen(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">module</span>.hot) &#123;</span><br><span class="line">    <span class="built_in">module</span>.hot.accept();</span><br><span class="line">    <span class="built_in">module</span>.hot.dispose(<span class="function"><span class="params">()</span> =&gt;</span> app.close());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">bootstrap();</span><br></pre></td></tr></table></figure>
+<p>在<code>package.json</code>中增加下面两个命令：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"node dist/server"</span>,</span><br><span class="line">		<span class="attr">"webpack"</span>: <span class="string">"webpack --config webpack.config.js"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行<code>npm run webpack</code>之后，webpack 开始监视文件，然后在另一个命令行窗口中运行<code>npm start</code>。</p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2019/07/31/Nestjs入门（三）/" title="Nestjs入门（三）">https://tc9011.com/2019/07/31/Nestjs入门（三）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/Nestjs/" rel="tag"># Nestjs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/Nestjs入门（二）/" rel="next" title="Nestjs入门（二）">
+                <i class="fa fa-chevron-left"></i> Nestjs入门（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/12/【译】在Angular中自定义表单控件/" rel="prev" title="【译】在Angular中自定义表单控件">
+                【译】在Angular中自定义表单控件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化"><span class="nav-number">1.</span> <span class="nav-text">序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">2.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认证"><span class="nav-number">3.</span> <span class="nav-text">认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-number">4.</span> <span class="nav-text">安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-请求"><span class="nav-number">5.</span> <span class="nav-text">HTTP 请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板渲染"><span class="nav-number">6.</span> <span class="nav-text">模板渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swagger-文档"><span class="nav-number">7.</span> <span class="nav-text">Swagger 文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热重载"><span class="nav-number">8.</span> <span class="nav-text">热重载</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2019/07/31/Nestjs入门（三）/';
+        this.page.identifier = '2019/07/31/Nestjs入门（三）/';
+        this.page.title = 'Nestjs入门（三）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

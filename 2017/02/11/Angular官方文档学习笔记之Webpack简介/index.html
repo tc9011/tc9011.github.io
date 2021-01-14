@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="Angular,Webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular官方文档学习笔记之Webpack简介">
+<meta property="og:url" content="https://tc9011.com/2017/02/11/Angular官方文档学习笔记之Webpack简介/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之Webpack简介/1.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular官方文档学习笔记之Webpack简介">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之Webpack简介/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2017/02/11/Angular官方文档学习笔记之Webpack简介/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Angular官方文档学习笔记之Webpack简介 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2017/02/11/Angular官方文档学习笔记之Webpack简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Angular官方文档学习笔记之Webpack简介
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-11 20:42:28" itemprop="dateCreated datePublished" datetime="2017-02-11T20:42:28+08:00">2017-02-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/02/11/Angular官方文档学习笔记之Webpack简介/" class="leancloud_visitors" data-flag-title="Angular官方文档学习笔记之Webpack简介">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/Angular官方文档学习笔记之Webpack简介/1.png" alt="201702049298Angularandwebpack.png"></p>
+<a id="more"></a>
+<h2 id="什么是Webpack"><a href="#什么是Webpack" class="headerlink" title="什么是Webpack"></a>什么是Webpack</h2><p>Webpack是一个强力的模块打包器。 所谓<em>包(bundle)</em>就是一个JavaScript文件，它把一堆<em>资源(assets)</em>合并在一起，以便它们可以在同一个文件请求中发回给客户端。 包中可以包含JavaScript、CSS样式、HTML以及很多其它类型的文件。</p>
+<p>Webpack会遍历你应用中的所有源码，查找<code>import</code>语句，构建出依赖图谱，并产出一个(或多个)<em>包</em>。 通过“加载器(loaders)”插件，Webpack可以对各种非JavaScript文件进行预处理和最小化(Minify)，比如TypeScript、SASS和LESS文件等。</p>
+<p>我们通过一个JavaScript配置文件<code>webpack.config.js</code>来决定Webpack做什么以及如何做。</p>
+<h3 id="入口与输出"><a href="#入口与输出" class="headerlink" title="入口与输出"></a>入口与输出</h3><p>给webpack提供一个或多个<em>入口</em>文件，通过入口来让它查找与合并那些从这些入口点发散出去的依赖。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">  app: <span class="string">'src/app.ts'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>app.js</code>输出包是个单一的JavaScript文件，它包含程序的源码及其所有依赖。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">  filename: <span class="string">'app.js'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多重包"><a href="#多重包" class="headerlink" title="多重包"></a>多重包</h3><p>Webpack会构造出两个独立的依赖图谱，并产出<em>两个</em>包文件：一个叫做<code>app.js</code>，它只包含我们的应用代码；另一个叫做<code>vendor.js</code>，它包含所有的提供商依赖。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">  app: <span class="string">'src/app.ts'</span>,</span><br><span class="line">  vendor: <span class="string">'src/vendor.ts'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">output: &#123;</span><br><span class="line">  filename: <span class="string">'[name].js'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在输出文件名中出现的[name]是一个Webpack的占位符，它将被替换为入口点的名字，分别是app和vendor。</span></span><br></pre></td></tr></table></figure>
+<h3 id="加载器"><a href="#加载器" class="headerlink" title="加载器"></a>加载器</h3><p>我们要通过<strong>加载器</strong>来告诉它如何把JavaScript、TypeScript、CSS、SASS、LESS、图片、HTML以及字体文件等处理成JavaScript文件。 </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component.ts'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'uiframework/dist/uiframework.css'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">loaders: [</span><br><span class="line">  &#123;</span><br><span class="line">    test: <span class="regexp">/\.ts$/</span></span><br><span class="line">    loaders: <span class="string">'ts'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    test: <span class="regexp">/\.css$/</span></span><br><span class="line">    loaders: <span class="string">'style!css'</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>第一个<code>import</code>文件匹配上了<code>.ts</code>模式，于是Webpack就用<code>awesome-typescript-loader</code>加载器处理它。 导入的文件没有匹配上第二个模式，于是它的加载器就被忽略了。</p>
+<p>第二个<code>import</code>匹配上了第二个<code>.css</code>模式，它有两个用叹号字符(<code>!</code>)串联起来的加载器。 Webpack会<em>从右到左</em>逐个应用串联的加载器，于是它先应用了<code>css</code>加载器(用来平面化CSS的<code>@import</code>和<code>url(...)</code>语句)， 然后应用了<code>style</code>加载器(用来把css追加到页面上的<code>&lt;style&gt;</code>元素中)。</p>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>Webpack有一条构建流水线，它被划分成多个经过精心定义的阶段(phase)。 我们可以把插件(比如<code>uglify</code>代码最小化插件)挂到流水线上：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="配置Webpack"><a href="#配置Webpack" class="headerlink" title="配置Webpack"></a>配置Webpack</h2><h3 id="公共配置"><a href="#公共配置" class="headerlink" title="公共配置"></a>公共配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">config/webpack.common.js</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">var</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">var</span> helpers = <span class="built_in">require</span>(<span class="string">'./helpers'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//把应用拆成三个包：1.polyfills：我们在大多数现代浏览器中运行Angular程序时需要的标准填充物；2.vendor：提供商文件；3.app：应用代码。</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    <span class="string">'polyfills'</span>: <span class="string">'./src/polyfills.ts'</span>,</span><br><span class="line">    <span class="string">'vendor'</span>: <span class="string">'./src/vendor.ts'</span>,</span><br><span class="line">    <span class="string">'app'</span>: <span class="string">'./src/main.ts'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//告诉Webpack如何通过查找匹配的文件来解析模块文件的加载请求</span></span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="comment">//自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名</span></span><br><span class="line">    extensions: [<span class="string">''</span>, <span class="string">'.ts'</span>, <span class="string">'.js'</span>] </span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//指定指定加载器</span></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">        <span class="comment">//awesome-typescript-loader - 一个用于把TypeScript代码转译成ES5的加载器，它会由tsconfig.json文件提供指导;angular2-template-loader - 用于加载Angular组件的模板和样式</span></span><br><span class="line">        loaders: [<span class="string">'awesome-typescript-loader'</span>, <span class="string">'angular2-template-loader'</span>]<span class="comment">//多重加载器也能使用数组形式串联起来。</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.html$/</span>,</span><br><span class="line">        <span class="comment">//html - 为组件模板准备的加载器</span></span><br><span class="line">        loader: <span class="string">'html'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/</span>,</span><br><span class="line">        loader: <span class="string">'file?name=assets/[name].[hash].[ext]'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="comment">//匹配应用级样式,它只包含了那些位于/src及其上级目录的.css文件</span></span><br><span class="line">        exclude: helpers.root(<span class="string">'src'</span>, <span class="string">'app'</span>),</span><br><span class="line">        loader: ExtractTextPlugin.extract(<span class="string">'style'</span>, <span class="string">'css?sourceMap'</span>)</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        <span class="comment">//匹配组件局部样式(就是在组件元数据的styleUrls属性中指定的那些),通过raw加载器把组件局部样式加载成字符串</span></span><br><span class="line">        include: helpers.root(<span class="string">'src'</span>, <span class="string">'app'</span>),</span><br><span class="line">        loader: <span class="string">'raw'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">//这里标记出了三个块之间的等级体系：app -&gt; vendor -&gt; polyfills。 当Webpack发现app与vendor有共享依赖时，就把它们从app中移除。 在vendor和polyfills之间有共享依赖时也同样如此，把提供商代码排除在app.js包之外</span></span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">      name: [<span class="string">'app'</span>, <span class="string">'vendor'</span>, <span class="string">'polyfills'</span>]</span><br><span class="line">    &#125;),</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Webpack可以通过HtmlWebpackPlugin自动为我们注入js和css文件的script和link标签。</span></span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: <span class="string">'src/index.html'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">config/webpack.dev.js</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> webpackMerge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">var</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">var</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);</span><br><span class="line"><span class="keyword">var</span> helpers = <span class="built_in">require</span>(<span class="string">'./helpers'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = webpackMerge(commonConfig, &#123;</span><br><span class="line">  devtool: <span class="string">'cheap-module-eval-source-map'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//HtmlWebpackPlugin(由webpack.common.js引入)插件使用了publicPath和filename设置， 来向index.html中插入适当的&lt;script&gt;和&lt;link&gt;标签。</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: helpers.root(<span class="string">'dist'</span>),</span><br><span class="line">    publicPath: <span class="string">'http://localhost:8080/'</span>,</span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    chunkFilename: <span class="string">'[id].chunk.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//ExtractTextPlugin会把CSS提取成外部.css文件， 这样HtmlWebpackPlugin插件就会转而把一个&lt;link&gt;标签写进index.html了</span></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'[name].css'</span>)</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">    stats: <span class="string">'minimal'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="产品环境配置"><a href="#产品环境配置" class="headerlink" title="产品环境配置"></a>产品环境配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">config/webpack.prod.js</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">var</span> webpackMerge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">var</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">var</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);</span><br><span class="line"><span class="keyword">var</span> helpers = <span class="built_in">require</span>(<span class="string">'./helpers'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ENV = process.env.NODE_ENV = process.env.ENV = <span class="string">'production'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = webpackMerge(commonConfig, &#123;</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line"></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: helpers.root(<span class="string">'dist'</span>),</span><br><span class="line">    publicPath: <span class="string">'/'</span>,</span><br><span class="line">    filename: <span class="string">'[name].[hash].js'</span>,</span><br><span class="line">    chunkFilename: <span class="string">'[id].[hash].chunk.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  htmlLoader: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span> <span class="comment">// workaround for ng2</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">//NoErrorsPlugin - 如果出现任何错误，就终止构建。</span></span><br><span class="line">    <span class="keyword">new</span> webpack.NoErrorsPlugin(),</span><br><span class="line">    <span class="comment">//DedupePlugin - 检测完全相同(以及几乎完全相同)的文件，并把它们从输出中移除。</span></span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.DedupePlugin(),</span><br><span class="line">    <span class="comment">//UglifyJsPlugin - 最小化(minify)生成的包。</span></span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123; <span class="comment">// https://github.com/angular/angular/issues/10618</span></span><br><span class="line">      mangle: &#123;</span><br><span class="line">        keep_fnames: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="comment">//ExtractTextPlugin - 把内嵌的css抽取成外部文件，并为其文件名添加“缓存无效哈希”。当这些哈希值变化时，自动更新index.html。</span></span><br><span class="line">    <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'[name].[hash].css'</span>),</span><br><span class="line">    <span class="comment">//DefinePlugin - 用来定义环境变量，以便我们在自己的程序中引用它。</span></span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">'process.env'</span>: &#123;</span><br><span class="line">        <span class="string">'ENV'</span>: <span class="built_in">JSON</span>.stringify(ENV)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="测试环境配置"><a href="#测试环境配置" class="headerlink" title="测试环境配置"></a>测试环境配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">config/webpack.test.js</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> helpers = <span class="built_in">require</span>(<span class="string">'./helpers'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devtool: <span class="string">'inline-source-map'</span>,</span><br><span class="line"></span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">''</span>, <span class="string">'.ts'</span>, <span class="string">'.js'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">        loaders: [<span class="string">'awesome-typescript-loader'</span>, <span class="string">'angular2-template-loader'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.html$/</span>,</span><br><span class="line">        loader: <span class="string">'html'</span></span><br><span class="line"></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/</span>,</span><br><span class="line">        loader: <span class="string">'null'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        exclude: helpers.root(<span class="string">'src'</span>, <span class="string">'app'</span>),</span><br><span class="line">        loader: <span class="string">'null'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        include: helpers.root(<span class="string">'src'</span>, <span class="string">'app'</span>),</span><br><span class="line">        loader: <span class="string">'raw'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果有可能拖慢执行速度，甚至都不需要在单元测试中加载和处理应用全局样式文件，所以我们用一个<code>null</code>加载器来处理所有CSS。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">config/karma.conf.js</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> webpackConfig = <span class="built_in">require</span>(<span class="string">'./webpack.test'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _config = &#123;</span><br><span class="line">    basePath: <span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">    frameworks: [<span class="string">'jasmine'</span>],</span><br><span class="line"></span><br><span class="line">    files: [</span><br><span class="line">      &#123;<span class="attr">pattern</span>: <span class="string">'./config/karma-test-shim.js'</span>, <span class="attr">watched</span>: <span class="literal">false</span>&#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    preprocessors: &#123;</span><br><span class="line">      <span class="string">'./config/karma-test-shim.js'</span>: [<span class="string">'webpack'</span>, <span class="string">'sourcemap'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    webpack: webpackConfig,</span><br><span class="line"></span><br><span class="line">    webpackMiddleware: &#123;</span><br><span class="line">      stats: <span class="string">'errors-only'</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    webpackServer: &#123;</span><br><span class="line">      noInfo: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    reporters: [<span class="string">'progress'</span>],</span><br><span class="line">    port: <span class="number">9876</span>,</span><br><span class="line">    colors: <span class="literal">true</span>,</span><br><span class="line">    logLevel: config.LOG_INFO,</span><br><span class="line">    autoWatch: <span class="literal">false</span>,</span><br><span class="line">    browsers: [<span class="string">'PhantomJS'</span>],</span><br><span class="line">    singleRun: <span class="literal">true</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  config.set(_config);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">config/karma-test-shim.js</span><br><span class="line"></span><br><span class="line"><span class="comment">//karma-test-shim告诉Karma哪些文件需要预加载，首要的是：带有“测试版提供商”的Angular测试框架是每个应用都希望预加载的。</span></span><br><span class="line"><span class="built_in">Error</span>.stackTraceLimit = <span class="literal">Infinity</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'core-js/es6'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'core-js/es7/reflect'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'zone.js/dist/zone'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'zone.js/dist/long-stack-trace-zone'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'zone.js/dist/proxy'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'zone.js/dist/sync-test'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'zone.js/dist/jasmine-patch'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'zone.js/dist/async-test'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'zone.js/dist/fake-async-test'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> appContext = <span class="built_in">require</span>.context(<span class="string">'../src'</span>, <span class="literal">true</span>, /\.spec\.ts/);</span><br><span class="line"></span><br><span class="line">appContext.keys().forEach(appContext);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> testing = <span class="built_in">require</span>(<span class="string">'@angular/core/testing'</span>);</span><br><span class="line"><span class="keyword">var</span> browser = <span class="built_in">require</span>(<span class="string">'@angular/platform-browser-dynamic/testing'</span>);</span><br><span class="line"></span><br><span class="line">testing.TestBed.initTestEnvironment(browser.BrowserDynamicTestingModule, browser.platformBrowserDynamicTesting());</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2017/02/11/Angular官方文档学习笔记之Webpack简介/" title="Angular官方文档学习笔记之Webpack简介">https://tc9011.com/2017/02/11/Angular官方文档学习笔记之Webpack简介/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+            <a href="/tags/Webpack/" rel="tag"># Webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/07/块级元素和行内元素/" rel="next" title="块级元素和行内元素">
+                <i class="fa fa-chevron-left"></i> 块级元素和行内元素
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/16/【译】-angular2-webpack-starter/" rel="prev" title="【译】angular2-webpack-starter">
+                【译】angular2-webpack-starter <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Webpack"><span class="nav-number">1.</span> <span class="nav-text">什么是Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#入口与输出"><span class="nav-number">1.1.</span> <span class="nav-text">入口与输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重包"><span class="nav-number">1.2.</span> <span class="nav-text">多重包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载器"><span class="nav-number">1.3.</span> <span class="nav-text">加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件"><span class="nav-number">1.4.</span> <span class="nav-text">插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Webpack"><span class="nav-number">2.</span> <span class="nav-text">配置Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公共配置"><span class="nav-number">2.1.</span> <span class="nav-text">公共配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发环境配置"><span class="nav-number">2.2.</span> <span class="nav-text">开发环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#产品环境配置"><span class="nav-number">2.3.</span> <span class="nav-text">产品环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试环境配置"><span class="nav-number">2.4.</span> <span class="nav-text">测试环境配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2017/02/11/Angular官方文档学习笔记之Webpack简介/';
+        this.page.identifier = '2017/02/11/Angular官方文档学习笔记之Webpack简介/';
+        this.page.title = 'Angular官方文档学习笔记之Webpack简介';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

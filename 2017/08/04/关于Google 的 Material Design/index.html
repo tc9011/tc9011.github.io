@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="UX,Material Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Google 的 Material Design">
+<meta property="og:url" content="https://tc9011.com/2017/08/04/关于Google 的 Material Design/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/关于Google的MaterialDesign/20170804150184506473312.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/关于Google的MaterialDesign/20170804150185059677526.png">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/0b149acaaae340a3dd659ade9c29b1f5?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/d8bf421b958655fb7a3edebef1ed7e33?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/56581997e1a165590ba3396371fb77c2?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/5edb31bf1046f8ab0c36b41004879d60?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/27bd6f5dfd2004f22d29f86499146a62?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/fd698239f120b914b47dc93c4e82ee8d?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/6787e2fd50487d60ad52bf3d208a7be8?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/98c506691851d7e0c67410281b14d706?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/e883a8b76cc8d1dd4ceaae1902f58de3?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/c2cd03e943e2277f6848955377eeb943?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/4b4e732bbed66a857fc744a4578a46af?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/dbd51d2cdba8da822591dc049e6ba3fe?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/ae092eab52578007bcdebb5854485d74?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/be331d8adaf86595d9d86d19e3e256c1?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/9d8a6f22ff954b681b61cdc47dcf0849?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/175632bfe13abca6486eeca10ff2c820?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/5c9f076ea30bca7408579e3a7da39c6d?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/de6fb1f8bbe06861eb5a8f6b8a3ee25c?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/19/d2d0e0c35f31da20591e8b5b0b081d08?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/4ed54cd9a1994d918dbaae6998a577ae?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/4b41e631d8ff4efd90340c0bb023fe27?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/8e837eb4bd2eb32fbb37e2c35efe966c?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/c44c91d15eeec0c5356ef0612544b1f1?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/0d1129cded921821dfab0070b0f98e78?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/ec890fa9ad79cab30ea11072687b3fc0?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/a89ce84c17819738df67d7ceb1cd2198?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/3d34ba1bbba5e6776e509b9ed1d5ada0?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/b076a23cdd4656ecc62c34e7bfa40f72?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/9735a6ff8c10ac235f1134c8a260cfb7?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/176fa9b0dcc7743832984adb3e2e4fb2?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/0ff026b1002796de69da80486e169a43?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/5f7cefe125bae344150e0bf57a8e2b3c?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/b5eb742f7ce0185e29abc825347f4614?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/5f1c1926d1d445983cbe9bbd3ad81b66?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/f8435d678521e47b34f3ef2acaebb25b?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/8ec289f569b6171314fa8a62acb1bd43?imageView2/0/w/1280/h/960">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/7/25/532d7c55167bbeedba58a67108e6c2e2?imageView2/0/w/1280/h/960">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.726Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Google 的 Material Design">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/关于Google的MaterialDesign/20170804150184506473312.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2017/08/04/关于Google 的 Material Design/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>关于Google 的 Material Design | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2017/08/04/关于Google 的 Material Design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">关于Google 的 Material Design
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-04 19:05:31" itemprop="dateCreated datePublished" datetime="2017-08-04T19:05:31+08:00">2017-08-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/04/关于Google 的 Material Design/" class="leancloud_visitors" data-flag-title="关于Google 的 Material Design">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/关于Google的MaterialDesign/20170804150184506473312.png" alt="20170804150184506473312.png"></p>
+<a id="more"></a>
+<p>上个月更新了Chrome（国内连不上Google的服务可以去<a href="https://api.shuax.com/tools/getchrome" rel="external nofollow noopener noreferrer" target="_blank">这个地址更新</a>），最新版本已经完全按照Google自己的Material Design来设计了。现在Google系的软件基本都是Material Design设计风格。</p>
+<h1 id="什么是Material-Design"><a href="#什么是Material-Design" class="headerlink" title="什么是Material Design"></a>什么是Material Design</h1><p>Material Design是Google提出来的一套设计语言，关于设计语言，我们听得比较多的是Apple的，比如之前的拟物化设计以及现在的扁平化设计（Flat Design）。</p>
+<p>这些设计语言都带有品牌的鲜明个性，通过这些不同的设计语言，可以保证不同产品之间的设计风格和交互方式的一致性。</p>
+<p>既然Apple推出了扁平化设计语言，Google也不敢落后，于是在2014年Google I/O 大会上推出了Material Design，Google想让Google平台上的开发者掌握这个新设计语言，从而让所有应用就有统一的外观，就像是苹果向开发者提出的设计原则一样。</p>
+<p>Material Design的核心思想，就是把物理世界的体验带进屏幕。去掉现实中的杂质和随机性，保留其最原始纯净的形态、空间关系、变化与过渡，配合虚拟世界的灵活特性，还原最贴近真实的体验，达到简洁与直观的效果。</p>
+<p>Material Design很重视跨平台体验，所以规范严格细致，保证它在各个平台使用体验高度一致。</p>
+<p><img src="/assets/images/关于Google的MaterialDesign/20170804150185059677526.png" alt="20170804150185059677526.png"></p>
+<h1 id="Material-Design简单介绍"><a href="#Material-Design简单介绍" class="headerlink" title="Material Design简单介绍"></a>Material Design简单介绍</h1><p>Material Design有一套详细的规范，D27在<a href="https://juejin.im/user/57b717301532bc005b8fda25" rel="external nofollow noopener noreferrer" target="_blank">他的掘金专栏</a>中翻译了这套规范。经过作者的授权，下面摘录了Material特性和Material动效这两章内容。</p>
+<h2 id="Material特性"><a href="#Material特性" class="headerlink" title="Material特性"></a>Material特性</h2><p><strong>Material有一套属于自身固定不变的外在特征和内在行为逻辑</strong>。</p>
+<h3 id="物理特性"><a href="#物理特性" class="headerlink" title="物理特性"></a>物理特性</h3><ul>
+<li><p>Material的尺寸<strong>沿x和y轴变化</strong>（单位：dp），并且其有着<strong>固定不变的厚度</strong>（1dp）。</p>
+  <p class="text-center">▼可行</p>
+
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/0b149acaaae340a3dd659ade9c29b1f5?imageView2/0/w/1280/h/960" alt></p>
+<p>​    </p><p class="text-center">▼不可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/d8bf421b958655fb7a3edebef1ed7e33?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>投影的深浅效果跟Material对象之间的位置距离（z轴）相关。</p>
+<p>​    </p><p class="text-center">▼可行</p><p></p>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/56581997e1a165590ba3396371fb77c2?imageView2/0/w/1280/h/960" alt></p>
+<p>​        </p><p class="text-center">▼不可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/5edb31bf1046f8ab0c36b41004879d60?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li>任何形状和颜色的内容都能在Material上面显示。添加内容不会增加Material的厚度。</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/27bd6f5dfd2004f22d29f86499146a62?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li>在Material有限的范围内，内容能够随意变化。</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/fd698239f120b914b47dc93c4e82ee8d?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>Material是立体的。输入事件不能穿过当前被触发的Material对象。</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/6787e2fd50487d60ad52bf3d208a7be8?imageView2/0/w/1280/h/960" alt></p>
+<p>​            </p><p class="text-center">▼不可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/98c506691851d7e0c67410281b14d706?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>在空间内，多个Material对象不能同时占据同一个位置。</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/e883a8b76cc8d1dd4ceaae1902f58de3?imageView2/0/w/1280/h/960" alt></p>
+<p>​            </p><p class="text-center">▼不可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/c2cd03e943e2277f6848955377eeb943?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>一个Material对象不能穿过另一个Material对象。举例，就好比一张纸不能穿过另一张纸一样。</p>
+<p>​        </p><p class="text-center">▼不可行</p><p></p>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/4b4e732bbed66a857fc744a4578a46af?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>Material能改变形状</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/dbd51d2cdba8da822591dc049e6ba3fe?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>Material沿水平方向放大缩小（沿x和y轴）</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/ae092eab52578007bcdebb5854485d74?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>Material不能弯曲折叠。</p>
+<p>​        </p><p class="text-center">▼不可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/be331d8adaf86595d9d86d19e3e256c1?imageView2/0/w/1280/h/960" alt></p>
+</li>
+<li><p>多个Material对象能够合并成为一个Material对象。</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/9d8a6f22ff954b681b61cdc47dcf0849?imageView2/0/w/1280/h/960" alt></p>
+</li>
+<li><p>被分裂的Material对象能够再次合并。</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/175632bfe13abca6486eeca10ff2c820?imageView2/0/w/1280/h/960" alt></p>
+</li>
+<li><p>Material能够出现或消失在空间里的任何地方。</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/5c9f076ea30bca7408579e3a7da39c6d?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><p>Material能沿任何轴向移动。</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/de6fb1f8bbe06861eb5a8f6b8a3ee25c?imageView2/0/w/1280/h/960" alt></p>
+</li>
+<li><p>Z轴上发生的运动变化一般是用户与Material对象交互的反馈结果。</p>
+<p>​        </p><p class="text-center">▼可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/19/d2d0e0c35f31da20591e8b5b0b081d08?imageView2/0/w/1280/h/960" alt></p>
+</li>
+</ul>
+<h2 id="Material动效"><a href="#Material动效" class="headerlink" title="Material动效"></a>Material动效</h2><p>动效向我们展示了一个应用是如何运作的，以及它能做什么。</p>
+<p>动效的作用：</p>
+<ul>
+<li>引导用户关注</li>
+<li>当用户完成输入后暗示用户将会发生什么</li>
+<li>强调组件之间的层次和空间关系</li>
+<li>缓解用户等待焦虑（如内容抓取或加载下一个视图）</li>
+<li>为用户带来个性、精良、愉悦的视觉感受</li>
+</ul>
+<h3 id="Material是如何运动的？"><a href="#Material是如何运动的？" class="headerlink" title="Material是如何运动的？"></a>Material是如何运动的？</h3><p>整个Material环境的搭建灵感来源于现实世界，其中借鉴了现实中的重力和摩擦力。这些力在Material环境中主要体现在用户输入的方式对组件的影响和多个组件之间如何交互。</p>
+<p>Material的动效具备以下特点：</p>
+<ul>
+<li><strong>响应</strong></li>
+</ul>
+<p>Material是充满活力的物质。当用户触发、输入的时候它能够迅速作出响应。</p>
+<p>在移动端上，篇幅长的动效时长在300-400ms之间。篇幅短的动效时长在150-200ms之间。动效时长如果少于或者超过以上建议时长的话，用户就会感到动效运动缓慢或者动效运动太快导致肉眼难以捕捉：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/4ed54cd9a1994d918dbaae6998a577ae?imageView2/0/w/1280/h/960" alt></p>
+<p>墨水逐渐扩散的动效被用于确认用户输入。同时卡片（card）高度抬起暗示用户已经触发：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/4b41e631d8ff4efd90340c0bb023fe27?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><strong>自然</strong></li>
+</ul>
+<p>因为参考了现实世界中力对物体的影响，所以Material的动效自然并贴近现实。</p>
+<p>在现实世界中，一个物体运动不管加速还是减速都会受到重力和摩擦力的影响。同理，在Material Design中，对象的运动不会突然的启动和停止：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/8e837eb4bd2eb32fbb37e2c35efe966c?imageView2/0/w/1280/h/960" alt></p>
+<p>受重力影响，Material对象沿弧线运动：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/c44c91d15eeec0c5356ef0612544b1f1?imageView2/0/w/1280/h/960" alt></p>
+<p>Material的变化同样沿弧线变化：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/0d1129cded921821dfab0070b0f98e78?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><strong>认知</strong></li>
+</ul>
+<p>Material具备认知周边环境（包括用户和其他Material对象）的能力。它能够联合其他Material对象一同回应用户需求。</p>
+<p>当转场的时候，为了确定相互之间的关系，这些Material的动效按编排好的方式运动：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/ec890fa9ad79cab30ea11072687b3fc0?imageView2/0/w/1280/h/960" alt></p>
+<p>在拥挤的环境中变化大小，Material能够从中挤开合适的空间：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/a89ce84c17819738df67d7ceb1cd2198?imageView2/0/w/1280/h/960" alt></p>
+<p>Material对象间能够相互吸引并结合：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/3d34ba1bbba5e6776e509b9ed1d5ada0?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><strong>目的性</strong></li>
+</ul>
+<p>Material的动效能够引导用户在正确的时间上关注正确的点。</p>
+<p>过渡动效有助于指导用户下一步的交互：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/b076a23cdd4656ecc62c34e7bfa40f72?imageView2/0/w/1280/h/960" alt></p>
+<p>不同的动效可以帮助用户理解当前的活动。比如当前手势对组件是否可用：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/9735a6ff8c10ac235f1134c8a260cfb7?imageView2/0/w/1280/h/960" alt></p>
+<p>动效可以引导用户关注他们需要关注的地方：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/176fa9b0dcc7743832984adb3e2e4fb2?imageView2/0/w/1280/h/960" alt></p>
+<h3 id="好的过渡是怎样的？"><a href="#好的过渡是怎样的？" class="headerlink" title="好的过渡是怎样的？"></a>好的过渡是怎样的？</h3><p>成功的动效设计具备以下特点：</p>
+<ul>
+<li><strong>快速、流畅</strong></li>
+</ul>
+<p>一个快速、流畅的动效不会让用户觉得在等待时间：</p>
+<p>​                </p><p class="text-center">▼可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/0ff026b1002796de69da80486e169a43?imageView2/0/w/1280/h/960" alt></p>
+<p>​                </p><p class="text-center">▼不可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/5f7cefe125bae344150e0bf57a8e2b3c?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><strong>清晰、连贯</strong></li>
+</ul>
+<p>过渡应清晰，简明和条理清楚，避免做得过多。</p>
+<p>​                </p><p class="text-center">▼可行</p><p></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/b5eb742f7ce0185e29abc825347f4614?imageView2/0/w/1280/h/960" alt></p>
+<p>​                </p><p class="text-center">▼不可行</p><p></p>
+<p>当过渡的时候每个组件朝着不同的方向或交叉的路径变化，很容易使用户疑惑：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/5f1c1926d1d445983cbe9bbd3ad81b66?imageView2/0/w/1280/h/960" alt></p>
+<ul>
+<li><strong>紧密、一致</strong></li>
+</ul>
+<p>在Material Design中，动效具备统一的速度、响应能力和目的。因此在你的应用中那些自定义的动效需要保持内在的连贯一致。</p>
+<p>图中是三个不同功能的应用，但是因它们有着看起来相似的动效，令人觉得它们之间有着某种联系：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/f8435d678521e47b34f3ef2acaebb25b?imageView2/0/w/1280/h/960" alt></p>
+<h3 id="动效的暗示"><a href="#动效的暗示" class="headerlink" title="动效的暗示"></a>动效的暗示</h3><p>关于动效的好处请看下面两个例子。</p>
+<p>通过过渡动效引导用户进入下一个视图。以生动的动效淡化数据加载带来的等待时间，能有效的减轻用户因等待而产生的焦虑感：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/8ec289f569b6171314fa8a62acb1bd43?imageView2/0/w/1280/h/960" alt></p>
+<p>因为没有过渡动效发生和没有一个清晰焦点引导，所以用户不清楚上一个视图和下一个视图之间的联系。其中利用一个旋转的圆形icon代表数据加载的状态，这样做会使得等待在用户面前显得更加凸显，无疑增加了用户等待带来的焦虑感：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/7/25/532d7c55167bbeedba58a67108e6c2e2?imageView2/0/w/1280/h/960" alt></p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2017/08/04/关于Google 的 Material Design/" title="关于Google 的 Material Design">https://tc9011.com/2017/08/04/关于Google 的 Material Design/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UX/" rel="tag"># UX</a>
+          
+            <a href="/tags/Material-Design/" rel="tag"># Material Design</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/26/《JavaScript高级程序设计》学习笔记（三）/" rel="next" title="《JavaScript高级程序设计》学习笔记（三）">
+                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》学习笔记（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/10/《JavaScript高级程序设计》学习笔记（四）/" rel="prev" title="《JavaScript高级程序设计》学习笔记（四）">
+                《JavaScript高级程序设计》学习笔记（四） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Material-Design"><span class="nav-number">1.</span> <span class="nav-text">什么是Material Design</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Material-Design简单介绍"><span class="nav-number">2.</span> <span class="nav-text">Material Design简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Material特性"><span class="nav-number">2.1.</span> <span class="nav-text">Material特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理特性"><span class="nav-number">2.1.1.</span> <span class="nav-text">物理特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Material动效"><span class="nav-number">2.2.</span> <span class="nav-text">Material动效</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Material是如何运动的？"><span class="nav-number">2.2.1.</span> <span class="nav-text">Material是如何运动的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好的过渡是怎样的？"><span class="nav-number">2.2.2.</span> <span class="nav-text">好的过渡是怎样的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动效的暗示"><span class="nav-number">2.2.3.</span> <span class="nav-text">动效的暗示</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2017/08/04/关于Google 的 Material Design/';
+        this.page.identifier = '2017/08/04/关于Google 的 Material Design/';
+        this.page.title = '关于Google 的 Material Design';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

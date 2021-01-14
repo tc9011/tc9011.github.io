@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular官方文档学习笔记之动画">
+<meta property="og:url" content="https://tc9011.com/2017/03/30/Angular官方文档学习笔记之动画/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之动画/20170330149087882934187.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之动画/20170330149087977640187.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular官方文档学习笔记之动画">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之动画/20170330149087882934187.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2017/03/30/Angular官方文档学习笔记之动画/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Angular官方文档学习笔记之动画 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2017/03/30/Angular官方文档学习笔记之动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Angular官方文档学习笔记之动画
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-30 20:56:15" itemprop="dateCreated datePublished" datetime="2017-03-30T20:56:15+08:00">2017-03-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/30/Angular官方文档学习笔记之动画/" class="leancloud_visitors" data-flag-title="Angular官方文档学习笔记之动画">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/Angular官方文档学习笔记之动画/20170330149087882934187.png" alt="20170330149087882934187.png"></p>
+<a id="more"></a>
+<p><img src="/assets/images/Angular官方文档学习笔记之动画/20170330149087977640187.png" alt="20170330149087977640187.png"></p>
+<p></p><p id="div-border-left-green">Angular动画是基于标准的<a href="https://w3c.github.io/web-animations/" rel="external nofollow noopener noreferrer" target="_blank">Web动画API(Web Animations API)</a>构建的，它们在<a href="http://caniuse.com/#feat=web-animation" rel="external nofollow noopener noreferrer" target="_blank">支持此API的浏览器中</a>会用原生方式工作。</p>
+<p>至于其它浏览器，就需要一个填充库(polyfill)了。你可以<a href="https://github.com/web-animations/web-animations-js" rel="external nofollow noopener noreferrer" target="_blank">从这里获取<code>web-animations.min.js</code></a>，并把它加入你的页面中。</p><p></p>
+<h2 id="快速起步范例：在两个状态间转场"><a href="#快速起步范例：在两个状态间转场" class="headerlink" title="快速起步范例：在两个状态间转场"></a>快速起步范例：在两个状态间转场</h2><p>引入与动画相关的函数：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component,Input,trigger,state,style,transition,animate,group&#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br></pre></td></tr></table></figure>
+<p id="div-border-left-red">在Angular刚刚发布的4.0版本中，动画已经从<code>@angular/core</code>中拆分出来。</p>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">animations: [</span><br><span class="line">  trigger(<span class="string">'heroState'</span>, [</span><br><span class="line">    state(<span class="string">'inactive'</span>, style(&#123;</span><br><span class="line">      backgroundColor: <span class="string">'#eee'</span>,</span><br><span class="line">      transform: <span class="string">'scale(1)'</span></span><br><span class="line">    &#125;)),</span><br><span class="line">    state(<span class="string">'active'</span>,   style(&#123;</span><br><span class="line">      backgroundColor: <span class="string">'#cfd8dc'</span>,</span><br><span class="line">      transform: <span class="string">'scale(1.1)'</span></span><br><span class="line">    &#125;)),</span><br><span class="line">    transition(<span class="string">'inactive =&gt; active'</span>, animate(<span class="string">'100ms ease-in'</span>)),</span><br><span class="line">    transition(<span class="string">'active =&gt; inactive'</span>, animate(<span class="string">'100ms ease-out'</span>))</span><br><span class="line">  ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">template: <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;ul&gt;</span></span><br><span class="line"><span class="string">    &lt;li *ngFor="let hero of heroes"</span></span><br><span class="line"><span class="string">        [@heroState]="hero.state"	&lt;!--方括号内是trigger的名字，右边是state对应state的值。--&gt;</span></span><br><span class="line"><span class="string">        (click)="hero.toggleState()"&gt;</span></span><br><span class="line"><span class="string">      &#123;&#123;hero.name&#125;&#125;</span></span><br><span class="line"><span class="string">    &lt;/li&gt;</span></span><br><span class="line"><span class="string">  &lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span>,</span><br></pre></td></tr></table></figure>
+<p>定义的动画可以在模板中用<code>[@triggerName]</code>语法来把它附加到一个或多个元素上。然后把<code>@triggerName</code>属性(Attribute)的值设置成表达式<code>hero.state</code>。这个值应该或者是<code>inactive</code>或者是<code>active</code>。</p>
+<h2 id="状态与转场"><a href="#状态与转场" class="headerlink" title="状态与转场"></a>状态与转场</h2><p>Angular动画=<strong>状态</strong>+<strong>状态之间的转场效果</strong>。</p>
+<p>状态表现为上面代码中<code>active</code>和<code>inactive</code>这两种状态，它定义了每个状态的最终样式。一旦元素转场到那个状态，该样式就会被应用到此元素上，<strong>当它留在此状态时</strong>，这些样式也会一直保持着。</p>
+<p>转场表现为上面代码中用<code>transition()</code>定义的转换时的动画，每个转场都会控制一条在一组样式和下一组样式之间切换的时间线。</p>
+<p>如果多个转场都有同样的时间线配置，就可以把它们合并进同一个<code>transition</code>定义中：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">transition(<span class="string">'inactive =&gt; active, active =&gt; inactive，focus =&gt; infocus'</span>,</span><br><span class="line"> animate(<span class="string">'100ms ease-out'</span>))</span><br></pre></td></tr></table></figure>
+<p>如果要对同一个转场的两个方向都使用相同的时间线（就像前面的例子中那样），就可以使用<code>&lt;=&gt;</code>这种简写语法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition(<span class="string">'inactive &lt;=&gt; active'</span>, animate(<span class="string">'100ms ease-out'</span>))</span><br></pre></td></tr></table></figure>
+<p>有时希望一些样式只在动画期间生效，但在结束后并不保留它们。这时可以把这些样式内联在<code>transition</code>中进行定义。只有定义在<code>state</code>中的样式在转场结束后才能保留。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">transition(<span class="string">'inactive =&gt; active'</span>, [</span><br><span class="line">  style(&#123;							<span class="comment">//activey样式</span></span><br><span class="line">    backgroundColor: <span class="string">'#cfd8dc'</span>,</span><br><span class="line">    transform: <span class="string">'scale(1.3)'</span></span><br><span class="line">  &#125;),</span><br><span class="line">  animate(<span class="string">'80ms ease-in'</span>, style(&#123;	<span class="comment">//inactive样式</span></span><br><span class="line">    backgroundColor: <span class="string">'#eee'</span>,</span><br><span class="line">    transform: <span class="string">'scale(1)'</span></span><br><span class="line">  &#125;))</span><br><span class="line">]),</span><br></pre></td></tr></table></figure>
+<h3 id="（通配符）状态"><a href="#（通配符）状态" class="headerlink" title="*（通配符）状态"></a>*（通配符）状态</h3><p><code>*</code>(通配符)状态匹配<strong>任何</strong>动画状态。当定义那些不需要管当前处于什么状态的样式及转场时，这很有用。比如：</p>
+<ul>
+<li>当该元素的状态从<code>active</code>变成任何其它状态时，<code>active =&gt; *</code>转场都会生效。</li>
+<li>当在<em>任意</em>两个状态之间切换时，<code>* =&gt; *</code>转场都会生效。</li>
+</ul>
+<h3 id="void状态"><a href="#void状态" class="headerlink" title="void状态"></a>void状态</h3><p><code>void</code>状态可以应用在任何动画中。它表示元素<strong>没有</strong>被附加到视图。这种情况可能是由于它尚未被添加进来或者已经被移除了。 <code>void</code>状态在定义“进场”和“离场”的动画时会非常有用。</p>
+<p>比如当一个元素离开视图时，<code>* =&gt; void</code>转场就会生效，而不管它在离场以前是什么状态。</p>
+<p><code>*</code>通配符状态也能匹配<code>void</code>。</p>
+<h2 id="例子：进场与离场"><a href="#例子：进场与离场" class="headerlink" title="例子：进场与离场"></a>例子：进场与离场</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">animations: [</span><br><span class="line">  trigger(<span class="string">'flyInOut'</span>, [</span><br><span class="line">    state(<span class="string">'in'</span>, style(&#123;transform: <span class="string">'translateX(0)'</span>&#125;)),</span><br><span class="line">    transition(<span class="string">'void =&gt; *'</span>, [</span><br><span class="line">      style(&#123;transform: <span class="string">'translateX(-100%)'</span>&#125;),<span class="comment">//void状态的style</span></span><br><span class="line">      animate(<span class="number">100</span>)</span><br><span class="line">    ]),</span><br><span class="line">    transition(<span class="string">'* =&gt; void'</span>, [</span><br><span class="line">      animate(<span class="number">100</span>, style(&#123;transform: <span class="string">'translateX(100%)'</span>&#125;))<span class="comment">//void状态的style</span></span><br><span class="line">    ])</span><br><span class="line">  ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>没有一个单独的<code>state(void)</code>定义是因为希望在进场与离场时使用不一样的转换效果：元素从左侧进场，从右侧离开。</p>
+<p id="div-border-left-yellow">这两个动画有自己的名字：<br><br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">transition(<span class="string">':enter'</span>, [ ... ]); <span class="comment">// void =&gt; *</span></span><br><span class="line">transition(<span class="string">':leave'</span>, [ ... ]); <span class="comment">// * =&gt; void</span></span><br></pre></td></tr></table></figure><br><br></p>
+
+<h2 id="范例：从不同的状态下进场和离场"><a href="#范例：从不同的状态下进场和离场" class="headerlink" title="范例：从不同的状态下进场和离场"></a>范例：从不同的状态下进场和离场</h2><ul>
+<li>非激活英雄进场：<code>void =&gt; inactive</code></li>
+<li>激活英雄进场：<code>void =&gt; active</code></li>
+<li>非激活英雄离场：<code>inactive =&gt; void</code></li>
+<li>激活英雄离场：<code>active =&gt; void</code></li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">animations: [</span><br><span class="line">  trigger(<span class="string">'heroState'</span>, [</span><br><span class="line">    state(<span class="string">'inactive'</span>, style(&#123;transform: <span class="string">'translateX(0) scale(1)'</span>&#125;)),</span><br><span class="line">    state(<span class="string">'active'</span>,   style(&#123;transform: <span class="string">'translateX(0) scale(1.1)'</span>&#125;)),</span><br><span class="line">    transition(<span class="string">'inactive =&gt; active'</span>, animate(<span class="string">'100ms ease-in'</span>)),</span><br><span class="line">    transition(<span class="string">'active =&gt; inactive'</span>, animate(<span class="string">'100ms ease-out'</span>)),</span><br><span class="line">    transition(<span class="string">'void =&gt; inactive'</span>, [</span><br><span class="line">      style(&#123;transform: <span class="string">'translateX(-100%) scale(1)'</span>&#125;),</span><br><span class="line">      animate(<span class="number">100</span>)</span><br><span class="line">    ]),</span><br><span class="line">    transition(<span class="string">'inactive =&gt; void'</span>, [</span><br><span class="line">      animate(<span class="number">100</span>, style(&#123;transform: <span class="string">'translateX(100%) scale(1)'</span>&#125;))</span><br><span class="line">    ]),</span><br><span class="line">    transition(<span class="string">'void =&gt; active'</span>, [</span><br><span class="line">      style(&#123;transform: <span class="string">'translateX(0) scale(0)'</span>&#125;),</span><br><span class="line">      animate(<span class="number">200</span>)</span><br><span class="line">    ]),</span><br><span class="line">    transition(<span class="string">'active =&gt; void'</span>, [</span><br><span class="line">      animate(<span class="number">200</span>, style(&#123;transform: <span class="string">'translateX(0) scale(0)'</span>&#125;))</span><br><span class="line">    ])</span><br><span class="line">  ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="可动的属性与单位"><a href="#可动的属性与单位" class="headerlink" title="可动的属性与单位"></a>可动的属性与单位</h2><p>参见w3c的 <a href="https://www.w3.org/TR/css3-transitions/#animatable-properties" rel="external nofollow noopener noreferrer" target="_blank">“可动”属性列表</a>。在<code>style()</code>中可以定义多个属性，实现同一时间段多个动画。</p>
+<h2 id="自动属性值计算"><a href="#自动属性值计算" class="headerlink" title="自动属性值计算"></a>自动属性值计算</h2><p><code>*</code>属性值会在运行期被计算出来，然后插入到这个动画中。适用于尺寸类样式在初始时未知的情况。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">animations: [</span><br><span class="line">  trigger(<span class="string">'shrinkOut'</span>, [</span><br><span class="line">    state(<span class="string">'in'</span>, style(&#123;height: <span class="string">'*'</span>&#125;)),<span class="comment">//取得该元素在离场前的高度</span></span><br><span class="line">    transition(<span class="string">'* =&gt; void'</span>, [	<span class="comment">//此处的*表示通配符状态</span></span><br><span class="line">      style(&#123;height: <span class="string">'*'</span>&#125;), </span><br><span class="line">      animate(<span class="number">250</span>, style(&#123;height: <span class="number">0</span>&#125;)) <span class="comment">//用动画转场到0高度</span></span><br><span class="line">    ])</span><br><span class="line">  ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="动画时间线"><a href="#动画时间线" class="headerlink" title="动画时间线"></a>动画时间线</h2><p>对每一个动画转场效果，有三种时间线属性可以调整：持续时间(duration)、延迟(delay)和缓动(easing)函数。它们被合并到了一个单独的<strong>转场时间线字符串</strong>。</p>
+<h3 id="持续时间"><a href="#持续时间" class="headerlink" title="持续时间"></a>持续时间</h3><p>持续时间控制动画从开始到结束要花多长时间。</p>
+<p>单独一个数字，默认单位是ms。用字符串可以定义单位。</p>
+<h3 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h3><p>延迟控制的是在动画已经触发但尚未真正开始转场之前要等待多久。它位于字符串中的持续时间后面。</p>
+<h3 id="缓动函数"><a href="#缓动函数" class="headerlink" title="缓动函数"></a>缓动函数</h3><p><a href="http://easings.net/" rel="external nofollow noopener noreferrer" target="_blank">缓动函数</a>用于控制动画在运行期间如何加速和减速（可以参考《css揭秘》第八章对缓动函数的讲解）。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">animations: [</span><br><span class="line">  trigger(<span class="string">'flyInOut'</span>, [</span><br><span class="line">    state(<span class="string">'in'</span>, style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(0)'</span>&#125;)),</span><br><span class="line">    transition(<span class="string">'void =&gt; *'</span>, [</span><br><span class="line">      style(&#123;</span><br><span class="line">        opacity: <span class="number">0</span>,</span><br><span class="line">        transform: <span class="string">'translateX(-100%)'</span></span><br><span class="line">      &#125;),</span><br><span class="line">      animate(<span class="string">'0.2s ease-in'</span>)</span><br><span class="line">    ]),</span><br><span class="line">    transition(<span class="string">'* =&gt; void'</span>, [</span><br><span class="line">      animate(<span class="string">'0.2s 10 ease-out'</span>, style(&#123;</span><br><span class="line">        opacity: <span class="number">0</span>,</span><br><span class="line">        transform: <span class="string">'translateX(100%)'</span></span><br><span class="line">      &#125;))</span><br><span class="line">    ])</span><br><span class="line">  ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="基于关键帧的多阶段动画"><a href="#基于关键帧的多阶段动画" class="headerlink" title="基于关键帧的多阶段动画"></a>基于关键帧的多阶段动画</h2><p>每个关键帧都可以被指定一个<em>偏移量</em>，用来定义该关键帧将被用在动画期间的哪个时间点。偏移量是一个介于0(表示动画起点)和1(表示动画终点)之间的相对值（百分比）。如果省略它们，偏移量会自动根据帧数平均分布出来。例如，三个未定义过偏移量的关键帧会分别获得偏移量：<code>0</code>、<code>0.5</code>和<code>1</code>。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">animations: [</span><br><span class="line">  trigger(<span class="string">'flyInOut'</span>, [</span><br><span class="line">    state(<span class="string">'in'</span>, style(&#123;transform: <span class="string">'translateX(0)'</span>&#125;)),</span><br><span class="line">    transition(<span class="string">'void =&gt; *'</span>, [</span><br><span class="line">      animate(<span class="number">300</span>, keyframes([</span><br><span class="line">        style(&#123;opacity: <span class="number">0</span>, transform: <span class="string">'translateX(-100%)'</span>, offset: <span class="number">0</span>&#125;),</span><br><span class="line">        style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(15px)'</span>,  offset: <span class="number">0.3</span>&#125;),</span><br><span class="line">        style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(0)'</span>,     offset: <span class="number">1.0</span>&#125;)</span><br><span class="line">      ]))</span><br><span class="line">    ]),</span><br><span class="line">    transition(<span class="string">'* =&gt; void'</span>, [</span><br><span class="line">      animate(<span class="number">300</span>, keyframes([</span><br><span class="line">        style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(0)'</span>,     offset: <span class="number">0</span>&#125;),</span><br><span class="line">        style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(-15px)'</span>, offset: <span class="number">0.7</span>&#125;),</span><br><span class="line">        style(&#123;opacity: <span class="number">0</span>, transform: <span class="string">'translateX(100%)'</span>,  offset: <span class="number">1.0</span>&#125;)</span><br><span class="line">      ]))</span><br><span class="line">    ])</span><br><span class="line">  ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="并行动画组"><a href="#并行动画组" class="headerlink" title="并行动画组"></a>并行动画组</h2><p><code>group()</code>可以为同时发生的几个动画配置不同的<strong>时间线</strong>。</p>
+<p>下面代码中，同时在进场和离场时使用了<code>group()</code>，以便能让它们使用两种不同的时间线配置（一个动画组对元素的<code>transform</code>和<code>width</code>做动画，另一个组则对<code>opacity</code>做动画）。 它们被同时应用到同一个元素上，但又彼此独立运行：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">animations: [</span><br><span class="line">  trigger(<span class="string">'flyInOut'</span>, [</span><br><span class="line">    state(<span class="string">'in'</span>, style(&#123;width: <span class="number">120</span>, transform: <span class="string">'translateX(0)'</span>, opacity: <span class="number">1</span>&#125;)),</span><br><span class="line">    transition(<span class="string">'void =&gt; *'</span>, [</span><br><span class="line">      style(&#123;width: <span class="number">10</span>, transform: <span class="string">'translateX(50px)'</span>, opacity: <span class="number">0</span>&#125;),</span><br><span class="line">      group([</span><br><span class="line">        animate(<span class="string">'0.3s 0.1s ease'</span>, style(&#123;</span><br><span class="line">          transform: <span class="string">'translateX(0)'</span>,</span><br><span class="line">          width: <span class="number">120</span></span><br><span class="line">        &#125;)),</span><br><span class="line">        animate(<span class="string">'0.3s ease'</span>, style(&#123;</span><br><span class="line">          opacity: <span class="number">1</span></span><br><span class="line">        &#125;))</span><br><span class="line">      ])</span><br><span class="line">    ]),</span><br><span class="line">    transition(<span class="string">'* =&gt; void'</span>, [</span><br><span class="line">      group([</span><br><span class="line">        animate(<span class="string">'0.3s ease'</span>, style(&#123;</span><br><span class="line">          transform: <span class="string">'translateX(50px)'</span>,</span><br><span class="line">          width: <span class="number">10</span></span><br><span class="line">        &#125;)),</span><br><span class="line">        animate(<span class="string">'0.3s 0.2s ease'</span>, style(&#123;</span><br><span class="line">          opacity: <span class="number">0</span></span><br><span class="line">        &#125;))</span><br><span class="line">      ])</span><br><span class="line">    ])</span><br><span class="line">  ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="动画回调"><a href="#动画回调" class="headerlink" title="动画回调"></a>动画回调</h2><p>当动画开始和结束时，会触发一个回调。</p>
+<p>对于例子中的这个关键帧，有一个叫做<code>@flyInOut</code>的<code>trigger</code>。在那里我们可以挂钩到那些回调，比如：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  Component,</span><br><span class="line">  Input,</span><br><span class="line">  trigger,</span><br><span class="line">  state,</span><br><span class="line">  style,</span><br><span class="line">  animate,</span><br><span class="line">  transition,</span><br><span class="line">  keyframes,</span><br><span class="line">  AnimationTransitionEvent</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Heroes &#125; <span class="keyword">from</span> <span class="string">'./hero.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  moduleId: <span class="built_in">module</span>.id,</span><br><span class="line">  selector: <span class="string">'hero-list-multistep'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;ul&gt;</span></span><br><span class="line"><span class="string">      &lt;li *ngFor="let hero of heroes"</span></span><br><span class="line"><span class="string">          (@flyInOut.start)="animationStarted($event)"</span></span><br><span class="line"><span class="string">          (@flyInOut.done)="animationDone($event)"</span></span><br><span class="line"><span class="string">          [@flyInOut]="'in'"&gt;</span></span><br><span class="line"><span class="string">        &#123;&#123;hero.name&#125;&#125;</span></span><br><span class="line"><span class="string">      &lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  styleUrls: [<span class="string">'./hero-list.component.css'</span>],</span><br><span class="line">  animations: [</span><br><span class="line">    trigger(<span class="string">'flyInOut'</span>, [</span><br><span class="line">      state(<span class="string">'in'</span>, style(&#123;transform: <span class="string">'translateX(0)'</span>&#125;)),</span><br><span class="line">      transition(<span class="string">'void =&gt; *'</span>, [</span><br><span class="line">        animate(<span class="number">300</span>, keyframes([</span><br><span class="line">          style(&#123;opacity: <span class="number">0</span>, transform: <span class="string">'translateX(-100%)'</span>, offset: <span class="number">0</span>&#125;),</span><br><span class="line">          style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(15px)'</span>,  offset: <span class="number">0.3</span>&#125;),</span><br><span class="line">          style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(0)'</span>,     offset: <span class="number">1.0</span>&#125;)</span><br><span class="line">        ]))</span><br><span class="line">      ]),</span><br><span class="line">      transition(<span class="string">'* =&gt; void'</span>, [</span><br><span class="line">        animate(<span class="number">300</span>, keyframes([</span><br><span class="line">          style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(0)'</span>,     offset: <span class="number">0</span>&#125;),</span><br><span class="line">          style(&#123;opacity: <span class="number">1</span>, transform: <span class="string">'translateX(-15px)'</span>, offset: <span class="number">0.7</span>&#125;),</span><br><span class="line">          style(&#123;opacity: <span class="number">0</span>, transform: <span class="string">'translateX(100%)'</span>,  offset: <span class="number">1.0</span>&#125;)</span><br><span class="line">        ]))</span><br><span class="line">      ])</span><br><span class="line">    ])</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HeroListMultistepComponent &#123;</span><br><span class="line">  <span class="meta">@Input</span>() heroes: Heroes;</span><br><span class="line"></span><br><span class="line">  animationStarted(event: AnimationTransitionEvent) &#123;</span><br><span class="line">    <span class="built_in">console</span>.warn(<span class="string">'Animation started: '</span>, event);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  animationDone(event: AnimationTransitionEvent) &#123;</span><br><span class="line">    <span class="built_in">console</span>.warn(<span class="string">'Animation done: '</span>, event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些回调接收一个<code>AnimationTransitionEvent</code>参数，它包含一些有用的属性，例如<code>fromState</code>，<code>toState</code>和<code>totalTime</code>。</p>
+<p>无论动画是否实际执行过，那些回调都会触发。</p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2017/03/30/Angular官方文档学习笔记之动画/" title="Angular官方文档学习笔记之动画">https://tc9011.com/2017/03/30/Angular官方文档学习笔记之动画/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/24/前端基础知识/" rel="next" title="前端基础知识">
+                <i class="fa fa-chevron-left"></i> 前端基础知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/《CSS揭秘》学习笔记/" rel="prev" title="《CSS揭秘》学习笔记">
+                《CSS揭秘》学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#快速起步范例：在两个状态间转场"><span class="nav-number">1.</span> <span class="nav-text">快速起步范例：在两个状态间转场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态与转场"><span class="nav-number">2.</span> <span class="nav-text">状态与转场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（通配符）状态"><span class="nav-number">2.1.</span> <span class="nav-text">*（通配符）状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#void状态"><span class="nav-number">2.2.</span> <span class="nav-text">void状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子：进场与离场"><span class="nav-number">3.</span> <span class="nav-text">例子：进场与离场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范例：从不同的状态下进场和离场"><span class="nav-number">4.</span> <span class="nav-text">范例：从不同的状态下进场和离场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可动的属性与单位"><span class="nav-number">5.</span> <span class="nav-text">可动的属性与单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动属性值计算"><span class="nav-number">6.</span> <span class="nav-text">自动属性值计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画时间线"><span class="nav-number">7.</span> <span class="nav-text">动画时间线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#持续时间"><span class="nav-number">7.1.</span> <span class="nav-text">持续时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟"><span class="nav-number">7.2.</span> <span class="nav-text">延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓动函数"><span class="nav-number">7.3.</span> <span class="nav-text">缓动函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">7.4.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于关键帧的多阶段动画"><span class="nav-number">8.</span> <span class="nav-text">基于关键帧的多阶段动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并行动画组"><span class="nav-number">9.</span> <span class="nav-text">并行动画组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画回调"><span class="nav-number">10.</span> <span class="nav-text">动画回调</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2017/03/30/Angular官方文档学习笔记之动画/';
+        this.page.identifier = '2017/03/30/Angular官方文档学习笔记之动画/';
+        this.page.title = 'Angular官方文档学习笔记之动画';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

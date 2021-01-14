@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础知识">
+<meta property="og:url" content="https://tc9011.com/2017/03/24/前端基础知识/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/前端基础知识/20170324149035781133995.jpg">
+<meta property="og:image" content="https://tc9011.com/assets/images/前端基础知识/20170301577172017-03-01_18-58-59.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/前端基础知识/20170323149027543475606.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.726Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端基础知识">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/前端基础知识/20170324149035781133995.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2017/03/24/前端基础知识/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>前端基础知识 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2017/03/24/前端基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端基础知识
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-24 19:56:49" itemprop="dateCreated datePublished" datetime="2017-03-24T19:56:49+08:00">2017-03-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/24/前端基础知识/" class="leancloud_visitors" data-flag-title="前端基础知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/前端基础知识/20170324149035781133995.jpg" alt="20170324149035781133995.jpg"></p>
+<a id="more"></a>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="初级"><a href="#初级" class="headerlink" title="初级"></a>初级</h3><ol>
+<li>介绍一下你对浏览器内核的理解？</li>
+<li>简述一下你对HTML语义化的理解？</li>
+<li>html5有哪些新特性、移除了那些元素？</li>
+</ol>
+<h3 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h3><ol>
+<li>页面导入样式时，使用<code>link</code>和<code>@import</code>有什么区别？</li>
+<li>为什么通常推荐将 CSS <code>&lt;link&gt;</code> 放置在 <code>&lt;head&gt;&lt;/head&gt;</code> 之间，而将 JS <code>&lt;script&gt;</code> 放置在 <code>&lt;/body&gt;</code> 之前？你知道有哪些例外吗？</li>
+</ol>
+<h3 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h3><ol>
+<li>如何实现浏览器内多个标签页之间的通信?</li>
+<li>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</li>
+</ol>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="初级-1"><a href="#初级-1" class="headerlink" title="初级"></a>初级</h3><ol>
+<li>css的position属性有哪些取值，它们的行为是什么？</li>
+<li>css哪些属性可以继承，哪些属性不可继承？</li>
+<li>清除浮动的几种方法？</li>
+<li>css居中常用的方法（垂直、水平和同时水平垂直居中）。</li>
+<li>请解释你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局。</li>
+</ol>
+<h3 id="中级-1"><a href="#中级-1" class="headerlink" title="中级"></a>中级</h3><ol>
+<li><code>px</code>、<code>em</code>、<code>rem</code>的区别。</li>
+<li>什么是CSS 预处理器 / 后处理器？</li>
+<li><code>li</code>与<code>li</code>之间有看不见的空白间隔是什么原因引起的？有什么解决办法？</li>
+<li><code>::after</code> 和<code>:after</code>中双冒号和单冒号有什么区别，在css3中这两个属性有什么区别？</li>
+<li>什么叫优雅降级和渐进增强？</li>
+<li>响应式设计 (responsive design) 和自适应设计 (adaptive design)有什么 不同？</li>
+<li>解释下 CSS sprites，以及你要如何在页面或网站中使用它。</li>
+</ol>
+<h3 id="高级-1"><a href="#高级-1" class="headerlink" title="高级"></a>高级</h3><ol>
+<li><p>用css实现多重边框，如下图所示：</p>
+<p><img src="/assets/images/前端基础知识/20170301577172017-03-01_18-58-59.png" alt="20170301577172017-03-01_18-58-59.png"></p>
+</li>
+<li><p>用css实现自定义复选框，如下图所示:</p>
+<p><img src="/assets/images/前端基础知识/20170323149027543475606.png" alt="20170323149027543475606.png"></p>
+<p>​</p>
+</li>
+</ol>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="初级-2"><a href="#初级-2" class="headerlink" title="初级"></a>初级</h3><ol>
+<li><p>DOM元素的<code>property</code>与<code>attribute</code>都可以翻译成属性，那两者有什么的区别？</p>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">if</span> (a == b)&#123;			</span><br><span class="line">  alert(<span class="string">"a = b"</span>);</span><br><span class="line">&#125;</span><br><span class="line">输出结果是什么？为什么？</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Javascript如何实现继承？</p>
+</li>
+<li><p>谈谈This对象的理解。</p>
+</li>
+<li><p>什么是事件冒泡?事件冒泡有什么作用?</p>
+</li>
+<li><p>请解释事件委托（或者事件代理）</p>
+</li>
+<li><p>解释一下捕获型事件和冒泡型事件。</p>
+</li>
+<li><p>什么是闭包（closure），为什么要用它？</p>
+</li>
+<li><p>javascript 代码中的”use strict”;是什么意思 ? 使用它区别是什么？</p>
+</li>
+<li><p>请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)。</p>
+</li>
+</ol>
+<h3 id="中级-2"><a href="#中级-2" class="headerlink" title="中级"></a>中级</h3><ol>
+<li><p>Javascript作用链域?</p>
+</li>
+<li><p>JavaScript原型，原型链 ? 有什么特点？</p>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">      alert(a+b);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sub</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">      alert(a-b);</span><br><span class="line">  &#125;</span><br><span class="line">add.call(sub,<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">这个函数最后输出结果是什么？为什么？</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> v = <span class="string">"hello"</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v);</span><br><span class="line">  <span class="keyword">var</span> v = <span class="string">"world"</span>;</span><br><span class="line">&#125;)();</span><br><span class="line">上面两段代码分别输出什么？为什么？</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js延迟加载的方式有哪些？</p>
+</li>
+<li><p>你知道有哪些性能优化的方法？</p>
+</li>
+<li><p>HTTP状态码有哪些，都是什么含义？</p>
+</li>
+<li><p>Ajax 是什么? 如何创建一个Ajax？</p>
+</li>
+<li><p>使用 Ajax 都有哪些优劣？</p>
+</li>
+<li><p>AJAX注意点及适用和不适用场景</p>
+</li>
+</ol>
+<h3 id="高级-2"><a href="#高级-2" class="headerlink" title="高级"></a>高级</h3><ol>
+<li>关于Http 2.0 你知道多少？</li>
+<li>网站重构的理解？</li>
+<li>AMD（Modules/Asynchronous-Definition）、CMD（Common Module Definition）规范区别？</li>
+<li>Object.is() 与原来的比较操作符“ ===”、“ ==”的区别？</li>
+<li>什么是指内存泄露，哪些操作会造成内存泄漏？</li>
+<li>js如何操作获取和设置cookie</li>
+<li>听说过PWA（Progressive Web App）吗？有哪些优点？</li>
+</ol>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><h3 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h3><h4 id="初级-3"><a href="#初级-3" class="headerlink" title="初级"></a>初级</h4><ol>
+<li><p>主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。<br>渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。</p>
+<p>JS引擎则：解析和执行javascript来实现网页的动态效果。</p>
+<p>最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。</p>
+</li>
+<li><p>用正确的标签做正确的事情。<br>html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;<br>即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;<br>搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;<br>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</p>
+</li>
+<li><p>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">绘画 canvas;</span><br><span class="line">用于媒介回放的 video 和 audio 元素;</span><br><span class="line">本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;</span><br><span class="line">sessionStorage 的数据在浏览器关闭后自动删除;</span><br><span class="line">语意化更好的内容元素，比如 article、footer、header、nav、section;</span><br><span class="line">表单控件，calendar、date、time、email、url、search;</span><br><span class="line">新的技术webworker, websocket, Geolocation;</span><br></pre></td></tr></table></figure>
+<p>  移除的元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">纯表现的元素：basefont，big，center，font, s，strike，tt，u;</span><br><span class="line">对可用性产生负面影响的元素：frame，frameset，noframes；</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="中级-3"><a href="#中级-3" class="headerlink" title="中级"></a>中级</h4><ol>
+<li><p>link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题。</p>
+</li>
+<li><p>浏览器从上到下依次解析html文档。将 <code>css</code> 文件放到头部， <code>css</code> 文件可以先加载。避免先加载 <code>body</code> 内容，导致页面一开始样式错乱，然后闪烁。将 <code>javascript</code> 文件放到底部是因为：若将 <code>javascript</code> 文件放到 <code>head</code> 里面，就意味着必须等到所有的 <code>javascript</code> 代码都被 <strong>下载、解析和执行完成</strong> 之后才开始呈现页面内容。这样就会造成呈现页面时出现明显的延迟，窗口一片空白。为避免这样的问题一般将全部 <code>javascript</code> 文件放到 <code>body</code> 元素中页面内容的后面。</p>
+<p>一般希望<code>DOM</code>还没加载必须需要先加载的<code>js</code>会放置在<code>&lt;head&gt;</code>中,有些加了<code>defer</code>、<code>async</code>的<code>&lt;script&gt;</code>也会放在<code>&lt;head&gt;</code>中。</p>
+</li>
+</ol>
+<h4 id="高级-3"><a href="#高级-3" class="headerlink" title="高级"></a>高级</h4><ol>
+<li><p><code>WebSocket</code>、<code>SharedWorker</code>；<br>也可以调用<code>localstorge</code>、<code>cookies</code>等本地存储方式；</p>
+<p><code>localstorge</code>另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，<br>我们通过监听事件，控制它的值来进行页面信息通信。</p>
+</li>
+<li><p>cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。<br>cookie数据始终在同源的http请求中携带（即使不需要），记会在浏览器和服务器间来回传递。<br>sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。</p>
+<p>存储大小：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cookie数据大小不能超过4k。</span><br><span class="line">sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。</span><br></pre></td></tr></table></figure>
+<p>有期时间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">localStorage    存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；</span><br><span class="line">sessionStorage  数据在当前浏览器窗口关闭后自动删除。</span><br><span class="line">cookie          设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h3><h4 id="初级-4"><a href="#初级-4" class="headerlink" title="初级"></a>初级</h4><ol>
+<li><p>(这个问题的答案很基础，但是这个问题可以问的很深入，可以筛选从初级到高级前端工程师，参考：<a href="https://github.com/wintercn/blog/issues/4" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/wintercn/blog/issues/4</a>)</p>
+<p><code>postision：static；</code>始终处于文档流给予的位置。看起来好像没有用，但它可以快速取消定位，让<code>top</code>，<code>right</code>，<code>bottom</code>，<code>left</code>的值失效。  </p>
+<p> <code>position：relative</code>和<code>absolute</code>都可以用于定位，区别在于前者的<code>div</code>还属于正常的文档流，后者已经是脱离了正常文档流，不占据空间位置，不会将父类撑开。定位原点<code>relative</code>是相对于它在正常流中的默认位置偏移，它原本占据的空间任然保留；<code>absolute</code>相对于第一个<code>position</code>属性值不为<code>static</code>的父类。所以设置了<code>position：absolute</code>，其父类的该属性值要注意，而且<code>overflow：hidden</code>也不能乱设置，因为不属于正常文档流，不会占据父类的高度，也就不会有滚动条。</p>
+<p><code>fixed</code>旧版本IE不支持，却是很有用，定位原点相对于浏览器窗口，而且不能变。常用于<code>header</code>，<code>footer</code>，或者一些固定的悬浮div，随滚动条滚动又稳定又流畅，比JS好多了。fixed可以有很多创造性的布局和作用，兼容性是问题。</p>
+</li>
+<li><p>可继承的样式：<code>font-size font-family color, text-indent</code>;</p>
+<p>不可继承的样式：<code>border padding margin width height</code> ;</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1，额外标签，&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。）</span><br><span class="line">2，使用after伪类</span><br><span class="line">#parent:after&#123;</span><br><span class="line">    content:&quot;.&quot;;</span><br><span class="line">    height:0;</span><br><span class="line">    visibility:hidden;</span><br><span class="line">    display:block;</span><br><span class="line">    clear:both;</span><br><span class="line">    &#125;</span><br><span class="line">3,浮动外部元素</span><br><span class="line">4,设置overflow为hidden或者auto</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>水平居中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">内联元素水平居中：<span class="selector-tag">text-align</span>: <span class="selector-tag">center</span>;</span><br><span class="line">块级元素水平居中：<span class="selector-tag">margin</span>: 0 <span class="selector-tag">auto</span>;同时还要设置<span class="selector-tag">width</span></span><br></pre></td></tr></table></figure>
+<p>垂直居中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">内联元素:设置相等的上下<span class="selector-tag">padding</span>，或者单行文本可以利用<span class="selector-tag">line-height</span>和<span class="selector-tag">height</span>相等来实现;</span><br><span class="line">块级元素：</span><br><span class="line">	1、若元素有固定高度</span><br><span class="line">	<span class="selector-class">.parent</span> &#123; <span class="attribute">position</span>: relative; &#125;</span><br><span class="line">	<span class="selector-class">.child</span> &#123;</span><br><span class="line">     <span class="attribute">position</span>: absolute; </span><br><span class="line">     <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">     <span class="attribute">height</span>: <span class="number">100px</span>; </span><br><span class="line">     <span class="attribute">margin-top</span>: -<span class="number">50px</span>; <span class="comment">/* 如果没有使用: border-box; 的盒子模型则需要设置这个 */</span></span><br><span class="line">	&#125;</span><br><span class="line">	2、如果不知道元素高度</span><br><span class="line">	<span class="selector-class">.parent</span> &#123; <span class="attribute">position</span>: relative; &#125;</span><br><span class="line">	<span class="selector-class">.child</span> &#123;</span><br><span class="line">     <span class="attribute">position</span>: absolute; </span><br><span class="line">     <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">     <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-50%);</span><br><span class="line">	&#125;</span><br><span class="line">	3、用<span class="selector-tag">flexbox</span></span><br><span class="line">	 &lt;<span class="selector-tag">main</span>&gt;</span><br><span class="line"> 		&lt;<span class="selector-tag">div</span>&gt;</span><br><span class="line"> 			I'm ok.</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	 &lt;/main&gt;</span><br><span class="line"></span><br><span class="line">	 <span class="selector-tag">body</span> &#123;</span><br><span class="line">		<span class="attribute">background</span>: <span class="number">#f06d06</span>;</span><br><span class="line"> 		<span class="attribute">font-size</span>: <span class="number">80%</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">	 <span class="selector-tag">main</span> &#123;</span><br><span class="line">		 <span class="attribute">background</span>: white;</span><br><span class="line"> 		 <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">		 <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">		 <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">		 <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">		 <span class="attribute">display</span>: flex;</span><br><span class="line">		 <span class="attribute">flex-direction</span>: column; </span><br><span class="line"> 		 <span class="attribute">justify-content</span>: center;</span><br><span class="line">		 <span class="attribute">resize</span>: vertical;</span><br><span class="line"> 		 <span class="attribute">overflow</span>: auto;</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line">	 <span class="selector-tag">main</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">		<span class="attribute">background</span>: black;</span><br><span class="line">  		<span class="attribute">color</span>: white;</span><br><span class="line">  		<span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">resize</span>: vertical;</span><br><span class="line"> 		<span class="attribute">overflow</span>: auto;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>同时水平和垂直居中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">元素有固定高度和宽度：先绝对居中，然后上移和左移50%的宽度即可:</span><br><span class="line">	<span class="selector-class">.parent</span> &#123;</span><br><span class="line">      <span class="attribute">position</span>: relative;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.child</span> &#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">	  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">	  <span class="attribute">position</span>: absolute;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">      <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">      <span class="attribute">margin</span>: -<span class="number">70px</span> <span class="number">0</span> <span class="number">0</span> -<span class="number">170px</span>;</span><br><span class="line"> 	 &#125;</span><br><span class="line">元素的高度和宽度未知或可变的：使用<span class="selector-tag">transofrm</span>属性在两个方向都平移负50%:</span><br><span class="line">	<span class="selector-class">.parent</span> &#123;</span><br><span class="line"> 		 <span class="attribute">position</span>: relative;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="selector-class">.child</span> &#123;</span><br><span class="line"> 		<span class="attribute">position</span>: absolute;</span><br><span class="line">  		<span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line"> 		<span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line"> 		<span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>盒模型包括margin、border、padding和content，W3C的标准是width和height就是content的宽和高，而IE默认盒模型的width和height是包含了border、padding和content的。</p>
+<p>box-sizing：content-box（w3c标准盒模型），border-box（IE类盒模型）。</p>
+</li>
+</ol>
+<h4 id="中级-4"><a href="#中级-4" class="headerlink" title="中级"></a>中级</h4><ol>
+<li><p>Px是一个绝对字体大小，em则是基于基数（比如：1.5em）来计算出来的相对字体大小。这个基数是需要乘以当前对象从其父级遗传字体大小。rem是基于根节点（比如html）的字体大小进行计算的。</p>
+</li>
+<li><p>预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，还有层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。</p>
+<p>后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。</p>
+</li>
+<li><p>行框的排列会受到中间空白（回车\空格）等的影响，因为空格也属于字符,这些空白也会被应用样式，占据空间，所以会有间隔，把字符大小设为0，就没有空格了。</p>
+</li>
+<li><p>单冒号<code>:</code>用于伪类，双冒号<code>::</code>用于伪元素。</p>
+<p>伪类是为了通过选择器找到那些不存在与DOM树中的信息以及不能被常规CSS选择器获取到的信息，伪类本质上是为了弥补常规CSS选择器的不足，以便获取到更多信息。</p>
+<p>伪元素在DOM树中创建了一些抽象元素，这些抽象元素是不存在于文档语言里的，伪元素本质上是创建了一个有内容的虚拟容器。</p>
+<p>可以同时使用多个伪类，但是一个选择器只能使用一个伪元素，并且伪元素必须处于选择器语句的最后。</p>
+</li>
+<li><p>优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会检查以确认它们是否能正常工作。由于IE独特的盒模型布局问题，针对不同版本的IE的hack实践过优雅降级了,为那些无法支持功能的浏览器增加候选方案，使之在旧式浏览器上以某种形式降级体验却不至于完全失效.</p>
+<p>渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新式浏览器才支持的功能,向页面增加无害于基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。</p>
+</li>
+<li><p>Responsive design (响应式设计)：建立一个网页，通过CSS Media Queries，Content－Based Breakpoint（基于内容的断点）等技术来改变网页的大小以适应不同分辨率的屏幕。</p>
+<p>Adaptive design (自适应设计)：为不同类别的设备建立不同的网页，检测到设备分辨率大小后调用相应的网页。目前AWD网页主要针对这几种分辨率（320，480，760，960，1200，1600）</p>
+</li>
+<li><p>CSS Sprites其实就是把网页中一些背景图片整合到一张图片文件中，再利用CSS的<code>background-image</code>，<code>background- repeat</code>，<code>background-position</code>的组合进行背景定位，<code>background-position</code>可以用数字能精确的定位出背景图片的位置。这样可以减少很多图片请求的开销，因为请求耗时比较长；请求虽然可以并发，但是也有限制，一般浏览器都是6个。对于未来而言，就不需要这样做了，因为有了<code>http2</code>。</p>
+</li>
+</ol>
+<h4 id="高级-4"><a href="#高级-4" class="headerlink" title="高级"></a>高级</h4><ol>
+<li><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#div1</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">background</span>: yellowgreen;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="number">#655</span>,</span><br><span class="line">    <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span> deeppink,</span><br><span class="line">    <span class="number">0</span> <span class="number">2px</span> <span class="number">5px</span> <span class="number">15px</span> <span class="built_in">rgba</span>(0,0,0,.6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把<code>&lt;label&gt;</code>元素与复选框关联，让它起到触发开关的作用，为它添加生成性内 容（伪元素），并基于复选框的状态来为其设置样式。把真正 的复选框隐藏起来，再 把生成性内容美化一番，用来顶替原来的复选框。</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type="checkbox"]</span> &#123;</span><br><span class="line">  <span class="comment">/*隐藏原始的复选框，不能使用display: none，这样会把它从tab键切换焦点的队列完全删除*/</span></span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">clip</span>: <span class="built_in">rect</span>(0,0,0,0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*设置紧邻input的label伪元素样式*/</span></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type="checkbox"]</span> + <span class="selector-tag">label</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">'\a0'</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>: .<span class="number">2em</span>;</span><br><span class="line">    <span class="attribute">width</span>: .<span class="number">8em</span>;</span><br><span class="line">    <span class="attribute">height</span>: .<span class="number">8em</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: .<span class="number">2em</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: .<span class="number">2em</span>;</span><br><span class="line">    <span class="attribute">background</span>: silver;</span><br><span class="line">    <span class="attribute">text-indent</span>: .<span class="number">15em</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: .<span class="number">65</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*设置紧邻已经勾选的input的label伪元素的样式*/</span></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type="checkbox"]</span><span class="selector-pseudo">:checked</span> + <span class="selector-tag">label</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">'\2713'</span>;</span><br><span class="line">    <span class="attribute">background</span>: yellowgreen;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type="checkbox"]</span><span class="selector-pseudo">:focus</span> + <span class="selector-tag">label</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> .<span class="number">1em</span> .<span class="number">1em</span> <span class="number">#58a</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type="checkbox"]</span><span class="selector-pseudo">:disabled</span> + <span class="selector-tag">label</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: gray;</span><br><span class="line">    <span class="attribute">box-shadow</span>: none;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#555</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: not-allowed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"awesome"</span> <span class="attr">autofocus</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"awesome"</span>&gt;</span>Awesome!<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="JavaScript-1"><a href="#JavaScript-1" class="headerlink" title="JavaScript"></a>JavaScript</h3><h4 id="初级-5"><a href="#初级-5" class="headerlink" title="初级"></a>初级</h4><ol>
+<li><p><code>property</code>是DOM中的属性，是JavaScript里的对象；<br><code>attribute</code>是HTML标签上的特性，它的值只能够是字符串。<code>attributes</code>是属于<code>property</code>的一个子集，它保存了HTML标签上定义<code>property</code>。</p>
+</li>
+<li><p>输出<code>true</code>，JavaScript中，<code>==</code>并不表示严格相等，因为<code>==</code>认为空字符串与false的含义相同。要进行严格比较，就要使用另一种等号：<code>===</code>。这个全等操作符会执行严格的比较，不仅比较值，而且会比较变量的类型。</p>
+</li>
+<li><p>JavaScript无法实现接口继承，支持实现继承，而且继承主要是依靠原型链来实现的。主要继承方式有：原型式继承、寄生式继承、寄生组合式继承。</p>
+</li>
+<li><p>this总是指向函数的直接调用者（而非间接调用者）；如果有new关键字，this指向new出来的那个对象；在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window。</p>
+</li>
+<li><ul>
+<li>在一个对象上触发某类事件（比如单击onclick事件），如果此对象定义了此事件的处理程序，那么此事件就会调用这个处理程序，如果没有定义此事件处理程序或者事件返回true，那么这个事件会向这个对象的父级对象传播，从里到外，直至它被处理（父级对象所有同类事件都将被激活），或者它到达了对象层次的最顶层，即document对象（有些浏览器是window）。</li>
+<li><ol>
+<li>事件冒泡允许多个操作被集中处理（把事件处理器添加到一个父级元素上，避免把事件处理器添加到多个子级元素上），它还可以让你在对象层的不同级别捕获事件。</li>
+<li>让不同的对象同时捕获同一事件，并调用自己的专属处理程序做自己的事情，就像老板一下命令，各自员工做自己岗位上的工作去了。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
+</li>
+<li><p>捕获型事件(event capturing)：事件从最不精确的对象(document 对象)开始触发，然后到最精确(也可以在窗口级别捕获事件，不过必须由开发人员特别指定)。</p>
+<p>冒泡型事件：事件按照从最特定的事件目标到最不特定的事件目标(document对象)的顺序触发。</p>
+<p>IE是事件冒泡、firefox同时支持两种事件模型，也就是：捕获型事件和冒泡型事件。</p>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。</span><br><span class="line"></span><br><span class="line">闭包的特性：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>函数内再嵌套函数</span><br><span class="line"><span class="number">2.</span>内部函数可以引用外层的参数和变量</span><br><span class="line"><span class="number">3.</span>参数和变量不会被垃圾回收机制回收</span><br><span class="line"></span><br><span class="line"><span class="comment">//li节点的onclick事件都能正确的弹出当前被点击的li索引</span></span><br><span class="line"> &lt;ul id=<span class="string">"testUL"</span>&gt;</span><br><span class="line">    &lt;li&gt; index = <span class="number">0</span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt; index = 1&lt;/</span>li&gt;</span><br><span class="line">    &lt;li&gt; index = <span class="number">2</span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt; index = 3&lt;/</span>li&gt;</span><br><span class="line">&lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">      var nodes = document.getElementsByTagName("</span>li<span class="string">");</span></span><br><span class="line"><span class="string">    for(i = 0;i&lt;nodes.length;i+= 1)&#123;</span></span><br><span class="line"><span class="string">        nodes[i].onclick = (function(i)&#123;</span></span><br><span class="line"><span class="string">                  return function() &#123;</span></span><br><span class="line"><span class="string">                     console.log(i);</span></span><br><span class="line"><span class="string">                  &#125; //不用闭包的话，值每次都是4</span></span><br><span class="line"><span class="string">                &#125;)(i);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>use strict</code>是一种ECMAscript 5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行,</p>
+<p>使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为。<br>默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;<br>全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,<code>arguments.callee</code>也不允许使用；<br>消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;</p>
+<p>提高编译器效率，增加运行速度；<br>为未来新版本的Javascript标准化做铺垫。</p>
+</li>
+<li><p>单页应用是指在浏览器中运行的应用，它们在使用期间不会重新加载页面。像所有的应用一样，它旨在帮助用户完成任务，比如“编写文档”或者“管理Web服务器”。可以认为单页应用是一种从Web服务器加载的富客户端。</p>
+<p>搜索引擎优化：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1、注重TDK的写法</span><br><span class="line">既然页面单一，那么就更需要注重网站标题、关键词和描述的写法。标题上来说，要简单明确，包含主要关键词，一句话能概括全文;描述上来讲，一句话活一小段文字提炼出文章的精髓，内容比标题更加详细;关键词，用绝对的与内容相关的词语，多个关键词用逗号分开。</span><br><span class="line">2、外链锚文本的多样化</span><br><span class="line">在外链建设上，切忌内容单一，这样很容易造成网站的过度优化，而我们都知道，网站的过度优化对SEO而言是不利的。</span><br><span class="line">3、网站标签的运用</span><br><span class="line">合理的运用网站标签可以让搜索引擎更好的理解网站的层次内容，比如h标签，strong标签等等。</span><br><span class="line">4、符合国际标准</span><br><span class="line">这里所说的符合国际标准指的是告诉搜索引擎我的网站符合W3C标准，对任何浏览器都是兼容的。</span><br><span class="line">5、代码优化</span><br><span class="line">CSS和JS的优化，尽可能的使用外部导入，从而让网页代码更加简洁，能用CSS就尽量不用JS，毕竟JS对于搜索引擎而言并不友好。</span><br><span class="line">6、图片的优化</span><br><span class="line">这个属于老生常谈了，这里就不多说了。</span><br><span class="line">7、合理设置锚点</span><br><span class="line">有一些单页面为了展示很多产品特点，页面会拉的很长，不利于用户查看，用户体验并不好，如果在单页面网站上设置合理的锚点，用户只需要点击一下快速达到想要看到的内容区域。</span><br><span class="line">8、避免全是图片展示</span><br><span class="line">如果单页面网站为了提升视觉效果从而更多的使用图片，那么就会造成网站文字内容过少，不利于搜索引擎对网站的抓取和索引。</span><br><span class="line">9、内容为王</span><br><span class="line">之前我们就举过百度百科的例子，而作为单页面网站来讲，将用户所有的需求点尽可能完整的展现出来，从而解决用户的烦恼才是单页面网站立足的关键。</span><br></pre></td></tr></table></figure>
+<h4 id="中级-5"><a href="#中级-5" class="headerlink" title="中级"></a>中级</h4><ol>
+<li><p>全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，直至全局函数，这种组织形式就是作用域链。</p>
+</li>
+<li><p>每个对象都会在其内部初始化一个属性，就是<code>prototype(原型)</code>，当我们访问一个对象的属性时，<br>如果这个对象内部不存在这个属性，那么他就会去<code>prototype</code>里找这个属性，这个<code>prototype</code>又会有自己的<code>prototype</code>，<br>于是就这样一直找下去，也就是我们平时所说的原型链的概念。</p>
+<p>特点：<br>JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。</p>
+</li>
+<li><p>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。 这个程序中的<code>add</code> 来替换 <code>sub</code>，<code>add.call(sub,3,1) == add(3,1)</code>，所以运行结果为：<code>alert(4)</code>;</p>
+</li>
+<li><p>输出<code>undefined</code>。</p>
+<p>javascript的变量声明具有变量声明提升机制，JavaScript引擎在执行的时候，会把所有变量的声明都提升到当前作用域的最前面。并且function作用域里的变量v遮盖了上层作用域变量v。这段代码相当于下面这段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> v = <span class="string">"hello"</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> v; <span class="comment">//declaration hoisting</span></span><br><span class="line">  <span class="built_in">console</span>.log(v);</span><br><span class="line">  v = <span class="string">"world"</span>;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>defer</code>和<code>async</code>、动态创建DOM方式（创建script，插入到DOM中，加载完毕后callBack）、按需异步载入js</p>
+</li>
+<li><ul>
+<li>减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。</li>
+<li>前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数</li>
+<li>当需要设置的样式很多时设置className而不是直接操作style。</li>
+<li>少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。</li>
+<li>避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。</li>
+<li>图片预加载，将样式表放在顶部，将脚本放在底部  加上时间戳。</li>
+</ul>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">100</span>  Continue  继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息</span><br><span class="line"><span class="number">200</span>  OK   正常返回信息</span><br><span class="line"><span class="number">201</span>  Created  请求成功并且服务器创建了新的资源</span><br><span class="line"><span class="number">202</span>  Accepted  服务器已接受请求，但尚未处理</span><br><span class="line"><span class="number">301</span>  Moved Permanently  请求的网页已永久移动到新位置。</span><br><span class="line"><span class="number">302</span> Found  临时性重定向。</span><br><span class="line"><span class="number">303</span> See Other  临时性重定向，且总是使用 GET 请求新的 URI。</span><br><span class="line"><span class="number">304</span>  Not Modified  自从上次请求后，请求的网页未修改过。</span><br><span class="line"></span><br><span class="line"><span class="number">400</span> Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。</span><br><span class="line"><span class="number">401</span> Unauthorized  请求未授权。</span><br><span class="line"><span class="number">403</span> Forbidden  禁止访问。</span><br><span class="line"><span class="number">404</span> Not Found  找不到如何与 URI 相匹配的资源。</span><br><span class="line"></span><br><span class="line"><span class="number">500</span> Internal Server <span class="built_in">Error</span>  最常见的服务器端错误。</span><br><span class="line"><span class="number">503</span> Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ajax的全称：Asynchronous Javascript And XML。<br>异步传输+js+xml。<br>所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。</p>
+<p>创建一个Ajax：</p>
+<ol>
+<li>创建XMLHttpRequest对象,也就是创建一个异步调用对象</li>
+<li>创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息</li>
+<li>设置响应HTTP请求状态变化的函数</li>
+<li>发送HTTP请求</li>
+<li>获取异步调用返回的数据</li>
+<li>使用JavaScript和DOM实现局部刷新</li>
+</ol>
+</li>
+<li><p>优点：</p>
+<ul>
+<li>无刷新更新数据。</li>
+<li>异步与服务器通信。</li>
+<li>前端和后端负载平衡。</li>
+<li>基于标准被广泛支持。</li>
+<li>界面与应用分离。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>AJAX干掉了Back和History功能，即对浏览器机制的破坏。</li>
+<li>安全问题 AJAX暴露了与服务器交互的细节。</li>
+<li>对搜索引擎支持较弱。</li>
+<li>破坏程序的异常处理机制。</li>
+<li>违背URL和资源定位的初衷。</li>
+<li>AJAX不能很好支持移动设备。</li>
+<li>客户端过肥，太多客户端代码造成开发上的成本。</li>
+<li>不容易调试。</li>
+</ul>
+</li>
+<li><p>注意点：<br>Ajax开发时，网络延迟——即用户发出请求到服务器发出响应之间的间隔——需要慎重考虑。不给予用户明确的回应，没有恰当的预读数据，或者对XMLHttpRequest的不恰当处理，都会使用户感到延迟，这是用户不希望看到的，也是他们无法理解的。通常的解决方案是，使用一个可视化的组件来告诉用户系统正在进行后台操作并且正在读取数据和内容。</p>
+<p>Ajax适用场景：</p>
+</li>
+<li><p>表单驱动的交互</p>
+</li>
+<li><p>深层次的树的导航</p>
+<ol>
+<li>快速的用户与用户间的交流响应</li>
+<li>类似投票、yes/no等无关痛痒的场景</li>
+<li>对数据进行过滤和操纵相关数据的场景</li>
+<li>普通的文本输入提示和自动完成的场景</li>
+</ol>
+<p>Ajax不适用场景：</p>
+<ol>
+<li>部分简单的表单</li>
+<li>搜索</li>
+<li>基本的导航</li>
+<li>替换大量的文本</li>
+<li>对呈现的操纵</li>
+</ol>
+</li>
+</ol>
+<h4 id="高级-5"><a href="#高级-5" class="headerlink" title="高级"></a>高级</h4><ol>
+<li><p><code>HTTP/2</code>引入了“服务端推（serverpush）”的概念，它允许服务端在客户端需要数据之前就主动地将数据发送到客户端缓存中，从而提高性能。 <code>HTTP/2</code>提供更多的加密支持 <code>HTTP/2</code>使用多路技术，允许多个消息在一个连接上同时交差。 它增加了头压缩（header compression），因此即使非常小的请求，其请求和响应的<code>header</code>都只会占用很小比例的带宽。</p>
+</li>
+<li><p>网站重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为。也就是说是在不改变UI的情况下，对网站进行优化，在扩展的同时保持一致的UI。</p>
+<p>对于传统的网站来说重构通常是：</p>
+<p>表格(table)布局改为DIV+CSS<br>使网站前端兼容于现代浏览器(针对于不合规范的CSS、如对IE6有效的)<br>对于移动平台的优化<br>针对于SEO进行优化<br>深层次的网站重构应该考虑的方面</p>
+<p>减少代码间的耦合<br>让代码保持弹性<br>严格按规范编写代码<br>设计可扩展的API<br>代替旧有的框架、语言(如VB)<br>增强用户体验<br>通常来说对于速度的优化也包含在重构中</p>
+<p>压缩JS、CSS、image等前端资源(通常是由服务器来解决)<br>程序的性能优化(如数据读写)<br>采用CDN来加速资源加载<br>对于JS DOM的优化<br>HTTP服务器的文件缓存</p>
+</li>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Asynchronous Module Definition，异步模块定义，所有的模块将被异步加载，模块加载不影响后面语句运行。所有依赖某些模块的语句均放置在回调函数中。</span><br><span class="line"></span><br><span class="line"> 区别：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 <span class="number">2.0</span> 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 <span class="keyword">as</span> lazy <span class="keyword">as</span> possible.</span><br><span class="line"><span class="number">2.</span> CMD 推崇依赖就近，AMD 推崇依赖前置。看代码：</span><br><span class="line">  <span class="comment">// CMD</span></span><br><span class="line">   define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>)</span><br><span class="line">       a.doSomething()</span><br><span class="line">       <span class="comment">// 此处略去 100 行</span></span><br><span class="line">       <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>) <span class="comment">// 依赖可以就近书写</span></span><br><span class="line">       b.doSomething()</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">   &#125;)</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// AMD 默认推荐</span></span><br><span class="line">   define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="comment">// 依赖必须一开始就写好</span></span><br><span class="line"></span><br><span class="line">       a.doSomething()</span><br><span class="line">       <span class="comment">// 此处略去 100 行</span></span><br><span class="line">       b.doSomething()</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>两等号判等，会在比较时进行类型转换；<br>三等号判等(判断严格)，比较时不进行隐式类型转换,（类型不同则会返回false）；</p>
+<p><code>Object.is</code>在三等号判等的基础上特别处理了<code>NaN</code>、<code>-0</code>和<code>+0</code> ，保证 <code>-0</code>和<code>+0</code>不再相同，<br>但<code>Object.is(NaN, NaN)</code>会返回 <code>true</code>.</p>
+<p><code>Object.is</code>应被认为有其特殊的用途，而不能用它认为它比其它的相等对比更宽松或严格。</p>
+</li>
+<li><p>内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。<br>   垃圾回收器定期扫描对象，并计算引用了每个对象的其他对象的数量。如果一个对象的引用数量为 0（没有其他对象引用过该对象），或对该对象的惟一引用是循环的，那么该对象的内存即可回收。</p>
+<p>setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。<br>闭包、控制台日志、循环（在两个对象彼此引用且彼此保留时，就会产生一个循环）</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">//创建cookie</span><br><span class="line">   function setCookie(name, value, expires, path, domain, secure) &#123;</span><br><span class="line">   	var cookieText = encodeURIComponent(name) + &apos;=&apos; + encodeURIComponent(value);</span><br><span class="line">   	if (expires instanceof Date) &#123;</span><br><span class="line">   		cookieText += &apos;; expires=&apos; + expires;</span><br><span class="line">   	&#125;</span><br><span class="line">   	if (path) &#123;</span><br><span class="line">   		cookieText += &apos;; expires=&apos; + expires;</span><br><span class="line">   	&#125;</span><br><span class="line">   	if (domain) &#123;</span><br><span class="line">   		cookieText += &apos;; domain=&apos; + domain;</span><br><span class="line">   	&#125;</span><br><span class="line">   	if (secure) &#123;</span><br><span class="line">   		cookieText += &apos;; secure&apos;;</span><br><span class="line">   	&#125;</span><br><span class="line">   	document.cookie = cookieText;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //获取cookie</span><br><span class="line">   function getCookie(name) &#123;</span><br><span class="line">   	var cookieName = encodeURIComponent(name) + &apos;=&apos;;</span><br><span class="line">   	var cookieStart = document.cookie.indexOf(cookieName);</span><br><span class="line">   	var cookieValue = null;</span><br><span class="line">   	if (cookieStart &gt; -1) &#123;</span><br><span class="line">   		var cookieEnd = document.cookie.indexOf(&apos;;&apos;, cookieStart);</span><br><span class="line">   		if (cookieEnd == -1) &#123;</span><br><span class="line">   			cookieEnd = document.cookie.length;</span><br><span class="line">   		&#125;</span><br><span class="line">   		cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length, cookieEnd));</span><br><span class="line">   	&#125;</span><br><span class="line">   	return cookieValue;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //删除cookie</span><br><span class="line">   function unsetCookie(name) &#123;</span><br><span class="line">   	document.cookie = name + &quot;= ; expires=&quot; + new Date(0);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>Progressive Web App是一个利用现代浏览器的能力来达到类似APP的用户体验的技术，由Google开发，让浏览器打开的网址像APP一样运行在手机上。让Web App和Native App之间的差距更小。</p>
+<p>优点：</p>
+<ul>
+<li>Installability （可安装性）</li>
+<li>App Shell：第一次渲染渲个壳、等异步数据来了再填充</li>
+<li>Offline （离线能力）</li>
+<li>Re-engageable：推送通知的能力</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>门槛不低（要求 HTTPS；Service Worker也需要学习）；</li>
+<li>浏览器支持（主要是Safari不愿意支持，只是在5年计划里提了一下）；</li>
+<li>用户习惯（让用户习惯于网页可以离线工作真不是短期可以达到的）。</li>
+</ul>
+</li>
+</ol>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2017/03/24/前端基础知识/" title="前端基础知识">https://tc9011.com/2017/03/24/前端基础知识/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/16/chrome扩展程序推荐/" rel="next" title="chrome扩展程序推荐">
+                <i class="fa fa-chevron-left"></i> chrome扩展程序推荐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/《CSS揭秘》学习笔记/" rel="prev" title="《CSS揭秘》学习笔记">
+                《CSS揭秘》学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初级"><span class="nav-number">1.1.</span> <span class="nav-text">初级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中级"><span class="nav-number">1.2.</span> <span class="nav-text">中级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级"><span class="nav-number">1.3.</span> <span class="nav-text">高级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初级-1"><span class="nav-number">2.1.</span> <span class="nav-text">初级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中级-1"><span class="nav-number">2.2.</span> <span class="nav-text">中级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级-1"><span class="nav-number">2.3.</span> <span class="nav-text">高级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript"><span class="nav-number">3.</span> <span class="nav-text">JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初级-2"><span class="nav-number">3.1.</span> <span class="nav-text">初级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中级-2"><span class="nav-number">3.2.</span> <span class="nav-text">中级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级-2"><span class="nav-number">3.3.</span> <span class="nav-text">高级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">4.</span> <span class="nav-text">答案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-1"><span class="nav-number">4.1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初级-3"><span class="nav-number">4.1.1.</span> <span class="nav-text">初级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中级-3"><span class="nav-number">4.1.2.</span> <span class="nav-text">中级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级-3"><span class="nav-number">4.1.3.</span> <span class="nav-text">高级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-1"><span class="nav-number">4.2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初级-4"><span class="nav-number">4.2.1.</span> <span class="nav-text">初级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中级-4"><span class="nav-number">4.2.2.</span> <span class="nav-text">中级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级-4"><span class="nav-number">4.2.3.</span> <span class="nav-text">高级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-1"><span class="nav-number">4.3.</span> <span class="nav-text">JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初级-5"><span class="nav-number">4.3.1.</span> <span class="nav-text">初级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中级-5"><span class="nav-number">4.3.2.</span> <span class="nav-text">中级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级-5"><span class="nav-number">4.3.3.</span> <span class="nav-text">高级</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2017/03/24/前端基础知识/';
+        this.page.identifier = '2017/03/24/前端基础知识/';
+        this.page.title = '前端基础知识';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

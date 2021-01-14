@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="ceph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ceph集群部署不完全指南">
+<meta property="og:url" content="https://tc9011.com/2018/12/28/ceph集群部署不完全指南/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/ceph集群部署不完全指南/1.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ceph集群部署不完全指南">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/ceph集群部署不完全指南/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2018/12/28/ceph集群部署不完全指南/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ceph集群部署不完全指南 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2018/12/28/ceph集群部署不完全指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ceph集群部署不完全指南
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-28 20:41:03" itemprop="dateCreated datePublished" datetime="2018-12-28T20:41:03+08:00">2018-12-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/28/ceph集群部署不完全指南/" class="leancloud_visitors" data-flag-title="ceph集群部署不完全指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/ceph集群部署不完全指南/1.png" alt="1"></p>
+<a id="more"></a>
+<p>Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。</p>
+<p>Ceph项目最早起源于Sage Weil就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenStack都可与Ceph整合以支持虚拟机镜像的后端存储。</p>
+<p>Ceph是一个横向扩展系统：它被设计为先天无单点失效问题，可以扩展到无限个节点，并且节点之间没有耦合关系（无共享架构），而传统存储系统控制器之间总有一些组件是共享的（缓存、磁盘）。</p>
+<p>Ceph使用Crush算法对数据进行自动化组织管理。Crush算法负责数据对象在集群内的智能分布，随后使用集群节点作为数据的管理器。</p>
+<p>ceph 部署的时候根据<a href="http://docs.ceph.org.cn/start/hardware-recommendations/" rel="external nofollow noopener noreferrer" target="_blank">官网</a>建议：</p>
+<ul>
+<li>机械硬盘最小为1T</li>
+<li>磁盘越大，单位GB的存储空间越小，但是需要的内存越多，尤其是在recovery,backfill以及reblance时</li>
+<li>不推荐将一个盘分多个区，再跑多个OSD进程</li>
+<li>不推荐OSD和mon, 或者OSD和mds跑在同一个硬盘上</li>
+<li>很多 slow osd的问题往往是由于对磁盘设备的过度使用，请使用专用的磁盘用于安装操作系统以及软件；专用的磁盘设备用于osd daemon, 专门的磁盘设备用于journal</li>
+</ul>
+<p>所以一般 ceph 部署时，一个节点最好挂三块盘，一块盘装操作系统，一块存储 OSD 数据，一块存储 OSD 日志，而存储日志的盘最好是 SSD，以便提高性能。</p>
+<p>这里因为某些原因，以三台单盘的机器部署 ceph 集群为例，具体配置如下：</p>
+<ul>
+<li>系统：Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0-117-generic x86_64)</li>
+<li>IP 地址及 hostname：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ip</th>
+<th style="text-align:center">hostname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">172.19.217.71</td>
+<td style="text-align:center">Ceph-master</td>
+</tr>
+<tr>
+<td style="text-align:center">172.19.217.72</td>
+<td style="text-align:center">Ceph-node1</td>
+</tr>
+<tr>
+<td style="text-align:center">172.19.217.73</td>
+<td style="text-align:center">Ceph-node2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>磁盘状态：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk</span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">vda    253:0    0  400G  0 disk</span><br><span class="line">`-vda1 253:1    0  400G  0 part /</span><br></pre></td></tr></table></figure>
+<h3 id="设置免密登录"><a href="#设置免密登录" class="headerlink" title="设置免密登录"></a>设置免密登录</h3><p>选定一个节点作为主控节点（这里选的<code>172.19.217.71</code>主机），建立从主控节点到其他节点的免密登录。</p>
+<p>生成秘钥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen</span><br></pre></td></tr></table></figure>
+<p>拷贝秘钥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id root@172.19.217.72 </span><br><span class="line">$ ssh-copy-id root@172.19.217.73</span><br></pre></td></tr></table></figure>
+<p>修改使hostname和ip对应:</p>
+<p>在 <code>/etc/hosts</code> 里追加以下信息:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">172.19.217.71   Ceph-master</span><br><span class="line">172.19.217.72   Ceph-node1</span><br><span class="line">172.19.217.73   Ceph-node2</span><br></pre></td></tr></table></figure>
+<h3 id="安装ntp服务（所有节点）"><a href="#安装ntp服务（所有节点）" class="headerlink" title="安装ntp服务（所有节点）"></a>安装ntp服务（所有节点）</h3><p>主要是用于ceph-mon之间的时间同步。在所有 Ceph 节点上安装 NTP 服务（特别是 Ceph Monitor 节点），以免因时钟漂移导致故障。确保在各 Ceph 节点上启动了 NTP 服务，并且要使用同一个 NTP 服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install ntpdate</span><br><span class="line">$ service ntp stop</span><br><span class="line">$ ntpdate ntp.ubuntu.com</span><br><span class="line">$ service ntp start</span><br></pre></td></tr></table></figure>
+<h3 id="添加ceph用户（所有节点）"><a href="#添加ceph用户（所有节点）" class="headerlink" title="添加ceph用户（所有节点）"></a>添加ceph用户（所有节点）</h3><p>1、在各 Ceph 节点创建新用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo useradd -d /home/ceph -m ceph</span><br></pre></td></tr></table></figure>
+<p>2、确保各 Ceph 节点上新创建的用户都有 sudo 权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"ceph ALL = (root) NOPASSWD:ALL"</span> | tee /etc/sudoers.d/ceph</span><br><span class="line"></span><br><span class="line">$ chmod 0440 /etc/sudoers.d/ceph</span><br></pre></td></tr></table></figure>
+<p><strong>tips</strong>: 这里虽然添加了 ceph 用户, 但是最后安装时并没有用 ceph 用户来安装， 而是采用 root 用户安装</p>
+<h3 id="添加ceph安装源（所有节点）"><a href="#添加ceph安装源（所有节点）" class="headerlink" title="添加ceph安装源（所有节点）"></a>添加ceph安装源（所有节点）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget -q -O- <span class="string">'http://mirrors.163.com/ceph/keys/release.asc'</span> | apt-key add -</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> deb http://mirrors.163.com/ceph/debian-jewel/ $(lsb_release -sc) main | tee /etc/apt/sources.list.d/ceph.list</span><br></pre></td></tr></table></figure>
+<h3 id="安装ceph-deploy部署工具-仅主控节点"><a href="#安装ceph-deploy部署工具-仅主控节点" class="headerlink" title="安装ceph-deploy部署工具(仅主控节点)"></a>安装ceph-deploy部署工具(仅主控节点)</h3><p>更新仓库，并安装 ceph-deploy：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ apt update</span><br><span class="line">$ apt install ceph-deploy</span><br></pre></td></tr></table></figure>
+<h3 id="ceph安装-仅主控节点"><a href="#ceph安装-仅主控节点" class="headerlink" title="ceph安装(仅主控节点)"></a>ceph安装(仅主控节点)</h3><h4 id="创建部署目录"><a href="#创建部署目录" class="headerlink" title="创建部署目录"></a>创建部署目录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir ceph-cluster &amp;&amp; <span class="built_in">cd</span> ceph-cluster/</span><br></pre></td></tr></table></figure>
+<h4 id="配置新节点"><a href="#配置新节点" class="headerlink" title="配置新节点"></a>配置新节点</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy new Ceph-master Ceph-node1 Ceph-node2</span><br></pre></td></tr></table></figure>
+<p>配置完后，目录下会有如下几个文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">ceph.conf  ceph-deploy-ceph.log  ceph.mon.keyring</span><br></pre></td></tr></table></figure>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy install Ceph-master Ceph-node1 Ceph-node2</span><br></pre></td></tr></table></figure>
+<p>都出现如下输出表示安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Running <span class="built_in">command</span>: ceph --version</span><br><span class="line">ceph version 10.2.11 (e4b061b47f07f583c92a050d9e84b1813a35671e)</span><br></pre></td></tr></table></figure>
+<h3 id="配置并启动-ceph-mon-仅主控节点"><a href="#配置并启动-ceph-mon-仅主控节点" class="headerlink" title="配置并启动 ceph-mon(仅主控节点)"></a>配置并启动 ceph-mon(仅主控节点)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy mon create-initial</span><br></pre></td></tr></table></figure>
+<p>至此，ceph集群的安装工作完毕。</p>
+<p>运行 <code>ceph -s</code>可以看到当前集群的状态，运行<code>ceph health</code>查看 ceph health 的状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HEALTH_OK</span><br></pre></td></tr></table></figure>
+<p>health 状态应该是 <code>HEALTH_OK</code>，如果有<code>no osds</code>的 error，只需按照下面方法添加 osd即可，如果有其他<code>HEALTH_ERROR</code>，可以参照下面的解决办法去解决。</p>
+<h4 id="ceph-鉴权文件分发到各个节点"><a href="#ceph-鉴权文件分发到各个节点" class="headerlink" title="ceph 鉴权文件分发到各个节点"></a>ceph 鉴权文件分发到各个节点</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy admin Ceph-master Ceph-node1 Ceph-node2</span><br></pre></td></tr></table></figure>
+<h4 id="OSD-HEALTH不为-OK-的解决办法"><a href="#OSD-HEALTH不为-OK-的解决办法" class="headerlink" title="OSD HEALTH不为 OK 的解决办法"></a>OSD HEALTH不为 OK 的解决办法</h4><ul>
+<li>如果碰到下面的 health err且文件系统是 ext4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ceph health</span><br><span class="line">HEALTH_ERR 64 pgs are stuck inactive <span class="keyword">for</span> more than 300 seconds; 64 pgs stuck inactive; 64 pgs stuck unclean</span><br></pre></td></tr></table></figure>
+<p>先用 Tips 中的方法去查看 log，如果 log 中有 filename too long 的 error，先编辑对应的 <code>ceph.conf</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim ceph.conf</span><br></pre></td></tr></table></figure>
+<p>在末尾添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">osd_max_object_name_len = 256</span><br><span class="line">osd_max_object_namespace_len = 64</span><br><span class="line">filestore_xattr_use_omap = <span class="literal">true</span> <span class="comment"># Just 4 ext4</span></span><br></pre></td></tr></table></figure>
+<p>然后运行下面命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy install Ceph-master Ceph-node1 Ceph-node2</span><br><span class="line"></span><br><span class="line">$ ceph-deploy --overwrite-conf admin Ceph-master Ceph-node1 Ceph-node2</span><br><span class="line"></span><br><span class="line">$ ceph-deploy --overwrite-conf mon create-initial</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果碰到<code>too few PGs per OSD (21 &lt; min 30)</code>的 warning，先查看 pool：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ceph osd lspools</span><br><span class="line">0 rbd,</span><br></pre></td></tr></table></figure>
+<p>查看 rbd pool 的 pgs 和 pgps以及副本数:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ceph osd pool get rbd pg_num</span><br><span class="line">pg_num: 64</span><br><span class="line"></span><br><span class="line">$ sudo ceph osd pool get rbd pgp_num</span><br><span class="line">pgp_num: 64</span><br><span class="line"></span><br><span class="line">$ ceph osd dump | grep <span class="string">'replicated size'</span></span><br><span class="line">pool 0 <span class="string">'rbd'</span> replicated size 3 min_size 2 crush_ruleset 0 object_hash rjenkins pg_num 64 pgp_num 64 last_change 1 flags hashpspool stripe_width 0</span><br></pre></td></tr></table></figure>
+<p>健康的 pg_num 和 pgp_num 计算方法：</p>
+<p> 关于pgmap的数目，<strong>osd_num *100 / replica_num</strong>，<strong>向上取2的幂</strong>。比如15个osd，三备份，15 *100/3=500，得到pg_num = 512，线上重新设定这个数值时会引起数据迁移，请谨慎处理。</p>
+<p>在这里，pgs为64，因为是3副本的配置，所以当有3个osd的时候，3 *100/3=100，得到pg_num = 128</p>
+<p>解决办法：修改默认pool rbd 的 pgs 和 pgps:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ceph osd pool <span class="built_in">set</span> rbd pg_num 128</span><br><span class="line">$ sudo ceph osd pool <span class="built_in">set</span> rbd pgp_num 128</span><br></pre></td></tr></table></figure>
+<ul>
+<li>终极方法</li>
+</ul>
+<p>删除 ceph 并清理环境，然后可能就好了~~具体方法见下面 Tips</p>
+<h3 id="添加-OSD-仅主控节点"><a href="#添加-OSD-仅主控节点" class="headerlink" title="添加 OSD(仅主控节点)"></a>添加 OSD(仅主控节点)</h3><p>查看未分配分区：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ fdisk -l</span><br><span class="line">Disk /dev/vda: 400 GiB, 429496729600 bytes, 838860800 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel <span class="built_in">type</span>: dos</span><br><span class="line">Disk identifier: 0x77ba45a4</span><br><span class="line"></span><br><span class="line">Device     Boot Start       End   Sectors  Size Id Type</span><br><span class="line">/dev/vda1  *     2048 838858751 838856704  400G 83 Linux</span><br><span class="line"></span><br><span class="line">$ df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">udev             63G     0   63G   0% /dev</span><br><span class="line">tmpfs            13G   15M   13G   1% /run</span><br><span class="line">/dev/vda1       394G  9.8G  364G   3% /</span><br><span class="line">tmpfs            63G     0   63G   0% /dev/shm</span><br><span class="line">tmpfs           5.0M  4.0K  5.0M   1% /run/lock</span><br><span class="line">tmpfs            63G     0   63G   0% /sys/fs/cgroup</span><br><span class="line">overlay         394G  9.8G  364G   3% /var/lib/docker/overlay2/d64af4717c1a56cf37cf6ba00937888a376304627b0791f19d6e5e707e0165b5/merged</span><br></pre></td></tr></table></figure>
+<p>这里看到这台机器只有一块盘，所以我们通过目录创建 ceph osd(所有节点)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf /var/lib/ceph/osd/ceph-0</span><br><span class="line">$ mkdir -p /var/lib/ceph/osd/ceph-0</span><br><span class="line">$ chown ceph:ceph /var/lib/ceph/osd/ceph-0</span><br></pre></td></tr></table></figure>
+<p>添加 OSD(仅主控节点)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy osd create Ceph-master</span><br><span class="line">$ ceph-deploy osd create Ceph-node1</span><br><span class="line">$ ceph-deploy osd create Ceph-node2</span><br></pre></td></tr></table></figure>
+<p>这个命令相当于下面磁盘准备和启动 OSD 两条命令：</p>
+<ul>
+<li>磁盘准备(仅主控节点)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy osd prepare Ceph-master:/var/lib/ceph/osd/ceph-0</span><br><span class="line"></span><br><span class="line">$ ceph-deploy osd prepare Ceph-node1:/var/lib/ceph/osd/ceph-0</span><br><span class="line"></span><br><span class="line">$ ceph-deploy osd prepare Ceph-node2:/var/lib/ceph/osd/ceph-0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动 OSD(仅主控节点)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy osd activate Ceph-master:/var/lib/ceph/osd/ceph-0</span><br><span class="line"></span><br><span class="line">$ ceph-deploy osd activate Ceph-node1:/var/lib/ceph/osd/ceph-0</span><br><span class="line"></span><br><span class="line">$ ceph-deploy osd activate Ceph-node2:/var/lib/ceph/osd/ceph-0</span><br></pre></td></tr></table></figure>
+<h3 id="添加-mds-仅主控节点"><a href="#添加-mds-仅主控节点" class="headerlink" title="添加 mds(仅主控节点)"></a>添加 mds(仅主控节点)</h3><p>为使用 CephFS 添加 mds, 如果不用 CephFS 可以不添加。 此处只在 master 上添加一个 mds</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy mds create Ceph-master</span><br></pre></td></tr></table></figure>
+<h3 id="配置-mgr"><a href="#配置-mgr" class="headerlink" title="配置 mgr"></a>配置 mgr</h3><p>ceph 12.0之后必须配置 manager, 且最好有 moniter 的机器上都部署 mgr：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ceph-deploy mgr create Ceph-master</span><br><span class="line">$ ceph-deploy mgr create Ceph-node1</span><br><span class="line">$ ceph-deploy mgr create Ceph-node2</span><br></pre></td></tr></table></figure>
+<p>因为部署的 ceph 版本是 10.2.11，所以这步可以略过。</p>
+<p>配置完后用<code>ceph health</code>命令查看时，ceph 状态为 OK 则部署完成。</p>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><h4 id="错误排查"><a href="#错误排查" class="headerlink" title="错误排查"></a>错误排查</h4><p>查看 log：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/<span class="built_in">log</span>/ceph</span><br><span class="line">$ cat ceph-osd.0.log</span><br></pre></td></tr></table></figure>
+<h4 id="删除osd"><a href="#删除osd" class="headerlink" title="删除osd"></a>删除osd</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ceph osd crush reweight osd.x 0.0  </span><br><span class="line">$ ceph osd out osd.x  </span><br><span class="line">$ service ceph stop osd.x</span><br><span class="line">$ ceph osd crush remove osd.x  </span><br><span class="line">$ ceph auth del osd.x  </span><br><span class="line">$ ceph osd rm X</span><br></pre></td></tr></table></figure>
+<p>如果遇到<code>Error EBUSY: osd.0 is still up; must be down before removal.</code>可以执行下面命令强行标记为down，之后删除即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ceph osd down osd.0</span><br><span class="line">$ ceph osd rm 0</span><br></pre></td></tr></table></figure>
+<h4 id="删除-ceph-并清理环境"><a href="#删除-ceph-并清理环境" class="headerlink" title="删除 ceph 并清理环境"></a>删除 ceph 并清理环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#卸载ceph软件包</span></span><br><span class="line">$ ceph-deploy purge Ceph-master Ceph-node1 Ceph-node2</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除各种配置文件和生成的数据文件</span></span><br><span class="line">$ ceph-deploy purgedata Ceph-master Ceph-node1 Ceph-node2</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2018/12/28/ceph集群部署不完全指南/" title="ceph集群部署不完全指南">https://tc9011.com/2018/12/28/ceph集群部署不完全指南/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ceph/" rel="tag"># ceph</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/19/Kubernetes集群部署不完全指南/" rel="next" title="Kubernetes集群部署不完全指南">
+                <i class="fa fa-chevron-left"></i> Kubernetes集群部署不完全指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/18/手把手教你使用Netlify部署博客及部署自动化/" rel="prev" title="手把手教你使用Netlify部署博客及部署自动化">
+                手把手教你使用Netlify部署博客及部署自动化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置免密登录"><span class="nav-number">1.</span> <span class="nav-text">设置免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装ntp服务（所有节点）"><span class="nav-number">2.</span> <span class="nav-text">安装ntp服务（所有节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加ceph用户（所有节点）"><span class="nav-number">3.</span> <span class="nav-text">添加ceph用户（所有节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加ceph安装源（所有节点）"><span class="nav-number">4.</span> <span class="nav-text">添加ceph安装源（所有节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装ceph-deploy部署工具-仅主控节点"><span class="nav-number">5.</span> <span class="nav-text">安装ceph-deploy部署工具(仅主控节点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ceph安装-仅主控节点"><span class="nav-number">6.</span> <span class="nav-text">ceph安装(仅主控节点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建部署目录"><span class="nav-number">6.1.</span> <span class="nav-text">创建部署目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置新节点"><span class="nav-number">6.2.</span> <span class="nav-text">配置新节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">6.3.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置并启动-ceph-mon-仅主控节点"><span class="nav-number">7.</span> <span class="nav-text">配置并启动 ceph-mon(仅主控节点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ceph-鉴权文件分发到各个节点"><span class="nav-number">7.1.</span> <span class="nav-text">ceph 鉴权文件分发到各个节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OSD-HEALTH不为-OK-的解决办法"><span class="nav-number">7.2.</span> <span class="nav-text">OSD HEALTH不为 OK 的解决办法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-OSD-仅主控节点"><span class="nav-number">8.</span> <span class="nav-text">添加 OSD(仅主控节点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-mds-仅主控节点"><span class="nav-number">9.</span> <span class="nav-text">添加 mds(仅主控节点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-mgr"><span class="nav-number">10.</span> <span class="nav-text">配置 mgr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">11.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误排查"><span class="nav-number">11.1.</span> <span class="nav-text">错误排查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除osd"><span class="nav-number">11.2.</span> <span class="nav-text">删除osd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除-ceph-并清理环境"><span class="nav-number">11.3.</span> <span class="nav-text">删除 ceph 并清理环境</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2018/12/28/ceph集群部署不完全指南/';
+        this.page.identifier = '2018/12/28/ceph集群部署不完全指南/';
+        this.page.title = 'ceph集群部署不完全指南';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

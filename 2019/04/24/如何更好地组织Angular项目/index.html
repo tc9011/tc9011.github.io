@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="Angualr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何更好地组织Angular项目">
+<meta property="og:url" content="https://tc9011.com/2019/04/24/如何更好地组织Angular项目/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/如何更好地组织Angular项目/blog.jpg">
+<meta property="og:image" content="https://tc9011.com/assets/images/如何更好地组织Angular项目/2019-04-19_19-54-03.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/如何更好地组织Angular项目/2019-04-19_20-00-45.png">
+<meta property="og:updated_time" content="2019-05-04T07:21:18.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何更好地组织Angular项目">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/如何更好地组织Angular项目/blog.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2019/04/24/如何更好地组织Angular项目/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>如何更好地组织Angular项目 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2019/04/24/如何更好地组织Angular项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">如何更好地组织Angular项目
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-24 18:22:05" itemprop="dateCreated datePublished" datetime="2019-04-24T18:22:05+08:00">2019-04-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/24/如何更好地组织Angular项目/" class="leancloud_visitors" data-flag-title="如何更好地组织Angular项目">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/如何更好地组织Angular项目/blog.jpg" alt="blog"></p>
+<a id="more"></a>
+<p>虽然 <a href="https://angular.cn/guide/styleguide" rel="external nofollow noopener noreferrer" target="_blank">Angular 官网</a> 已经给出了Angular 项目结构的建议，不过有些地方实践起来还是有需要注意的地方，这里就结合 <a href="https://github.com/ng-alain/ng-alain" rel="external nofollow noopener noreferrer" target="_blank">ng-alain</a> 来讲讲如何更好地组织一个 Angular 项目。</p>
+<h2 id="layout和-routes模块"><a href="#layout和-routes模块" class="headerlink" title="layout和 routes模块"></a>layout和 routes模块</h2><p>首先，我们来看看 ng-alain 的目录结构。</p>
+<p><img src="/assets/images/如何更好地组织Angular项目/2019-04-19_19-54-03.png" alt="2019-04-19_19-54-03"></p>
+<p>可以看到， <code>app</code> 文件夹下面被分成了<code>core</code>、<code>layout</code>、<code>routes</code>、<code>shared</code>几个目录。</p>
+<p>先看<code>layout</code> 和 <code>routes</code> 这两个目录，它们用于整体视图层的组织，为什么要分成两个模块去组织的视图层呢，其实是为了更好地去布局。</p>
+<p><img src="/assets/images/如何更好地组织Angular项目/2019-04-19_20-00-45.png" alt="2019-04-19_20-00-45"></p>
+<p>如果你把导航栏和页脚在 <code>app.component.ts</code> 中引入，这时候如果跳转到一个没有导航栏和页脚的登陆页面时，你的实现可能会需要写一个指令去控制导航栏和页脚的展现。像 ng-alain 这样剥离布局层的代码，可以让你更方便地组织你的布局。</p>
+<p>我们再看整个项目的路由组织，在<code>routes-routing.module.ts</code> 中，通过把基础布局层作为各个顶级路由的<code>component</code>，页面的其他业务相关的<code>component</code>放在<code>children</code>的子路由中，这样以此剥离了布局层的代码，让<code>routes</code>模块更加专注于更核心 UI 层的组织。</p>
+<p>在子路由中，我们可以通过<code>loadChildren</code>来进行懒加载，这样保证当前页面 <code>buddle</code> 的大小最小，提高页面加载速度。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; SimpleGuard &#125; <span class="keyword">from</span> <span class="string">'@delon/auth'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; environment &#125; <span class="keyword">from</span> <span class="string">'@env/environment'</span>;</span><br><span class="line"><span class="comment">// layout</span></span><br><span class="line"><span class="keyword">import</span> &#123; LayoutDefaultComponent &#125; <span class="keyword">from</span> <span class="string">'../layout/default/default.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LayoutFullScreenComponent &#125; <span class="keyword">from</span> <span class="string">'../layout/fullscreen/fullscreen.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LayoutPassportComponent &#125; <span class="keyword">from</span> <span class="string">'../layout/passport/passport.component'</span>;</span><br><span class="line"><span class="comment">// dashboard pages</span></span><br><span class="line"><span class="keyword">import</span> &#123; DashboardV1Component &#125; <span class="keyword">from</span> <span class="string">'./dashboard/v1/v1.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; DashboardAnalysisComponent &#125; <span class="keyword">from</span> <span class="string">'./dashboard/analysis/analysis.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; DashboardMonitorComponent &#125; <span class="keyword">from</span> <span class="string">'./dashboard/monitor/monitor.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; DashboardWorkplaceComponent &#125; <span class="keyword">from</span> <span class="string">'./dashboard/workplace/workplace.component'</span>;</span><br><span class="line"><span class="comment">// passport pages</span></span><br><span class="line"><span class="keyword">import</span> &#123; UserLoginComponent &#125; <span class="keyword">from</span> <span class="string">'./passport/login/login.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; UserRegisterComponent &#125; <span class="keyword">from</span> <span class="string">'./passport/register/register.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; UserRegisterResultComponent &#125; <span class="keyword">from</span> <span class="string">'./passport/register-result/register-result.component'</span>;</span><br><span class="line"><span class="comment">// single pages</span></span><br><span class="line"><span class="keyword">import</span> &#123; CallbackComponent &#125; <span class="keyword">from</span> <span class="string">'./callback/callback.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; UserLockComponent &#125; <span class="keyword">from</span> <span class="string">'./passport/lock/lock.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">''</span>,</span><br><span class="line">    component: LayoutDefaultComponent,</span><br><span class="line">    canActivate: [SimpleGuard],</span><br><span class="line">    canActivateChild: [SimpleGuard],</span><br><span class="line">    children: [</span><br><span class="line">      &#123; path: <span class="string">''</span>, redirectTo: <span class="string">'dashboard/v1'</span>, pathMatch: <span class="string">'full'</span> &#125;,</span><br><span class="line">      &#123; path: <span class="string">'dashboard'</span>, redirectTo: <span class="string">'dashboard/v1'</span>, pathMatch: <span class="string">'full'</span> &#125;,</span><br><span class="line">      &#123; path: <span class="string">'dashboard/v1'</span>, component: DashboardV1Component &#125;,</span><br><span class="line">      &#123; path: <span class="string">'dashboard/analysis'</span>, component: DashboardAnalysisComponent &#125;,</span><br><span class="line">      &#123; path: <span class="string">'dashboard/monitor'</span>, component: DashboardMonitorComponent &#125;,</span><br><span class="line">      &#123; path: <span class="string">'dashboard/workplace'</span>, component: DashboardWorkplaceComponent &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'widgets'</span>,</span><br><span class="line">        loadChildren: <span class="string">'./widgets/widgets.module#WidgetsModule'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123; path: <span class="string">'style'</span>, loadChildren: <span class="string">'./style/style.module#StyleModule'</span> &#125;,</span><br><span class="line">      &#123; path: <span class="string">'delon'</span>, loadChildren: <span class="string">'./delon/delon.module#DelonModule'</span> &#125;,</span><br><span class="line">      &#123; path: <span class="string">'extras'</span>, loadChildren: <span class="string">'./extras/extras.module#ExtrasModule'</span> &#125;,</span><br><span class="line">      &#123; path: <span class="string">'pro'</span>, loadChildren: <span class="string">'./pro/pro.module#ProModule'</span> &#125;,</span><br><span class="line">      <span class="comment">// Exception</span></span><br><span class="line">      &#123; path: <span class="string">'exception'</span>, loadChildren: <span class="string">'./exception/exception.module#ExceptionModule'</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 全屏布局</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'data-v'</span>,</span><br><span class="line">    component: LayoutFullScreenComponent,</span><br><span class="line">    children: [</span><br><span class="line">      &#123; path: <span class="string">''</span>, loadChildren: <span class="string">'./data-v/data-v.module#DataVModule'</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// passport</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'passport'</span>,</span><br><span class="line">    component: LayoutPassportComponent,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'login'</span>,</span><br><span class="line">        component: UserLoginComponent,</span><br><span class="line">        data: &#123; title: <span class="string">'登录'</span>, titleI18n: <span class="string">'app.login.login'</span> &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'register'</span>,</span><br><span class="line">        component: UserRegisterComponent,</span><br><span class="line">        data: &#123; title: <span class="string">'注册'</span>, titleI18n: <span class="string">'app.register.register'</span> &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'register-result'</span>,</span><br><span class="line">        component: UserRegisterResultComponent,</span><br><span class="line">        data: &#123; title: <span class="string">'注册结果'</span>, titleI18n: <span class="string">'app.register.register'</span> &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'lock'</span>,</span><br><span class="line">        component: UserLockComponent,</span><br><span class="line">        data: &#123; title: <span class="string">'锁屏'</span>, titleI18n: <span class="string">'app.lock'</span> &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 单页不包裹Layout</span></span><br><span class="line">  &#123; path: <span class="string">'callback/:type'</span>, component: CallbackComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'**'</span>, redirectTo: <span class="string">'exception/404'</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    RouterModule.forRoot(</span><br><span class="line">      routes, &#123;</span><br><span class="line">        useHash: environment.useHash,</span><br><span class="line">        <span class="comment">// NOTICE: If you use `reuse-tab` component and turn on keepingScroll you can set to `disabled`</span></span><br><span class="line">        <span class="comment">// Pls refer to https://ng-alain.com/components/reuse-tab</span></span><br><span class="line">        scrollPositionRestoration: <span class="string">'top'</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    )],</span><br><span class="line">  exports: [RouterModule],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> RouteRoutingModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这个<code>routes-routing.module.ts</code>中<code>export</code>的<code>module</code>会在<code>routes.moudle.ts</code>中注册，而<code>RoutesModule</code>会和<code>LayoutModule</code>、<code>SharedModule</code>、<code>CoreModule</code>一起在整个 APP 的根模块（<code>app.module.ts</code>）中注册。这样，在根模块中完成了对整个项目基础的划分，而每个模块具体做什么，则分散到各个子模块中，在子模块中去组织相应的<code>components</code>、<code>routes</code>、<code>services</code>等。</p>
+<h2 id="CoreModule"><a href="#CoreModule" class="headerlink" title="CoreModule"></a>CoreModule</h2><p>Angular官网对 <code>core</code> 模块的描述是：</p>
+<blockquote>
+<p><strong>考虑</strong>把那些数量庞大、辅助性的、只用一次的类收集到核心模块中，让特性模块的结构更清晰简明。</p>
+<p><strong>坚持</strong>把那些“只用一次”的类收集到 <code>CoreModule</code> 中，并对外隐藏它们的实现细节。简化的 <code>AppModule</code> 会导入 <code>CoreModule</code>，并且把它作为整个应用的总指挥。</p>
+<p><strong>坚持</strong>在 <code>core</code> 目录下创建一个名叫 <code>CoreModule</code> 的特性模块（例如在 <code>app/core/core.module.ts</code> 中定义 <code>CoreModule</code>）。</p>
+<p><strong>坚持</strong>把要共享给整个应用的单例服务放进 <code>CoreModule</code> 中（例如 <code>ExceptionService</code> 和 <code>LoggerService</code>）。</p>
+<p><strong>坚持</strong>导入 <code>CoreModule</code> 中的资产所需要的全部模块（例如 <code>CommonModule</code> 和 <code>FormsModule</code>）。</p>
+<p><strong>为何？</strong> <code>CoreModule</code> 提供了一个或多个单例服务。Angular 使用应用的根注入器注册这些服务提供商，让每个服务的这个单例对象对所有需要它们的组件都是可用的，而不用管该组件是通过主动加载还是惰性加载的方式加载的。</p>
+<p><strong>为何？</strong><code>CoreModule</code> 将包含一些单例服务。而如果是由惰性加载模块来导入这些服务，它就会得到一个新实例，而不是所期望的全应用级单例。</p>
+<p><strong>坚持</strong>把应用级、只用一次的组件收集到 <code>CoreModule</code> 中。 只在应用启动时从 <code>AppModule</code> 中导入它一次，以后再也不要导入它（例如 <code>NavComponent</code> 和 <code>SpinnerComponent</code>）。</p>
+<p><strong>为何？</strong>真实世界中的应用会有很多只用一次的组件（例如加载动画、消息浮层、模态框等），它们只会在 <code>AppComponent</code> 的模板中出现。 不会在其它地方导入它们，所以没有共享的价值。 然而它们又太大了，放在根目录中就会显得乱七八糟的。</p>
+<p><strong>避免</strong>在 <code>AppModule</code> 之外的任何地方导入 <code>CoreModule</code>。</p>
+<p><strong>为何？</strong>如果惰性加载的特性模块直接导入 <code>CoreModule</code>，就会创建它自己的服务副本，并导致意料之外的后果。</p>
+<p><strong>为何？</strong>主动加载的特性模块已经准备好了访问 <code>AppModule</code> 的注入器，因此也能取得 <code>CoreModule</code> 中的服务。</p>
+<p><strong>坚持</strong>从 <code>CoreModule</code> 中导出 <code>AppModule</code> 需导入的所有符号，使它们在所有特性模块中可用。</p>
+<p><strong>为何？</strong><code>CoreModule</code> 的存在就要让常用的单例服务在所有其它模块中可用。</p>
+<p><strong>为何？</strong>你希望整个应用都使用这个单例服务。 你不希望每个模块都有这个单例服务的单独的实例。 然而，如果 <code>CoreModule</code> 中提供了一个服务，就可能偶尔导致这种后果。</p>
+</blockquote>
+<p>所以从描述来看，<code>CoreModule</code> 应该只会在 <code>AppModule</code> 中被导入，所以在 ng-alain 的<a href="https://github.com/ng-alain/ng-alain/issues/180" rel="external nofollow noopener noreferrer" target="_blank">模块注册指导原则</a>中把<code>CoreModule</code> 认为应该是<strong>纯服务类模块</strong>，通常会放HTTP 拦截器、路由守卫等一些全局性的服务。对于防止<code>CoreModule</code> 被多次导入，官方也给出了<a href="https://angular.cn/guide/styleguide#prevent-re-import-of-the-core-module" rel="external nofollow noopener noreferrer" target="_blank">解决方案</a>：</p>
+<blockquote>
+<p><strong>坚持</strong>防范多次导入 <code>CoreModule</code>，并通过添加守卫逻辑来尽快失败。</p>
+<p><strong>为何？</strong>守卫可以阻止对 <code>CoreModule</code> 的多次导入。</p>
+<p><strong>为何？</strong>守卫会禁止创建单例服务的多个实例。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// core/module-import-guard.ts</span></span><br><span class="line">&gt; <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">throwIfAlreadyLoaded</span>(<span class="params">parentModule: <span class="built_in">any</span>, moduleName: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">&gt;     <span class="keyword">if</span> (parentModule) &#123;</span><br><span class="line">&gt;       <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">`<span class="subst">$&#123;moduleName&#125;</span> has already been loaded. Import Core modules in the AppModule only.`</span>);</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment">// core/core.module.ts</span></span><br><span class="line">&gt; <span class="keyword">import</span> &#123; NgModule, Optional, SkipSelf &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line">&gt; <span class="keyword">import</span> &#123; CommonModule &#125; <span class="keyword">from</span> <span class="string">'@angular/common'</span>;</span><br><span class="line">&gt;  </span><br><span class="line">&gt; <span class="keyword">import</span> &#123; LoggerService &#125; <span class="keyword">from</span> <span class="string">'./logger.service'</span>;</span><br><span class="line">&gt; <span class="keyword">import</span> &#123; NavComponent &#125; <span class="keyword">from</span> <span class="string">'./nav/nav.component'</span>;</span><br><span class="line">&gt; <span class="keyword">import</span> &#123; throwIfAlreadyLoaded &#125; <span class="keyword">from</span> <span class="string">'./module-import-guard'</span>;</span><br><span class="line">&gt;  </span><br><span class="line">&gt; <span class="meta">@NgModule</span>(&#123;</span><br><span class="line">&gt;     imports: [</span><br><span class="line">&gt;       CommonModule <span class="comment">// we use ngFor</span></span><br><span class="line">&gt;     ],</span><br><span class="line">&gt;     exports: [NavComponent],</span><br><span class="line">&gt;     declarations: [NavComponent],</span><br><span class="line">&gt;     providers: [LoggerService]</span><br><span class="line">&gt; &#125;)</span><br><span class="line">&gt; <span class="keyword">export</span> <span class="keyword">class</span> CoreModule &#123;</span><br><span class="line">&gt;     <span class="keyword">constructor</span>(<span class="params"> <span class="meta">@Optional</span>() <span class="meta">@SkipSelf</span>() parentModule: CoreModule</span>) &#123;</span><br><span class="line">&gt;       throwIfAlreadyLoaded(parentModule, <span class="string">'CoreModule'</span>);</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="SharedModule"><a href="#SharedModule" class="headerlink" title="SharedModule"></a>SharedModule</h2><p>和<code>CoreModule</code>相比，<code>SharedModule</code>正好相反，它不应该包含服务，因为<code>SharedModule</code>会在不同业务模块中导入，一旦包含了服务，就会产生不同的实例，有可能会对应用产生负面的影响，所以尽量保证服务的单一性。</p>
+<p><code>SharedModule</code>中正如官网所说，应该包含所有组件（自己写的非业务相关的通用组件）、指令、管道以及其他模块所需要的资产（例如 <code>CommonModule</code> 、 <code>FormsModule</code>、<code>RouterModule</code>、<code>ReactiveFormsModule</code>和第三方通用依赖模块）。</p>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><p>对于服务，应该承担应用的数据操作和数据交互的作用，所以类似于 http 请求、storage 的操作、复杂数据的计算等都应交给服务，让组件聚焦于视图，去组织视图层的展示和服务计算数据的收集，而不是承担了较重的数据操作和交互。业务层的服务尽量跟着对应的组件，通常我会在对应组件文件夹下新建一个<code>services</code>的文件夹，存放对应的服务。</p>
+<h2 id="Styles"><a href="#Styles" class="headerlink" title="Styles"></a>Styles</h2><p>至于样式，通常我会把全局性的变量、通用的 css 样式（和业务无关的样式，例如 css reset、自适应相关的全局样式）放在<code>src/styles.scss</code>下，而和业务相关的通用 css 样式(例如某几个组件共用的样式、mixin 等)都会放在<code>assets/css</code>目录下。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><code>AppModule</code> <strong>应该</strong> 导入 <code>SharedModule</code>、<code>CoreModule</code>、<code>LayoutModule</code>、<code>RouterModule</code>、Angular 模块(例如：<code>BrowserModule</code>、<code>BrowserAnimationsModule</code>、<code>HttpClientModule</code>)；</li>
+<li><code>LayoutModule</code> <strong>应该</strong> 导入 <code>SharedModule</code>；</li>
+<li><code>LayoutModule</code> <strong>应该</strong> 导出所有 layout component；</li>
+<li><code>LayoutModule</code> <strong>不应该</strong> 导入和声明任何路由；</li>
+<li><code>RouterModule</code> <strong>应该</strong> 导入 <code>SharedModule</code>、<code>CoreModule</code>、<code>LayoutModule</code>以及<code>RouteRoutingModule</code>；</li>
+<li><code>CoreModule</code><strong>应该</strong> 只保留<code>providers</code>属性；</li>
+<li><code>SharedModule</code> <strong>应该</strong> 包含 Angular 通用模块(例如：<code>CommonModule</code>、<code>FormsModule</code>、<code>RouterModule</code>、<code>ReactiveFormsModule</code>)、第三方通用依赖模块、所有组件（自己写的非业务相关的通用组件）、指令、管道；</li>
+<li><code>SharedModule</code><strong>应该</strong>导出所有包含模块；</li>
+<li><code>SharedModule</code> <strong>不应该</strong> 有<code>providers</code>属性；</li>
+<li><code>Service</code> <strong>应该</strong> 承担应用的数据操作和数据交互；</li>
+<li><code>Component</code><strong>应该</strong> 组织视图层的展示和服务计算数据的收集</li>
+<li>样式分层</li>
+</ul>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2019/04/24/如何更好地组织Angular项目/" title="如何更好地组织Angular项目">https://tc9011.com/2019/04/24/如何更好地组织Angular项目/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angualr/" rel="tag"># Angualr</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/25/一款可以让我吹爆的数字笔记应用/" rel="next" title="一款可以让我吹爆的数字笔记应用">
+                <i class="fa fa-chevron-left"></i> 一款可以让我吹爆的数字笔记应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/26/前端工程化中的代码规范和commit规范/" rel="prev" title="前端工程化中的代码规范和commit规范">
+                前端工程化中的代码规范和commit规范 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#layout和-routes模块"><span class="nav-number">1.</span> <span class="nav-text">layout和 routes模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoreModule"><span class="nav-number">2.</span> <span class="nav-text">CoreModule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SharedModule"><span class="nav-number">3.</span> <span class="nav-text">SharedModule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service"><span class="nav-number">4.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Styles"><span class="nav-number">5.</span> <span class="nav-text">Styles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2019/04/24/如何更好地组织Angular项目/';
+        this.page.identifier = '2019/04/24/如何更好地组织Angular项目/';
+        this.page.title = '如何更好地组织Angular项目';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

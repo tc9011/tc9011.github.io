@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】Angular Ivy的变更检测执行：你准备好了吗？">
+<meta property="og:url" content="https://tc9011.com/2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180607152838323019804.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845940763864.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845945865374.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845949924971.gif">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845956518031.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845962633513.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845970793155.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/201806081528459762245.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845980427825.gif">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845989681884.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152845995965801.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152846002133408.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180608152846006772560.gif">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】Angular Ivy的变更检测执行：你准备好了吗？">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/【译】Angular%20Ivy的变更检测执行：你准备好了吗？/20180607152838323019804.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【译】Angular Ivy的变更检测执行：你准备好了吗？ | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【译】Angular Ivy的变更检测执行：你准备好了吗？
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-07 21:28:56" itemprop="dateCreated datePublished" datetime="2018-06-07T21:28:56+08:00">2018-06-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/" class="leancloud_visitors" data-flag-title="【译】Angular Ivy的变更检测执行：你准备好了吗？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180607152838323019804.png" alt="20180607152838323019804.png"></p>
+<a id="more"></a>
+<p>原文链接：<a href="https://blog.angularindepth.com/angular-ivy-change-detection-execution-are-you-prepared-ab68d4231f2c" rel="external nofollow noopener noreferrer" target="_blank">Angular Ivy change detection execution: are you prepared?</a></p>
+<p>让我们看看Angular为我们做了什么。</p>
+<blockquote>
+<p><strong>声明</strong>：这只是我对Angular新渲染器的学习之旅。</p>
+</blockquote>
+<p class="img-description">Angular视图引擎的演变</p>
+
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845940763864.png" alt="20180608152845940763864.png"></p>
+<div class="dividing-line"></div>    
+
+<p>虽然新的Ivy渲染器的重要性还没有完全展现出来，但许多人想知道它将如何工作以及它为我们准备的变化。</p>
+<p>在本文中，我将展示Ivy变更检测机制，展示一些让我非常兴奋的事情，并从头开始，根据指导（类似于Angular Ivy指导）构建简单的app。</p>
+<div class="dividing-line"></div>    
+
+<p>首先，介绍一下我下面将研究的app：</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845945865374.png" alt="20180608152845945865374.png"></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'my-app'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">   &lt;h2&gt;Parent&lt;/h2&gt;</span></span><br><span class="line"><span class="string">   &lt;child [prop1]="x"&gt;&lt;/child&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppComponent &#123;</span><br><span class="line">  x = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'child'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">   &lt;h2&gt;Child &#123;&#123; prop1 &#125;&#125;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">   &lt;sub-child [item]="3"&gt;&lt;/sub-child&gt;</span></span><br><span class="line"><span class="string">   &lt;sub-child *ngFor="let item of items" [item]="item"&gt;&lt;/sub-child&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ChildComponent &#123;</span><br><span class="line">  <span class="meta">@Input</span>() prop1: <span class="built_in">number</span>;</span><br><span class="line">  </span><br><span class="line">  items = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'sub-child'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">   &lt;h2 (click)="clicked.emit()"&gt;Sub-Child &#123;&#123; item &#125;&#125;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">   &lt;input (input)="text = $event.target.value"&gt;</span></span><br><span class="line"><span class="string">   &lt;p&gt;&#123;&#123; text &#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> SubChildComponent &#123;</span><br><span class="line">  <span class="meta">@Input</span>() item: <span class="built_in">number</span>;</span><br><span class="line">  <span class="meta">@Output</span>() clicked = <span class="keyword">new</span> EventEmitter();</span><br><span class="line">  text: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我创建了一个在线demo，用于了解Ivy如何在幕后运行：<br><a href="https://alexzuza.github.io/ivy-cd/" rel="external nofollow noopener noreferrer" target="_blank">https://alexzuza.github.io/ivy-cd/</a></p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845949924971.gif" alt="20180608152845949924971.gif"></p>
+<p>Demo使用了Angular 6.0.1 aot 编译器。你可以单击任何生命周期块来跳转到对应的代码。</p>
+<p>为了运行变更检测过程，只需在Sub-Child下面的输入框中输入一些内容即可。</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>当然，视图是Angular中主要的低级抽象。</p>
+<p>对于我们的例子，我们会得到下面类似的结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Root view</span><br><span class="line">   |</span><br><span class="line">   |___ AppComponent view</span><br><span class="line">          |</span><br><span class="line">          |__ ChildComponent view</span><br><span class="line">                 |</span><br><span class="line">                 |_ Embedded view</span><br><span class="line">                 |       |</span><br><span class="line">                 |       |_ SubChildComponent view</span><br><span class="line">                 |</span><br><span class="line">                 |_ Embedded view</span><br><span class="line">                 |       |</span><br><span class="line">                 |       |_ SubChildComponent view   </span><br><span class="line">                 |</span><br><span class="line">                 |_ SubChildComponent view</span><br></pre></td></tr></table></figure>
+<p>视图应该描述模板，以及它包含一些反映该模板结构的数据。</p>
+<p>我们来看看<code>ChildComponent</code>视图。它有以下模板：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Child &#123;&#123; prop1 &#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sub-child</span> [<span class="attr">item</span>]=<span class="string">"3"</span>&gt;</span><span class="tag">&lt;/<span class="name">sub-child</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sub-child</span> *<span class="attr">ngFor</span>=<span class="string">"let item of items"</span> [<span class="attr">item</span>]=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">sub-child</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>当前视图引擎从视图定义工厂创建nodes</strong>并将它们存储在视图定义的<strong>nodes</strong>数组中。</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845956518031.png" alt="20180608152845956518031.png"></p>
+<p><strong>Ivy从instructions创建LNodes</strong>，这个instructions被写入<code>ngComponentDef.template</code>函数，并将它们<strong>存储</strong>在<strong>data</strong>数组中：</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845962633513.png" alt="20180608152845962633513.png"></p>
+<p>除了nodes之外，新视图还包含<strong>data</strong>数组中的绑定（参见上图中的<code>data[4]</code>，<code>data[5]</code>，<code>data[6]</code>）。给定视图的所有绑定，从<code>bindingStartIndex</code>开始按照它们出现在模板中的顺序进行存储。</p>
+<blockquote>
+<p>注意我如何从<code>ChildComponent</code>获取视图实例。 <strong>ComponentInstance .<strong> ngHostLNode</strong></strong>包含对组件宿主节点的引用。 （另一种方法是注入<code>ChangeDetectorRef</code>）</p>
+</blockquote>
+<p>在这种方式下，angular 会首先创建根视图，并在data数组索引0处定位宿主元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RootView</span><br><span class="line">   data: [LNode]</span><br><span class="line">             native: root component selector</span><br></pre></td></tr></table></figure>
+<p>然后遍历所有组件并为每个视图填充<strong>data</strong>数组。</p>
+<h2 id="变更检测"><a href="#变更检测" class="headerlink" title="变更检测"></a>变更检测</h2><p>众所周知，<code>ChangeDetectorRef</code>只是抽象类，具有诸如<code>detectChanges</code>，<code>markForCheck</code>等抽象方法。</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845970793155.png" alt="20180608152845970793155.png"></p>
+<p>当我们在组件构造函数中询问这个依赖关系时，我们实际上得到了继承 ChangeDetectorRef 类的<strong>ViewRef</strong>实例。</p>
+<p>现在，我们来看看用于在Ivy中运行变更检测的内部方法。其中一些可用作公共API（<code>markViewDirty</code>和<code>detectChanges</code>），但我不确定其他的API。</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/201806081528459762245.png" alt="201806081528459762245.png"></p>
+<h3 id="detectChanges"><a href="#detectChanges" class="headerlink" title="detectChanges"></a>detectChanges</h3><p>detectChanges 是对组件（及其可能的子组件）<strong>同步</strong>执行变更检测。</p>
+<blockquote>
+<p>这个函数在组件中以同步方式触发变更检测。应该没有什么理由直接调用此函数，执行变更检测的首选方法是<strong>使用markDirty</strong>（请参见下文），并等待调度程序在将来某个时间点调用此方法。这是因为单个用户操作通常会导致许多组件失效，并且在每个组件上同步调用变更检测效率低下。最好等到所有组件都标记为脏，然后在所有组件上执行单一变更检测。</p>
+</blockquote>
+<h3 id="tick"><a href="#tick" class="headerlink" title="tick"></a>tick</h3><p>用于在整个应用程序上执行变更检测。</p>
+<blockquote>
+<p>这相当于<code>detectChanges</code>，但是要在根组件上调用。另外，<code>tick</code>执行生命周期钩子，并根据它们的<code>ChangeDetectionStrategy</code>和dirtiness来有条件地检查组件。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">tick</span>&lt;<span class="title">T</span>&gt;(<span class="params">component: T</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> rootView = getRootView(component);</span><br><span class="line">  <span class="keyword">const</span> rootComponent = (rootView.context <span class="keyword">as</span> RootContext).component;</span><br><span class="line">  <span class="keyword">const</span> hostNode = _getComponentHostLElementNode(rootComponent);</span><br><span class="line"></span><br><span class="line">  ngDevMode &amp;&amp; assertNotNull(hostNode.data, <span class="string">'Component host node should be attached to an LView'</span>);</span><br><span class="line">  renderComponentOrTemplate(hostNode, rootView, rootComponent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="scheduleTick"><a href="#scheduleTick" class="headerlink" title="scheduleTick"></a>scheduleTick</h3><p>用于安排整个应用程序的变更检测。与<code>tick</code>不同，<code>scheduleTick</code>将多个调用合并为一个变更检测运行。当视图需要重新渲染时，通常通过调用<code>markDirty</code>间接调用它。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">scheduleTick</span>&lt;<span class="title">T</span>&gt;(<span class="params">rootContext: RootContext</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (rootContext.clean == _CLEAN_PROMISE) &#123;</span><br><span class="line">    <span class="keyword">let</span> res: <span class="literal">null</span>|<span class="function">(<span class="params">(<span class="params">val: <span class="literal">null</span></span>) =&gt; <span class="built_in">void</span></span>);</span></span><br><span class="line"><span class="function">    <span class="params">rootContext</span>.<span class="params">clean</span> = <span class="params">new</span> <span class="params">Promise</span>&lt;<span class="params">null</span>&gt;(<span class="params">(<span class="params">r</span>) =&gt; res = r</span>);</span></span><br><span class="line"><span class="function">    <span class="params">rootContext</span>.<span class="params">scheduler</span>(<span class="params">(<span class="params"></span>) =&gt; &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      tick(<span class="params">rootContext.component</span>);</span></span></span><br><span class="line"><span class="function"><span class="params">      res !(<span class="params"><span class="literal">null</span></span>);</span></span></span><br><span class="line"><span class="function"><span class="params">      rootContext.clean = _CLEAN_PROMISE;</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;</span>);</span></span><br><span class="line"><span class="function">  &#125;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="markViewDirty-markForCheck"><a href="#markViewDirty-markForCheck" class="headerlink" title="markViewDirty(markForCheck)"></a>markViewDirty(markForCheck)</h3><p>标记当前视图和所有祖先视图为脏（译者注：脏为需要变更检测）。</p>
+<p>在早期的Angular 5中，它只向上迭代并启用了所有父视图的检查，<strong>现在请注意，markForCheck的确触发了Ivy变更检测周期！</strong> 😮😮😮</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">markViewDirty</span>(<span class="params">view: LView</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> currentView: LView|<span class="literal">null</span> = view;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (currentView.parent != <span class="literal">null</span>) &#123;</span><br><span class="line">    currentView.flags |= LViewFlags.Dirty;</span><br><span class="line">    currentView = currentView.parent;</span><br><span class="line">  &#125;</span><br><span class="line">  currentView.flags |= LViewFlags.Dirty;</span><br><span class="line"></span><br><span class="line">  ngDevMode &amp;&amp; assertNotNull(currentView !.context, <span class="string">'rootContext'</span>);</span><br><span class="line">  scheduleTick(currentView !.context <span class="keyword">as</span> RootContext);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="markDirty"><a href="#markDirty" class="headerlink" title="markDirty"></a>markDirty</h3><p>将组件标记为脏。</p>
+<blockquote>
+<p>标记为脏的组件将在未来的某个时间安排对此组件进行变更检测。将一个已经为脏的组件标记为脏是一个空操作。每个组件树只能安排一次未完成的变更检测。 （使用单独的<code>renderComponent</code>引导的两个组件将具有单独的调度器）</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">markDirty</span>&lt;<span class="title">T</span>&gt;(<span class="params">component: T</span>) </span>&#123;</span><br><span class="line">  ngDevMode &amp;&amp; assertNotNull(component, <span class="string">'component'</span>);</span><br><span class="line">  <span class="keyword">const</span> lElementNode = _getComponentHostLElementNode(component);</span><br><span class="line">  markViewDirty(lElementNode.view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="checkNoChanges"><a href="#checkNoChanges" class="headerlink" title="checkNoChanges"></a>checkNoChanges</h3><p>没变化:)</p>
+<div class="dividing-line"></div>    
+
+<p>当我调试新的变更检测机制时，我注意到我忘记了安装zone.js。而且，正如你已经猜到的一样，它没有依赖性，没有<code>cdRef.detectChanges</code>或<code>tick</code>，它依然完美运行。</p>
+<p>为什么呢？</p>
+<p>你可能知道Angular只会对onPush组件触发变更检测（请参阅我在<a href="https://stackoverflow.com/questions/42312075/change-detection-issue-why-is-this-changing-when-its-the-same-object-referen/42312239#42312239" rel="external nofollow noopener noreferrer" target="_blank">stackoverflow</a>上的回答）。</p>
+<p>这些规则同样适用于Ivy：</p>
+<ul>
+<li><strong>其中一个输入发生变化</strong></li>
+</ul>
+<p><a href="https://github.com/angular/angular/blob/43d62029f0e2da0150ba6f09fd8989ca6391a355/packages/core/src/render3/instructions.ts#L890" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/angular/angular/blob/43d62029f0e2da0150ba6f09fd8989ca6391a355/packages/core/src/render3/instructions.ts#L890</a></p>
+<ul>
+<li><strong>由组件或其子组件触发的绑定事件</strong></li>
+</ul>
+<p><a href="https://github.com/angular/angular/blob/43d62029f0e2da0150ba6f09fd8989ca6391a355/packages/core/src/render3/instructions.ts#L1743" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/angular/angular/blob/43d62029f0e2da0150ba6f09fd8989ca6391a355/packages/core/src/render3/instructions.ts#L1743</a></p>
+<ul>
+<li><strong>手动调用markForCheck</strong><br>（现在用markViewDirty函数（见下文））</li>
+</ul>
+<p>在SubChildComponent中，有（input）output绑定。第二条规则将导致调用<strong>markForCheck</strong>。既然我们已经知道这个方法实际上调用变更检测，现在应该清楚它如何在没有zonejs的情况下工作。</p>
+<p><strong>如果在检测后表达式变化了怎么办？</strong></p>
+<p>不要着急，它还在</p>
+<h3 id="变更检测顺序"><a href="#变更检测顺序" class="headerlink" title="变更检测顺序"></a>变更检测顺序</h3><p>自从发布Ivy以来，Angular团队一直在努力确保新引擎以正确的顺序正确处理所有生命周期钩子。这意味着操作顺序应该是相似的。</p>
+<p>Max NgWizard K在他的<a href="https://blog.angularindepth.com/ivy-engine-in-angular-first-in-depth-look-at-compilation-runtime-and-change-detection-876751edd9fd" rel="external nofollow noopener noreferrer" target="_blank">文章</a>中写道（强烈建议阅读它）：</p>
+<blockquote>
+<p>正如你所看到的，所有熟悉的操作仍然在这里。但操作顺序似乎已经改变。例如，现在看来Angular首先检查子组件，然后检查嵌入的视图。由于目前没有编译器能够产生适合测试我假设的输出，所以这点我无法确定。</p>
+</blockquote>
+<p>回到刚刚demo的子组件中来：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Child &#123;&#123; prop1 &#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sub-child</span> [<span class="attr">item</span>]=<span class="string">"3"</span>&gt;</span><span class="tag">&lt;/<span class="name">sub-child</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sub-child</span> *<span class="attr">ngFor</span>=<span class="string">"let item of items"</span> [<span class="attr">item</span>]=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">sub-child</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我打算在其他内嵌视图之前写一个<code>sub-child</code>作为常规组件。</p>
+<p>现在观察它的运行：</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845980427825.gif" alt="20180608152845980427825.gif"></p>
+<p>angular首先检查嵌入视图，然后检查常规组件。所以这里和以前的引擎相比没有改变。</p>
+<p>无论如何，我的演示中有可选的“run Angular compile”按钮，我们可以测试其他情况。</p>
+<p><a href="https://alexzuza.github.io/ivy-cd/" rel="external nofollow noopener noreferrer" target="_blank">https://alexzuza.github.io/ivy-cd/</a></p>
+<h2 id="一次性字符串初始化"><a href="#一次性字符串初始化" class="headerlink" title="一次性字符串初始化"></a>一次性字符串初始化</h2><p>想象一下，我们写了可以接收颜色作为字符串输入值的组件。现在我们想把这个输入作为永远不会改变的常量字符串来传递：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">color</span>=<span class="string">"#efefef"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这就是所谓的一次性字符串初始化，<a href="https://angular.io/guide/template-syntax#one-time-string-initialization" rel="external nofollow noopener noreferrer" target="_blank">angular文档中的陈述如下</a>：</p>
+<blockquote>
+<p>Angular 设置它，然后忘记它。</p>
+</blockquote>
+<p>对我而言，这意味着 angular 不会对此绑定进行任何额外的检查。但是我们在 angular5 中实际看到的是，它在 <code>updateDirectives</code> 调用期间，每一次变更检测期间就会检查一次。</p>
+<blockquote>
+<p>另请参阅Netanel Basal的关于此问题的文章<a href="https://netbasal.com/getting-to-know-the-attribute-decorator-in-angular-4f7c9fb61243" rel="external nofollow noopener noreferrer" target="_blank">了解Angular的@Attribute装饰器</a></p>
+</blockquote>
+<p>现在让我们看看它在新的引擎中是怎么样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _c0 = [<span class="string">"color"</span>, <span class="string">"#efefef"</span>];</span><br><span class="line">AppComponent.ngComponentDef = i0.ɵdefineComponent(&#123; </span><br><span class="line">  type: AppComponent,</span><br><span class="line">  selectors: [[<span class="string">"my-app"</span>]], </span><br><span class="line">  ...</span><br><span class="line">  template: <span class="function"><span class="keyword">function</span> <span class="title">AppComponent_Template</span>(<span class="params">rf, ctx</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// create mode</span></span><br><span class="line">      <span class="keyword">if</span> (rf &amp; <span class="number">1</span>) &#123;</span><br><span class="line">        i0.ɵE(<span class="number">0</span>, <span class="string">"child"</span>, _c0); <span class="xml"><span class="tag">&lt;<span class="name">==========</span> <span class="attr">used</span> <span class="attr">only</span> <span class="attr">in</span> <span class="attr">create</span> <span class="attr">mode</span></span></span></span><br><span class="line"><span class="xml">        i0.ɵe();</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">      if (rf &amp; 2) &#123;</span></span><br><span class="line"><span class="xml">        ...</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;)</span></span><br></pre></td></tr></table></figure>
+<p>正如我们所看到的，angular编译器将常量存储在负责创建和更新组件的代码之外，并且<strong>只在创建模式下使用此值</strong>。</p>
+<h2 id="Angular不再为容器创建文本节点"><a href="#Angular不再为容器创建文本节点" class="headerlink" title="Angular不再为容器创建文本节点"></a>Angular不再为容器创建文本节点</h2><blockquote>
+<p>更新：<a href="https://github.com/angular/angular/pull/24346" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/angular/angular/pull/24346</a></p>
+</blockquote>
+<p>即使你不知道angular ViewContainer 在引擎中如何工作，你在打开devtools时可能会注意到下面的图片：</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845989681884.png" alt="20180608152845989681884.png"></p>
+<blockquote>
+<p>在生产模式下，我们只看到&lt;！—&gt;。</p>
+</blockquote>
+<p>这是Ivy的输出：</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152845995965801.png" alt="20180608152845995965801.png"></p>
+<p>我无法100％确定，但似乎一旦Ivy变得稳定，我们就会有这样的结果。</p>
+<p>因此对于下面的代码中<code>query</code>，angular将返回<code>null</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">  ...,</span><br><span class="line">  template: <span class="string">'&lt;ng-template #foo&gt;&lt;/ng-template&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeComponent</span> </span>&#123;</span><br><span class="line">  @ViewChild(<span class="string">'foo'</span>, &#123;<span class="attr">read</span>: ElementRef&#125;) query;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>应该不再使用指向容器中的注释DOM节点的本地元素读取ElementRef</p>
+</blockquote>
+<h2 id="全新的-Incremental-DOM（IDOM）"><a href="#全新的-Incremental-DOM（IDOM）" class="headerlink" title="全新的 Incremental DOM（IDOM）"></a>全新的 Incremental DOM（IDOM）</h2><p>很久以前，Google发布了所谓的<a href="https://medium.com/google-developers/introducing-incremental-dom-e98f79ce2c5f" rel="external nofollow noopener noreferrer" target="_blank">Incremental DOM</a>库。</p>
+<p>该库专注于构建DOM树并允许动态更新。它不能直接使用，而是作为模板引擎的编译目标。而且似乎<strong>Ivy与Incremental DOM库有一些共同之处</strong>。</p>
+<p>让我们从头开始构建一个简单的app，这将帮助我们了解IDOM渲染如何工作的。<a href="https://jsfiddle.net/yurzui/hqhq4khc" rel="external nofollow noopener noreferrer" target="_blank">Demo</a></p>
+<p>我们的app将有计数器，并会把通过input元素输入的用户名打印出来。</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152846002133408.png" alt="20180608152846002133408.png"></p>
+<p>假设页面上已经有<code>&lt;input&gt;</code>和<code>&lt;button&gt;</code>元素：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"Alexey"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>Increment<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们需要做的只是渲染动态html，看起来像这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, Alexey<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    Counter: <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>为了渲染这些，让我们编写<strong>elementOpen</strong>，<strong>elementClose</strong>和<strong>文本</strong>“instructions”（我这样称呼它，因为Angular使用像Ivy这样的名称可以被认为是特殊类型的虚拟CPU）。</p>
+<p>首先，我们需要编写特殊的助手来遍历节点树：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The current nodes being processed</span></span><br><span class="line"><span class="keyword">let</span> currentNode = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> currentParent = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enterNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  currentParent = currentNode;</span><br><span class="line">  currentNode = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  currentNode = currentNode ? </span><br><span class="line">    currentNode.nextSibling : </span><br><span class="line">    currentParent.firstChild;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exitNode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  currentNode = currentParent;</span><br><span class="line">  currentParent = currentParent.parentNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在让我们写instructions：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderDOM</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> node = name === <span class="string">'#text'</span> ? </span><br><span class="line">  	<span class="built_in">document</span>.createTextNode(<span class="string">''</span>) :</span><br><span class="line">    <span class="built_in">document</span>.createElement(name);</span><br><span class="line"></span><br><span class="line">  currentParent.insertBefore(node, currentNode);</span><br><span class="line"></span><br><span class="line">  currentNode = node;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">elementOpen</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  nextNode();</span><br><span class="line">  <span class="keyword">const</span> node = renderDOM(name);</span><br><span class="line">  enterNode();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> currentParent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">elementClose</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  exitNode();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> currentNode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">text</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  nextNode();</span><br><span class="line">  <span class="keyword">const</span> node = renderDOM(<span class="string">'#text'</span>);</span><br><span class="line"></span><br><span class="line">  node.data = value;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> currentNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>换句话说，这些函数只是遍历DOM节点并在当前位置插入节点。此外，文本命令设置<code>data</code>属性，以便我们可以看到浏览器的文本值。</p>
+<p>我们希望我们的元素能够保持某种状态，所以我们来介绍<code>NodeData</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> NODE_DATA_KEY = <span class="string">'__ID_Data__'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NodeData</span> </span>&#123;</span><br><span class="line">  <span class="comment">// key</span></span><br><span class="line">  <span class="comment">// attrs</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.text = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!node[NODE_DATA_KEY]) &#123;</span><br><span class="line">    node[NODE_DATA_KEY] = <span class="keyword">new</span> NodeData(node.nodeName.toLowerCase());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> node[NODE_DATA_KEY];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，让我们改动一下<code>renderDOM</code>函数，以便在当前位置已经相同的情况下，我们不会向DOM添加新元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> matches = <span class="function"><span class="keyword">function</span>(<span class="params">matchNode, name<span class="regexp">/*, key */</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> data = getData(matchNode);</span><br><span class="line">  <span class="keyword">return</span> name === data.name <span class="comment">// &amp;&amp; key === data.key;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderDOM</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (currentNode &amp;&amp; matches(currentNode, name<span class="comment">/*, key */</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> currentNode;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意我注释的 <code>/*, key */</code>。如果元素有key来区分元素会更好。另请参阅<a href="http://google.github.io/incremental-dom/#demos/using-keys" rel="external nofollow noopener noreferrer" target="_blank">http://google.github.io/incremental-dom/#demos/using-keys</a></p>
+<p>之后，让我们添加将负责文本节点更新的逻辑：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">text</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  nextNode();</span><br><span class="line">  <span class="keyword">const</span> node = renderDOM(<span class="string">'#text'</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// update</span></span><br><span class="line">  <span class="comment">// checks for text updates</span></span><br><span class="line">  <span class="keyword">const</span> data = getData(node);</span><br><span class="line">  <span class="keyword">if</span> (data.text !== value) &#123;</span><br><span class="line">    data.text = (value);</span><br><span class="line">    node.data = value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// end update</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> currentNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以为元素节点做同样的事情。</p>
+<p>然后，让我们来编写<strong>patch</strong>函数，它将需要<strong>DOM元素</strong>，<strong>update函数</strong>以及一些<strong>数据</strong>（这些数据将由update函数使用）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">patch</span>(<span class="params">node, fn, data</span>) </span>&#123;</span><br><span class="line">  currentNode = node;</span><br><span class="line"></span><br><span class="line">  enterNode();</span><br><span class="line">  fn(data);</span><br><span class="line">  exitNode();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>最后，让我们测试一下这个instructions：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  elementOpen(<span class="string">'h1'</span>);</span><br><span class="line">  &#123;</span><br><span class="line">    text(<span class="string">'Hello, '</span> + data.user)</span><br><span class="line">  &#125;</span><br><span class="line">  elementClose(<span class="string">'h1'</span>);</span><br><span class="line">  elementOpen(<span class="string">'ul'</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    elementOpen(<span class="string">'li'</span>); </span><br><span class="line">    &#123;</span><br><span class="line">      text(<span class="string">'Counter: '</span>)</span><br><span class="line">      elementOpen(<span class="string">'span'</span>); </span><br><span class="line">      &#123;</span><br><span class="line">        text(data.counter);</span><br><span class="line">      &#125;</span><br><span class="line">      elementClose(<span class="string">'span'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    elementClose(<span class="string">'li'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  elementClose(<span class="string">'ul'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'button'</span>).addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">   data.counter ++;</span><br><span class="line">   patch(<span class="built_in">document</span>.body, render, data);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'input'</span>).addEventListener(<span class="string">'input'</span>, (e) =&gt; &#123;</span><br><span class="line">   data.user = e.target.value;</span><br><span class="line">   patch(<span class="built_in">document</span>.body, render, data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  user: <span class="string">'Alexey'</span>,</span><br><span class="line">  counter: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">patch(<span class="built_in">document</span>.body, render, data);</span><br></pre></td></tr></table></figure>
+<p>结果可以在<a href="https://jsfiddle.net/yurzui/hqhq4khc" rel="external nofollow noopener noreferrer" target="_blank">这</a>找到。</p>
+<p>你还可以通过使用浏览器工具，来验证代码是否仅更新其内容已更改的文本节点：</p>
+<p><img src="/assets/images/【译】Angular Ivy的变更检测执行：你准备好了吗？/20180608152846006772560.gif" alt="20180608152846006772560.gif"></p>
+<p>所以IDOM的主要理念就是<strong>使用真正的DOM来和新树进行对比</strong>。</p>
+<p>全文完。谢谢阅读。</p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/" title="【译】Angular Ivy的变更检测执行：你准备好了吗？">https://tc9011.com/2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/28/西班牙国家德比之旅/" rel="next" title="西班牙国家德比之旅">
+                <i class="fa fa-chevron-left"></i> 西班牙国家德比之旅
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/11/博客评论系统迁移说明/" rel="prev" title="博客评论系统迁移说明">
+                博客评论系统迁移说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#视图"><span class="nav-number">1.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变更检测"><span class="nav-number">2.</span> <span class="nav-text">变更检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#detectChanges"><span class="nav-number">2.1.</span> <span class="nav-text">detectChanges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tick"><span class="nav-number">2.2.</span> <span class="nav-text">tick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scheduleTick"><span class="nav-number">2.3.</span> <span class="nav-text">scheduleTick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markViewDirty-markForCheck"><span class="nav-number">2.4.</span> <span class="nav-text">markViewDirty(markForCheck)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markDirty"><span class="nav-number">2.5.</span> <span class="nav-text">markDirty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkNoChanges"><span class="nav-number">2.6.</span> <span class="nav-text">checkNoChanges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变更检测顺序"><span class="nav-number">2.7.</span> <span class="nav-text">变更检测顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次性字符串初始化"><span class="nav-number">3.</span> <span class="nav-text">一次性字符串初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular不再为容器创建文本节点"><span class="nav-number">4.</span> <span class="nav-text">Angular不再为容器创建文本节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全新的-Incremental-DOM（IDOM）"><span class="nav-number">5.</span> <span class="nav-text">全新的 Incremental DOM（IDOM）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/';
+        this.page.identifier = '2018/06/07/【译】Angular Ivy的变更检测执行：你准备好了吗？/';
+        this.page.title = '【译】Angular Ivy的变更检测执行：你准备好了吗？';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

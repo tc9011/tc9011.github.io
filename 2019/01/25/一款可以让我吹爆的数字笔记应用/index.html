@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一款可以让我吹爆的数字笔记应用">
+<meta property="og:url" content="https://tc9011.com/2019/01/25/一款可以让我吹爆的数字笔记应用/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/1.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_17-06-56.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/1b29ce0eb2c37bc2780d3adaf70fa5f0.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_00-24-53.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_22-04-27.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_22-08-54.gif">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_22-12-49.gif">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_01-17-37.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_23-52-34.gif">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_01-39-52.gif">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_02-05-49.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_02-07-42.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_02-27-42.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-26_13-27-57.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_10-03-19.png">
+<meta property="og:updated_time" content="2019-05-11T10:13:16.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一款可以让我吹爆的数字笔记应用">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/一款可以让我吹爆的数字笔记应用/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2019/01/25/一款可以让我吹爆的数字笔记应用/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一款可以让我吹爆的数字笔记应用 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2019/01/25/一款可以让我吹爆的数字笔记应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">一款可以让我吹爆的数字笔记应用
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-25 01:06:31" itemprop="dateCreated datePublished" datetime="2019-01-25T01:06:31+08:00">2019-01-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/25/一款可以让我吹爆的数字笔记应用/" class="leancloud_visitors" data-flag-title="一款可以让我吹爆的数字笔记应用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/1.png" alt="2019-01-22_20-10-51"></p>
+<a id="more"></a>
+<p>在遇到 <a href="https://www.notion.so/" rel="external nofollow noopener noreferrer" target="_blank">Notion</a> 之前，我的笔记记录交给 onenote ，任务管理交给手机端的 Awesome Note 2，零碎的知识收集交给 Pocket。但是不爽的是要在三个应用之间切换，而且 Awesome Note 2 没有桌面版。而 Notion 的出现大大提高了我在笔记、知识库和任务管理上的效率，满足了我对笔记类和任务管理类软件的98%需求。</p>
+<h2 id="Notion-简介"><a href="#Notion-简介" class="headerlink" title="Notion 简介"></a>Notion 简介</h2><blockquote>
+<p>Notion 自称是一款「<strong>将笔记、知识库和任务管理无缝整合的协作平台</strong>」。它具有无限的层级和相互链接的组织弹性，给笔记间的关系提供了足够自由的组织方式；它排版灵活，能够把笔记里的内容按块（Block）进行组织和拖拽，甚至可以做出 Trello 看板进行项目管理；它的内容类型丰富，可以嵌入图片、网页、文档甚至视频，几乎无所不能。</p>
+</blockquote>
+<p>Notion 的界面很简洁，右边是内容编辑区域，左边是目录和一些功能设置。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_17-06-56.png" alt="2019-01-24_17-06-56"></p>
+<p>在我看来 Notion 最让我心动的是以下几点：</p>
+<ul>
+<li>丰富的 Block</li>
+</ul>
+<p>在 Notion 中 Block 是最基本的单位，文字、视频、图片等都是一个 Block，并且所有的 Block 可以任意拖拽。这种想法类似于乐高积木，通过积木可以扩展出各种你想要的东西。</p>
+<p>下面这张图（图来自少数派用户<a href="https://sspai.com/user/741485" rel="external nofollow noopener noreferrer" target="_blank">一条小虫</a>）只是一个其中一部分 Block 的示例，Notion 还有强大功能的表格（表格甚至可以插入公式进行计算）、看板等 Block，只要在笔记中输入<code>/</code>，就会跳出各种 Block 供你选择。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/1b29ce0eb2c37bc2780d3adaf70fa5f0.png" alt="1b29ce0eb2c37bc2780d3adaf70fa5f0"></p>
+<ul>
+<li>模板</li>
+</ul>
+<p>面对这么多 Block，可能有时候你不知道怎么组织你的页面，但是官方提供了很多模板，在创建的时候 页面的时候，你可以很快搭建起你想要的页面。如果你嫌官方的模板满足不了你的要求，还可以去<a href="https://www.notion.so/notion666/Notion-6d8058e5e6b346a58130015755c4d1f0" rel="external nofollow noopener noreferrer" target="_blank">这里</a>或者<a href="https://notionpages.com/" rel="external nofollow noopener noreferrer" target="_blank">notionpages</a>下载其他人做好的模板。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_00-24-53.png" alt="2019-01-24_00-24-53"></p>
+<ul>
+<li>历史记录</li>
+</ul>
+<p>Notion 提供你操作的历史记录，你可以随时恢复之前的操作，这个功能应该是手残党的福音。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_22-04-27.png" alt="2019-01-24_22-04-27"></p>
+<ul>
+<li>布局灵活</li>
+</ul>
+<p>Notion 所有的 Block 都可以拖拽，所以你可以非常方便的去组织你的笔记，就像下面这样：</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_22-08-54.gif" alt="2019-01-24_22-08-54"></p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_22-12-49.gif" alt="2019-01-24_22-12-49"></p>
+<ul>
+<li>强大的嵌入功能</li>
+</ul>
+<p>在 Notion 中，你可以嵌入大部分你做笔记时想嵌入的东西，比如PDF、Excel、word、视频、网页、代码、Google Map等。这些嵌入的东西都可以直接在页面内查看，不需要重新打开其他应用。</p>
+<p class="img-description">Notion 中可以嵌入的类型</p>
+
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_01-17-37.png" alt="2019-01-24_01-17-37"></p>
+<ul>
+<li>支持 Markdown</li>
+</ul>
+<p>这个是程序员都喜闻乐见的功能，有了 markdown 的支持后，写笔记更加顺畅。</p>
+<ul>
+<li>分享</li>
+</ul>
+<p>在 Notion 中，你可以通过 share 按钮把你当前页面分享出去，甚至可以邀请其他人和你一起编辑当前页面。</p>
+<ul>
+<li>同步</li>
+</ul>
+<p>Notion 同步功能可以说非常迅速，无论在桌面端、网页端还是移动端，任意编辑都能迅速同步。</p>
+<ul>
+<li>离线</li>
+</ul>
+<p>Notion 可以离线使用，当你离线的时候，Notion 打开速度甚至会快一点，原因我猜是不需要去服务器检查多人协作的情况和更新页面吧。</p>
+<p>当然 Notion 作为一款很年轻的应用现在还不是十全十美，如果说 Notion 现在的缺点的话，我觉得有下面几点：</p>
+<ul>
+<li>不支持重复提醒</li>
+</ul>
+<p>当你使用日历创建任务提醒的时候，不支持创建重复提醒，比如每周一提醒或者每月提醒，所以这种重复提醒类的任务我还是扔给了 Awesome Note 2 。</p>
+<ul>
+<li><del>缺少收集工具</del></li>
+</ul>
+<p><del>缺少一款类似 Pocket 或者 印象笔记剪藏 的碎片知识收集工具，现在我手动放到 Knowledge Base 页面中，这样很多时候很麻烦，在浏览器端或者手机端，可以把相关链接分享到 Notion，然后再继续整理，这样就可以行程完整的知识库的闭环。</del></p>
+<p>Notion 也出了类似的收集工具，可以点击<a href="https://www.notion.so/web-clipper" rel="external nofollow noopener noreferrer" target="_blank">链接</a>安装。如何使用可以参考<a href="https://www.notion.so/notion666/Web-Clipper-ba54b19ecaeb466b8070b9e683c5fce1" rel="external nofollow noopener noreferrer" target="_blank">官方使用教程</a></p>
+<ul>
+<li>导出功能</li>
+</ul>
+<p>选择 markdown 导出的时候常常布局会有问题，现在我选择直接导出 markdown，然后用 Typora 导出为 PDF。</p>
+<ul>
+<li>外部模板不能设为默认模板</li>
+</ul>
+<p>外部导入的模板不能设为默认模板会让每次创建重复页面的时候有点麻烦，而 Template Button 也只能在当前页面中使用，不是很方便。</p>
+<ul>
+<li>网络略慢</li>
+</ul>
+<p>Notion 好像用了亚马逊的 AWS，在国内用的话打开会有点慢，但是没有慢到不可接受的程度，如果你在离线状态，还能更快。</p>
+<h2 id="我的-Notion-食用方式"><a href="#我的-Notion-食用方式" class="headerlink" title="我的 Notion 食用方式"></a>我的 Notion 食用方式</h2><p>Notion 中有很多种使用方式，你可以随意组合表格、看板等 Block 来实现你想要的功能，这里简单介绍一下我使用 Notion 的几种方式。</p>
+<h3 id="GTD"><a href="#GTD" class="headerlink" title="GTD"></a>GTD</h3><p><a href="https://zh.wikipedia.org/wiki/%E5%B0%BD%E7%AE%A1%E5%8E%BB%E5%81%9A" rel="external nofollow noopener noreferrer" target="_blank">GTD</a>主要负责我的任务管理，Notion 中可以把日历、表格、列表和看板集合于一体，结合筛选和过滤功能，可以非常方便的在同一个界面用不同方式展示你的任务安排和进度。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-24_23-52-34.gif" alt="2019-01-24_23-52-34"></p>
+<p>参考少数派的作者Maybe009在<a href="https://sspai.com/post/52625" rel="external nofollow noopener noreferrer" target="_blank">试过不少工具后，我用 Notion 进行更灵活的任务管理</a>中的介绍，我也模仿做了一个类似。</p>
+<p>你可以直接用官方提供的 Editorial Calendar 模板来做你的 GTD ，然后通过设置不同的 Filter 来在不同模式下展示不同的任务。而和 Maybe009 在看板中添加预处理项的做法不同的是，我直接使用自带的 Idea 一栏，把它作为一些有想法但没有安排的任务存放处，这样更加方便一些。</p>
+<h3 id="个人知识库"><a href="#个人知识库" class="headerlink" title="个人知识库"></a>个人知识库</h3><p>个人知识库用于对于碎片知识的收集和整理，通常我会把看到一些比较好的文章、段落等放到这边，通过对知识碎片打标签和分类，来进行管理，并且对它们加上状态管理，方便及时查看哪些知识碎片是没有整理过的。</p>
+<p>你可以使用 Lightweight CRM 模板来实现这个页面，配合筛选功能和自定义属性，就能很方便地实现自己的知识库的管理。随便提一句，Notion 支持全局的搜索，而且中文也可以哦。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_01-39-52.gif" alt="2019-01-25_01-39-52"></p>
+<p>如果你每次都要把链接或者文章贴到这边会比较麻烦，所以我的解决方案是都先发送到 Pocket，然后在 Awesome Note 2 中设定定时提醒，提醒自己归档和整理。</p>
+<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>笔记我把它分为 Quick Note 和 Notes，一个套用了 Notion 提供的 Quick Note 的模板，专职于记录下平时一些灵感，突出 Quick 。而 Notes 则和 Knowledge Base 一样使用 Lightweight CRM 模板来实现笔记的归档和整理。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_02-05-49.png" alt="2019-01-25_02-05-49"></p>
+<h3 id="年度目标"><a href="#年度目标" class="headerlink" title="年度目标"></a>年度目标</h3><p>年度目标当然是用来立一些 flag 啦，用 Tasks 或者 Roadmap 模板都可以实现这样的看板页面。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_02-07-42.png" alt="2019-01-25_02-07-42"></p>
+<h3 id="旅行计划"><a href="#旅行计划" class="headerlink" title="旅行计划"></a>旅行计划</h3><p>Notion 中真的很合适去写旅行计划，你可以把你收集的攻略、视频都插到计划中，甚至还可以插入 Google Map，写完旅行计划后，你可以直接分享给你的同伴，甚至邀请他一起编辑，真的是神器了。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_02-27-42.png" alt="2019-01-25_02-27-42"></p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-26_13-27-57.png" alt="2019-01-26_13-27-57"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面只是我自己在 Notion 使用中的一些摸索，Notion 可以做的远远不止这些，通过 Block 之间的不同组合，Notion 的使用有很大的想象空间，虽然这款从2016年出来的应用还有一些小缺点，但是它的理念耳目一新，让人感到兴奋。</p>
+<p>另外需要说明的是，Notion 是订阅制，免费用户不限制队友，但是有1000个 Block 和5M 文件上传限制，而个人使用推荐使用 Personal 订阅，4美元一个月，拥有无限 Block，没有上传设置，但是只能你自己编辑。</p>
+<p><img src="/assets/images/一款可以让我吹爆的数字笔记应用/2019-01-25_10-03-19.png" alt="2019-01-25_10-03-19"></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://notionpages.com/" rel="external nofollow noopener noreferrer" target="_blank">notionpages</a></p>
+<p><a href="https://sspai.com/post/39694" rel="external nofollow noopener noreferrer" target="_blank">Notion：重新定义数字笔记</a></p>
+<p><a href="https://life2cloud.com/cn/2018/08/notion/" rel="external nofollow noopener noreferrer" target="_blank">notion的使用体验</a></p>
+<p><a href="https://sspai.com/post/52625" rel="external nofollow noopener noreferrer" target="_blank">试过不少工具后，我用 Notion 进行更灵活的任务管理</a></p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2019/01/25/一款可以让我吹爆的数字笔记应用/" title="一款可以让我吹爆的数字笔记应用">https://tc9011.com/2019/01/25/一款可以让我吹爆的数字笔记应用/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件/" rel="tag"># 软件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/18/手把手教你使用Netlify部署博客及部署自动化/" rel="next" title="手把手教你使用Netlify部署博客及部署自动化">
+                <i class="fa fa-chevron-left"></i> 手把手教你使用Netlify部署博客及部署自动化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/24/如何更好地组织Angular项目/" rel="prev" title="如何更好地组织Angular项目">
+                如何更好地组织Angular项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Notion-简介"><span class="nav-number">1.</span> <span class="nav-text">Notion 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的-Notion-食用方式"><span class="nav-number">2.</span> <span class="nav-text">我的 Notion 食用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GTD"><span class="nav-number">2.1.</span> <span class="nav-text">GTD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人知识库"><span class="nav-number">2.2.</span> <span class="nav-text">个人知识库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#笔记"><span class="nav-number">2.3.</span> <span class="nav-text">笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#年度目标"><span class="nav-number">2.4.</span> <span class="nav-text">年度目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旅行计划"><span class="nav-number">2.5.</span> <span class="nav-text">旅行计划</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2019/01/25/一款可以让我吹爆的数字笔记应用/';
+        this.page.identifier = '2019/01/25/一款可以让我吹爆的数字笔记应用/';
+        this.page.title = '一款可以让我吹爆的数字笔记应用';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

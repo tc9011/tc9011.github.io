@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="node,Nestjs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nestjs入门（一）">
+<meta property="og:url" content="https://tc9011.com/2019/07/14/Nestjs入门（一）/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/nest%20入门/68747470733a2f2f6e6573746a732e636f6d2f696d672f6c6f676f5f746578742e737667.svg">
+<meta property="og:updated_time" content="2019-07-16T07:18:56.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nestjs入门（一）">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/nest%20入门/68747470733a2f2f6e6573746a732e636f6d2f696d672f6c6f676f5f746578742e737667.svg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2019/07/14/Nestjs入门（一）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Nestjs入门（一） | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2019/07/14/Nestjs入门（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Nestjs入门（一）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-14 14:12:19" itemprop="dateCreated datePublished" datetime="2019-07-14T14:12:19+08:00">2019-07-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/14/Nestjs入门（一）/" class="leancloud_visitors" data-flag-title="Nestjs入门（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/nest 入门/68747470733a2f2f6e6573746a732e636f6d2f696d672f6c6f676f5f746578742e737667.svg" alt="68747470733a2f2f6e6573746a732e636f6d2f696d672f6c6f676f5f746578742e737667"></p>
+<a id="more"></a>
+<p><a href="https://nestjs.com/" rel="external nofollow noopener noreferrer" target="_blank">Nestjs</a> 是 Node 渐进式框架，底层默认使用 express（可以通过 Adapter 转换到 fastify），可以使用 express 或者 fastify 所有中间件，完美支持 TypeScript。熟悉 Spring 和 Angular 的同学可以很快上手 Nestjs，它大量借鉴了 Spring 和 Angular 中的设计思想。</p>
+<p>在开始写<code>hello world</code>之前，我们先来看看 Nestjs 中比较重要的设计思想和概念。</p>
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>依赖注入（Dependency Injection，简称<strong>DI</strong>）是面向对象中<strong>控制反转</strong>（Inversion of Control，简称 <strong>IoC</strong>）最常见的实现方式，主要用来降低代码的耦合度。我们用一个例子来说明什么是控制反转。</p>
+<p>假设你要造一辆车，你需要引擎和轮子：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Engine &#125; <span class="keyword">from</span> <span class="string">'./engine'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Tire &#125; <span class="keyword">from</span> <span class="string">'./tire'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Car &#123;</span><br><span class="line">  <span class="keyword">private</span> engine;</span><br><span class="line">  <span class="keyword">private</span> wheel;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.engine = <span class="keyword">new</span> Engine();</span><br><span class="line">    <span class="keyword">this</span>.tire = <span class="keyword">new</span> Tire();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候 <code>Car</code> 这个类依赖于<code>Engine</code>和<code>Tire</code>，构造器不仅需要把依赖赋值到当前类内部属性上还需要把依赖实例化。假设，有很多种类的<code>Car</code>都用了<code>Engine</code>，这时候需要把<code>Engine</code>替换为<code>ElectricEngine</code>，就会陷入牵一发而动全身的尴尬。</p>
+<p>那么用 IoC 来改造一下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Engine &#125; <span class="keyword">from</span> <span class="string">'./engine'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Tire &#125; <span class="keyword">from</span> <span class="string">'./tire'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Container &#123;</span><br><span class="line">  <span class="keyword">private</span> constructorPool;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.constructorPool = <span class="keyword">new</span> Map();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  register(name, <span class="keyword">constructor</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.constructorPool.set(name, <span class="keyword">constructor</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> target = <span class="keyword">this</span>.constructorPool.get(name);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> target();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> container = <span class="keyword">new</span> Container();</span><br><span class="line">container.bind(<span class="string">'engine'</span>, Engine);</span><br><span class="line">container.bind(<span class="string">'tire'</span>, Tire);</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Car &#123;</span><br><span class="line">  <span class="keyword">private</span> engine;</span><br><span class="line">  <span class="keyword">private</span> tire;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.engine = container.get(<span class="string">'engine'</span>);</span><br><span class="line">    <span class="keyword">this</span>.tire = container.get(<span class="string">'tire'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时，<code>container</code>相当于<code>Car</code>和<code>Engine</code>、<code>Tire</code>之间的中转站，<code>Car</code>不需要自己去实例化一个<code>Engine</code>或者<code>Tire</code>，<code>Car</code>和<code>Engine</code>、<code>Tire</code>之间也就没有了强耦合的关系。</p>
+<p>从上面例子看出，在使用 IoC 之前，<code>Car</code>需要<code>Engine</code>或者<code>Tire</code>时需要自己主动去创建<code>Engine</code>或者<code>Tire</code>，此时对<code>Engine</code>或者<code>Tire</code>的创建和使用的控制权都在<code>Car</code>手上。</p>
+<p>在使用 IoC 之后，<code>Car</code>和<code>Engine</code>或者<code>Tire</code>之间的联系就切断了，当<code>Car</code>需要<code>Engine</code>或者<code>Tire</code>时，<code>IoC Container</code>会主动创建这个对象给<code>Car</code>使用，此时<code>Car</code>获取<code>Engine</code>或者<code>Tire</code>的行为由主动获取变成了被动获取，控制权就颠倒过来。当<code>Engine</code>或者<code>Tire</code>有任何变动，<code>Car</code>不会受到影响，它们之间就完成了解耦。</p>
+<p>当我们需要测试<code>Car</code>时，我们不需要把<code>Engine</code>或者<code>Tire</code>全部<code>new</code>一遍来构造<code>Car</code>，只需要把 mock 的<code>Engine</code>或者<code>Tire</code>， 注入到 IoC 容器中就行。</p>
+<p>IoC 有很多实现，比如 Java 的 Spring ，PHP 的 Laravel ，前端的 Angular2+ 以及 Node 的 Nestjs等。</p>
+<p>在 Nestjs 中，通过<code>@Injectable</code>装饰器向 IoC 容器注册：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Cat &#125; <span class="keyword">from</span> <span class="string">'./interfaces/cat.interface'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsService &#123;</span><br><span class="line">  <span class="keyword">private</span> readonly cats: Cat[] = [];</span><br><span class="line"></span><br><span class="line">  create(cat: Cat) &#123;</span><br><span class="line">    <span class="keyword">this</span>.cats.push(cat);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  findAll(): Cat[] &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.cats;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在构造函数中注入<code>CatsService</code>的实例：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Controller, Get, Post, Body &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CreateCatDto &#125; <span class="keyword">from</span> <span class="string">'./dto/create-cat.dto'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CatsService &#125; <span class="keyword">from</span> <span class="string">'./cats.service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Cat &#125; <span class="keyword">from</span> <span class="string">'./interfaces/cat.interface'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> readonly catsService: CatsService</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Post</span>()</span><br><span class="line">  <span class="keyword">async</span> create(<span class="meta">@Body</span>() createCatDto: CreateCatDto) &#123;</span><br><span class="line">    <span class="keyword">this</span>.catsService.create(createCatDto);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>()</span><br><span class="line">  <span class="keyword">async</span> findAll(): <span class="built_in">Promise</span>&lt;Cat[]&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.catsService.findAll();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>CatsService</code>作为一个<code>privider</code>，需要在<code>module</code>中注册，这样在该<code>module</code>启动时，会解析<code>module</code>中所有的依赖，当<code>module</code>销毁时，<code>provider</code>也会一起销毁。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CatsController &#125; <span class="keyword">from</span> <span class="string">'./cats/cats.controller'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CatsService &#125; <span class="keyword">from</span> <span class="string">'./cats/cats.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  controllers: [CatsController],</span><br><span class="line">  providers: [CatsService],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ApplicationModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>Nestjs 提供了一个模块化结构，用于将同一领域内的代码组织成单独的模块。模块化的作用就是可以清晰地组织你的应用，并使用外部库扩展应用。</p>
+<p><code>Module</code> 把<code>controller</code>、<code>service</code>和<code>pipe</code>等打包成内聚的功能块，每个模块聚焦于一个特性区域、业务领域、工作流或通用工具。</p>
+<p>在 Nestjs 中通过<code>@Module</code>装饰器声明一个模块，<code>@Module</code>接受一个描述模块属性的对象:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CatsController &#125; <span class="keyword">from</span> <span class="string">'./cats.controller'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CatsService &#125; <span class="keyword">from</span> <span class="string">'./cats.service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CoreModule &#125; <span class="keyword">from</span> <span class="string">'./core/core.module'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  imports: [CoreModule],</span><br><span class="line">  controllers: [CatsController],</span><br><span class="line">  providers: [CatsService],</span><br><span class="line">  exports: [CatsService]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>每个属于这个模块的<code>controller</code>、<code>service</code>等都需要在这个模块中注册，如果需要引入其他模块或者第三方模块，需要将它注册到<code>imports</code>，通过<code>exports</code>可以将相应的<code>service</code>、<code>module</code>等共享出去。</p>
+<h2 id="面向切面编程"><a href="#面向切面编程" class="headerlink" title="面向切面编程"></a>面向切面编程</h2><p>面向切面编程（Aspect Oriented Programming，简称AOP）主要是针对业务处理过程中的切面进行提取，在某个步骤和阶段进行一些操作，从而达到 DRY（Don’t Repeat Yourself） 的目的。AOP 对 OOP 来说，是一种补充，比如可以在某一切面中对全局的 Log、错误进行处理，这种一刀切的方式，也就意味着，AOP 的处理方式相对比较粗粒度。</p>
+<p>在 Nestjs 中，AOP 分为下面几个部分（按顺序排列）：</p>
+<ul>
+<li>Middlewares</li>
+<li>Guards</li>
+<li>Interceptors (在流被操纵之前)</li>
+<li>Pipes</li>
+<li>Interceptors (在流被操纵之后)</li>
+<li>Exception filters (如果发现任何异常)</li>
+</ul>
+<h3 id="Middlewares"><a href="#Middlewares" class="headerlink" title="Middlewares"></a>Middlewares</h3><p>Middleware 和 express 的中间件一样，你可以直接使用 express 中的中间件：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> helmet <span class="keyword">from</span> <span class="string">'helmet'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> NestFactory.create&lt;NestExpressApplication&gt;(AppModule, &#123;</span><br><span class="line">    cors: <span class="literal">true</span>,</span><br><span class="line">    logger: <span class="literal">false</span>,</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  app.use(helmet())</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> app.listen(config.port, config.hostName, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    Logger.log(</span><br><span class="line">      <span class="string">`Flash API server has been started on http://<span class="subst">$&#123;config.hostName&#125;</span>:<span class="subst">$&#123;config.port&#125;</span>`</span>,</span><br><span class="line">    )</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Guards"><a href="#Guards" class="headerlink" title="Guards"></a>Guards</h3><p>Guards 和前端路由中的路由守卫一样，主要确定请求是否应该由路由处理程序处理。通过守卫可以知道将要执行的上下文信息，所以和 middleware 相比，守卫可以确切知道将要执行什么。</p>
+<p>守卫在每个中间件之后执行的，但在拦截器和管道之前。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable, CanActivate, ExecutionContext &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthGuard <span class="keyword">implements</span> CanActivate &#123;</span><br><span class="line">  canActivate(</span><br><span class="line">    context: ExecutionContext,</span><br><span class="line">  ): <span class="built_in">boolean</span> | <span class="built_in">Promise</span>&lt;<span class="built_in">boolean</span>&gt; | Observable&lt;<span class="built_in">boolean</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> request = context.switchToHttp().getRequest();</span><br><span class="line">    <span class="keyword">return</span> validateRequest(request);			<span class="comment">// validateRequest 函数实现 Request 的验证</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Interceptors"><a href="#Interceptors" class="headerlink" title="Interceptors"></a>Interceptors</h3><p>Interceptors 可以给每一个需要执行的函数绑定，拦截器将在该函数执行前或者执行后运行。可以转换函数执行后返回的结果，扩展基本函数行为等。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  Injectable,</span><br><span class="line">  NestInterceptor,</span><br><span class="line">  ExecutionContext,</span><br><span class="line">  CallHandler,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs'</span></span><br><span class="line"><span class="keyword">import</span> &#123; map &#125; <span class="keyword">from</span> <span class="string">'rxjs/operators'</span></span><br><span class="line"><span class="keyword">import</span> &#123; getFormatResponse &#125; <span class="keyword">from</span> <span class="string">'../../shared/utils/response'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> Response&lt;T&gt; &#123;</span><br><span class="line">  data: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> TransformInterceptor&lt;T&gt; <span class="keyword">implements</span> NestInterceptor&lt;T, Response&lt;T&gt;&gt; &#123;</span><br><span class="line">  intercept(</span><br><span class="line">    context: ExecutionContext,</span><br><span class="line">    next: CallHandler,</span><br><span class="line">  ): Observable&lt;Response&lt;T&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> next.handle().pipe(map(getFormatResponse))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Pipes"><a href="#Pipes" class="headerlink" title="Pipes"></a>Pipes</h3><p>Pipe 是具有 <code>@Injectable()</code> 装饰器的类，并实现了 <code>PipeTransform</code> 接口。通常 pipe 用来将输入数据<strong>转换</strong>为所需的输出或者处理<strong>验证</strong>。</p>
+<p>下面就是一个<code>ValidationPipe</code>，配合<code>class-validator</code> 和 <code>class-transformer</code> ，可以更方便地对参数进行校验。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  PipeTransform,</span><br><span class="line">  ArgumentMetadata,</span><br><span class="line">  BadRequestException,</span><br><span class="line">  Injectable,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span></span><br><span class="line"><span class="keyword">import</span> &#123; validate &#125; <span class="keyword">from</span> <span class="string">'class-validator'</span></span><br><span class="line"><span class="keyword">import</span> &#123; plainToClass &#125; <span class="keyword">from</span> <span class="string">'class-transformer'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> ValidationPipe <span class="keyword">implements</span> PipeTransform&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">async</span> transform(value, metadata: ArgumentMetadata) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; metatype &#125; = metadata</span><br><span class="line">    <span class="keyword">if</span> (!metatype || !<span class="keyword">this</span>.toValidate(metatype)) &#123;</span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> object = plainToClass(metatype, value)</span><br><span class="line">    <span class="keyword">const</span> errors = <span class="keyword">await</span> validate(object)</span><br><span class="line">    <span class="keyword">if</span> (errors.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> BadRequestException(<span class="string">'Validation failed'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> toValidate(metatype): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> types = [<span class="built_in">String</span>, <span class="built_in">Boolean</span>, <span class="built_in">Number</span>, <span class="built_in">Array</span>, <span class="built_in">Object</span>]</span><br><span class="line">    <span class="keyword">return</span> !types.find(<span class="function"><span class="params">type</span> =&gt;</span> metatype === <span class="keyword">type</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Exception-filters"><a href="#Exception-filters" class="headerlink" title="Exception filters"></a>Exception filters</h3><p>内置的 Exception filters 负责处理整个应用程序中的所有抛出的异常，也是 Nestjs 中在 response 前，最后能捕获异常的机会。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ExceptionFilter, Catch, ArgumentsHost &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Catch</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AnyExceptionFilter <span class="keyword">implements</span> ExceptionFilter &#123;</span><br><span class="line">  <span class="keyword">catch</span>(exception: <span class="built_in">any</span>, host: ArgumentsHost) &#123;</span><br><span class="line">    <span class="keyword">const</span> ctx = host.switchToHttp();</span><br><span class="line">    <span class="keyword">const</span> response = ctx.getResponse();</span><br><span class="line">    <span class="keyword">const</span> request = ctx.getRequest();</span><br><span class="line"></span><br><span class="line">    response</span><br><span class="line">      .status(status)</span><br><span class="line">      .json(&#123;</span><br><span class="line">        statusCode: exception.getStatus(),</span><br><span class="line">        timestamp: <span class="keyword">new</span> <span class="built_in">Date</span>().toISOString(),</span><br><span class="line">        path: request.url,</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="DTO"><a href="#DTO" class="headerlink" title="DTO"></a>DTO</h2><p>数据访问对象简称DTO（Data Transfer Object）， 是一组需要跨进程或网络边界传输的聚合数据的简单容器。它不应该包含业务逻辑，并将其行为限制为诸如内部一致性检查和基本验证之类的活动。</p>
+<p>在 Nestjs 中，可以使用 TypeScript 接口或简单的类来完成。配合 <code>class-validator</code>和<code>class-transformer</code> 可以很方便地验证前端传过来的参数：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; IsString, IsInt, MinLength, MaxLength &#125; <span class="keyword">from</span> <span class="string">"class-validator"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ApiModelProperty &#125; <span class="keyword">from</span> <span class="string">'@nestjs/swagger'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CreateCatDto &#123;</span><br><span class="line">  <span class="meta">@ApiModelProperty</span>()</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  <span class="meta">@MinLength</span>(<span class="number">10</span>, &#123;</span><br><span class="line">    message: <span class="string">"Name is too short"</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="meta">@MaxLength</span>(<span class="number">50</span>, &#123;</span><br><span class="line">    message: <span class="string">"Name is too long"</span></span><br><span class="line">  &#125;)</span><br><span class="line">  readonly name: <span class="built_in">string</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@ApiModelProperty</span>()</span><br><span class="line">  <span class="meta">@IsInt</span>()</span><br><span class="line">  readonly age: <span class="built_in">number</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@ApiModelProperty</span>()</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  readonly breed: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Controller, Post, Body &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CreateCatDto &#125; <span class="keyword">from</span> <span class="string">'./dto'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">'cats'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> CatsController &#123;</span><br><span class="line">  <span class="meta">@Post</span>()</span><br><span class="line">  create(<span class="meta">@Body</span>() createCatDto: CreateCatDto) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'This action adds a new cat'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 Body 中的参数不符合要求，会直接报 <code>Validation failed</code> 错误。</p>
+<h2 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h2><p>ORM 是”对象-关系映射”（Object/Relational Mapping） 的缩写，通过实例对象的语法，完成关系型数据库的操作。通过 ORM 就可以用面向对象编程的方式去操作关系型数据库。</p>
+<p>在 Java 中，通常会有 DAO（Data Access Object， 数据访问对象）层，DAO 中包含了各种数据库的操作方法。通过它的方法，对数据库进行相关的操作。DAO 主要作用是分离业务层与数据层，避免业务层与数据层耦合。</p>
+<p>在 Nestjs 中，可以用 TypeORM 作为你的 DAO 层，它支持 MySQL / MariaDB / Postgres / CockroachDB / SQLite / Microsoft SQL Server / Oracle / MongoDB / NoSQL。</p>
+<p>在 typeORM 中数据库的表对应的就是一个类，通过定义一个类来创建实体。实体（Entity）是一个映射到数据库表（或使用 MongoDB 时的集合）的类，通过<code>@Entity()</code>来标记。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Entity, PrimaryGeneratedColumn, Column&#125; <span class="keyword">from</span> <span class="string">"typeorm"</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> User &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PrimaryGeneratedColumn</span>()</span><br><span class="line">    id: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>()</span><br><span class="line">    firstName: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>()</span><br><span class="line">    lastName: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span>()</span><br><span class="line">    age: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码将创建以下数据库表：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-------------+--------------+----------------------------+</span><br><span class="line">|                          user                           |</span><br><span class="line">+-------------+--------------+----------------------------+</span><br><span class="line">| id          | int(11)      | PRIMARY KEY AUTO_INCREMENT |</span><br><span class="line">| firstName   | varchar(255) |                            |</span><br><span class="line">| lastName    | varchar(255) |                            |</span><br><span class="line">| isActive    | boolean      |                            |</span><br><span class="line">+-------------+--------------+----------------------------+</span><br></pre></td></tr></table></figure>
+<p>使用 <code>@InjectRepository()</code> 修饰器注入 对应的<code>Repository</code>，就可以在这个<code>Repository</code>对象上进行数据库的一些操作。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@nestjs/common'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; InjectRepository &#125; <span class="keyword">from</span> <span class="string">'@nestjs/typeorm'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Repository &#125; <span class="keyword">from</span> <span class="string">'typeorm'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User &#125; <span class="keyword">from</span> <span class="string">'./user.entity'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> UserService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(User)</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> readonly userRepository: Repository&lt;User&gt;,</span></span><br><span class="line"><span class="params">  </span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> findAll(): <span class="built_in">Promise</span>&lt;User[]&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.userRepository.find();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.nestjs.com/providers" rel="external nofollow noopener noreferrer" target="_blank">Nestjs</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/60995312" rel="external nofollow noopener noreferrer" target="_blank">浅析控制反转</a></p>
+<p><a href="https://blog.csdn.net/bestone0213/article/details/47424255" rel="external nofollow noopener noreferrer" target="_blank">依赖注入和控制反转的理解</a></p>
+<p><a href="https://github.com/forthealllight/blog/issues/35" rel="external nofollow noopener noreferrer" target="_blank">从Express到Nestjs，谈谈Nestjs的设计思想和使用方法</a></p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2019/07/14/Nestjs入门（一）/" title="Nestjs入门（一）">https://tc9011.com/2019/07/14/Nestjs入门（一）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/Nestjs/" rel="tag"># Nestjs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/26/前端工程化中的代码规范和commit规范/" rel="next" title="前端工程化中的代码规范和commit规范">
+                <i class="fa fa-chevron-left"></i> 前端工程化中的代码规范和commit规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/22/Nestjs入门（二）/" rel="prev" title="Nestjs入门（二）">
+                Nestjs入门（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖注入"><span class="nav-number">1.</span> <span class="nav-text">依赖注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化"><span class="nav-number">2.</span> <span class="nav-text">模块化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向切面编程"><span class="nav-number">3.</span> <span class="nav-text">面向切面编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Middlewares"><span class="nav-number">3.1.</span> <span class="nav-text">Middlewares</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guards"><span class="nav-number">3.2.</span> <span class="nav-text">Guards</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interceptors"><span class="nav-number">3.3.</span> <span class="nav-text">Interceptors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pipes"><span class="nav-number">3.4.</span> <span class="nav-text">Pipes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exception-filters"><span class="nav-number">3.5.</span> <span class="nav-text">Exception filters</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DTO"><span class="nav-number">4.</span> <span class="nav-text">DTO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORM"><span class="nav-number">5.</span> <span class="nav-text">ORM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2019/07/14/Nestjs入门（一）/';
+        this.page.identifier = '2019/07/14/Nestjs入门（一）/';
+        this.page.title = 'Nestjs入门（一）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

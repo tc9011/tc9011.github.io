@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript DOM编程艺术》学习笔记">
+<meta property="og:url" content="https://tc9011.com/2017/02/25/《JavaScript DOM编程艺术》学习笔记/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/《JavaScript%20DOM编程艺术》学习笔记/20170213248375099247.jpg">
+<meta property="og:image" content="https://tc9011.com/assets/images/《JavaScript%20DOM编程艺术》学习笔记/20170219637762017-02-19_15-08-01.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/《JavaScript%20DOM编程艺术》学习笔记/20170331149096012698856.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript DOM编程艺术》学习笔记">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/《JavaScript%20DOM编程艺术》学习笔记/20170213248375099247.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2017/02/25/《JavaScript DOM编程艺术》学习笔记/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《JavaScript DOM编程艺术》学习笔记 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2017/02/25/《JavaScript DOM编程艺术》学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《JavaScript DOM编程艺术》学习笔记
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-25 23:55:49" itemprop="dateCreated datePublished" datetime="2017-02-25T23:55:49+08:00">2017-02-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/02/25/《JavaScript DOM编程艺术》学习笔记/" class="leancloud_visitors" data-flag-title="《JavaScript DOM编程艺术》学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/《JavaScript DOM编程艺术》学习笔记/20170213248375099247.jpg" alt="20170213248375099247.jpg"></p>
+<a id="more"></a>
+<p id="div-border-left-green">本书大部分demo参见<a href="https://github.com/tc9011/DOM-Scripting-Demo" rel="external nofollow noopener noreferrer" target="_blank">DOM Scripting Demo</a>，本人手敲，如有错误欢迎提交pr</p>
+
+<h2 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"example.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>把<code>&lt;script&gt;</code>标签放在HTML文档最后，<code>&lt;/body&gt;</code>标签之前，这样即使加载脚本时，Windows对象的load事件依然可以执行对文档进行的各种操作。</p>
+<p id="div-border-left-green">因为位于<code>&lt;head&gt;</code>中的脚本会导致浏览器不能并行加载其他文件。一般来说，根据HTTP规范，浏览器每次从同一个域名中最多只能同时下载两个文件。</p>
+
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="算术操作符"><a href="#算术操作符" class="headerlink" title="算术操作符"></a>算术操作符</h4><p>字符串和数值拼接在一起结果是更长的<strong>字符串</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"10"</span>+<span class="number">20</span>)； <span class="comment">//输出1020</span></span><br></pre></td></tr></table></figure>
+<h4 id="比较操作符"><a href="#比较操作符" class="headerlink" title="比较操作符"></a>比较操作符</h4><p>JavaScript中，<code>==</code>并不表示严格相等，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">if</span> (a == b)&#123;			<span class="comment">//true</span></span><br><span class="line">  alert(<span class="string">"a = b"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p id="div-border-left-red">这个语句求值结果是ture，因为<code>==</code>认为空字符串与false的含义相同。要进行严格比较，就要使用另一种等号：<code>===</code>。这个全等操作符会执行严格的比较，不仅比较值，而且会比较变量的类型：</p>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">if</span> (a === b)&#123;			<span class="comment">//flase</span></span><br><span class="line">  alert(<span class="string">"a = b"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p id="div-border-left-red">如果在某个函数中使用var，那个变量就被看做局部变量，它只存在这个函数上下文中；如果没有使用var，这个变量就被看做是全局变量，如果脚本里面出现一个与之同名的全局变量，这个函数就会改变这个全局变量的值。</p>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">  total = num * num;</span><br><span class="line">  <span class="keyword">return</span> total</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> total = <span class="number">50</span>;</span><br><span class="line"><span class="keyword">var</span> number = square(<span class="number">20</span>);</span><br><span class="line">alert(total);	<span class="comment">//输出400</span></span><br><span class="line">-------------我是分割线-------------</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> total = num * num;</span><br><span class="line">  <span class="keyword">return</span> total</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> total = <span class="number">50</span>;</span><br><span class="line"><span class="keyword">var</span> number = square(<span class="number">20</span>);</span><br><span class="line">alert(total);	<span class="comment">//输出50</span></span><br></pre></td></tr></table></figure>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>假设有个Person的对象，为了使用Person来描述人，需要创建一个Person对象的实例。<span id="inline-red">实例是对象的具体个体</span>。例如，你和我都是人，都可以用person对象来描述；但你和我是两个不同的个体，和可能有着不同的属性。因此对应着不同的Person对象–虽然都是Person对象，但是它们是两个不同的实例。</p>
+<p>new关键字为对象创建一个新的实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tangcheng = <span class="keyword">new</span> Person;</span><br></pre></td></tr></table></figure>
+<h4 id="内建对象"><a href="#内建对象" class="headerlink" title="内建对象"></a>内建对象</h4><p>Array对象、Math对象、Date对象都是内建对象。</p>
+<h4 id="宿主对象"><a href="#宿主对象" class="headerlink" title="宿主对象"></a>宿主对象</h4><p>有些已经预定义的对象是由运行环境提供，具体到web就是浏览器提供的，这些对象被称为宿主对象。不仅包括Form、Image、Element等，还包括document对象。</p>
+<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>window对象对应浏览器窗口本身，这个对象的属性和方法通常称为BOM（浏览器对象模型）。</p>
+<p>DOM的节点树和家谱类似。</p>
+<h3 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h3><p>节点分为元素节点、文本节点、属性节点。</p>
+<p><img src="/assets/images/《JavaScript DOM编程艺术》学习笔记/20170219637762017-02-19_15-08-01.png" alt="20170219637762017-02-19_15-08-01.png"></p>
+<h3 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h3><h4 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById"></a>getElementById</h4><p><code>getElementById</code>返回的是一个对象。</p>
+<h4 id="getElementsByTagName"><a href="#getElementsByTagName" class="headerlink" title="getElementsByTagName"></a>getElementsByTagName</h4><p><code>getElementsByTagName</code>返回的是一个对象数组，<span id="inline-red">即使整个文档只有一个元素，<code>getElementsByTagName</code>返回的也是数组，数组长度为1</span>。</p>
+<p><code>getElementsByTagName</code>允许把一个通配符作为参数，返回文档中所有元素，<code>*</code>必须放在引号中（为了与乘法操作符区别）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">"*"</span>);</span><br></pre></td></tr></table></figure>
+<p><code>getElementsByTagName</code>可以和<code>getElementById</code>结合起来使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shopping = <span class="built_in">document</span>.getElementById(<span class="string">"purchase"</span>);</span><br><span class="line"><span class="keyword">var</span> items = shopping.getElementsByTagName(<span class="string">"*"</span>);</span><br><span class="line"><span class="comment">//返回shopping下面所有的标签</span></span><br></pre></td></tr></table></figure>
+<h4 id="getElementsByClassName"><a href="#getElementsByClassName" class="headerlink" title="getElementsByClassName"></a>getElementsByClassName</h4><p><code>getElementsByClassName</code>返回的是一个具有同类名元素的数组。</p>
+<p>可以指定多个类名，只要在字符串参数中用空格分隔类名，匹配时类名顺序不重要，就算类名还带有其他类名也可以匹配：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByClassName(<span class="string">"tc zj"</span>);</span><br></pre></td></tr></table></figure>
+<p><code>getElementsByClassName</code>兼容性可以使用下面的脚本实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClassName</span>(<span class="params">node, classname</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (node.getElementsByClassName)&#123;</span><br><span class="line">    <span class="comment">//使用现有方法</span></span><br><span class="line">    <span class="keyword">return</span> node.getElementsByClassName(classname);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> results = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">    <span class="keyword">var</span> elems = node.getElementsByTagName(<span class="string">"*"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;elems.length; i++)&#123;</span><br><span class="line">      <span class="keyword">if</span> (elems[i].className.indexOf(classname)!=<span class="number">-1</span>)&#123;</span><br><span class="line">        results[results.length] = elems[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取和设置属性"><a href="#获取和设置属性" class="headerlink" title="获取和设置属性"></a>获取和设置属性</h3><h4 id="getAttribute"><a href="#getAttribute" class="headerlink" title="getAttribute"></a>getAttribute</h4><p><code>getAttribute</code>方法不属于document对象，只能通过元素节点对象调用。属性不存在时返回<code>null</code>。</p>
+<p>如果something是<code>null</code>，<code>if (something)</code>和<code>if (something != null)</code>等价。</p>
+<h4 id="setAttribute"><a href="#setAttribute" class="headerlink" title="setAttribute"></a>setAttribute</h4><p><code>setAttribute</code>方法也只能通过元素节点对象调用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object.setAttribute(attribute,value);</span><br></pre></td></tr></table></figure>
+<p>通过<code>setAttribute</code>对文档做出的修改后，再通过浏览器的view source（查看源码）选项去查看文档的源码时看到的仍将是改变前的值，也就是说<span id="inline-red"><code>setAttribute</code>做出的修改不会反映在文档本身的源码中</span>。这是因为：</p>
+<p id="div-border-left-red">DOM的工作模式是：先加载文档的静态内容，再动态刷新，动态刷新不影响文档的静态内容。这正是DOM的真正威力：对页面进行刷新不需要再浏览器里刷新页面。</p>
+
+<h2 id="案例研究：JavaScript图片库"><a href="#案例研究：JavaScript图片库" class="headerlink" title="案例研究：JavaScript图片库"></a>案例研究：JavaScript图片库</h2><h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>DOM是一种适用于多种环境和多种程序设计语言的通用型API。如果想把从本书学到的DOM技巧运用在web浏览器以外的应用环境里，严格遵守”第1级DOM“能够让你避免与兼容性有关的任何问题。</p>
+<h3 id="应用这个JavaScript函数"><a href="#应用这个JavaScript函数" class="headerlink" title="应用这个JavaScript函数"></a>应用这个JavaScript函数</h3><h4 id="事件处理函数"><a href="#事件处理函数" class="headerlink" title="事件处理函数"></a>事件处理函数</h4><p id="div-border-left-green">事件处理函数的工作机制：在给某个元素添加事件处理函数后，一旦事件发生，相应的JavaScript代码就会得到执行。被调用的JavaScript代码可以返回一个值，这个值将被传递给那个事件处理函数。</p>
+
+<p>例如：给某个链接添加一个<code>onclick</code>事件处理函数，<code>onclick</code>事件处理函数所触发的JavaScript代码会返回<code>false</code>或者<code>true</code>。当这个链接被点击时，如果那段JavaScript代码返回的是<code>true</code>，<code>onclick</code>事件处理函数就认为”这个链接被点击了“；反之，如果返回值是<code>false</code>,<code>onclick</code>事件处理函数就认为”这个链接没有被点击“。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--当点击时，返回的是false，链接的默认行为没有被触发--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://tc9011.com"</span> <span class="attr">onclick</span>=<span class="string">"return false"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="对这个函数进行扩展"><a href="#对这个函数进行扩展" class="headerlink" title="对这个函数进行扩展"></a>对这个函数进行扩展</h3><h4 id="childNodes属性"><a href="#childNodes属性" class="headerlink" title="childNodes属性"></a>childNodes属性</h4><p>在一颗节点树上，<code>childNodes</code>属性可以获取任何一个元素的所有子元素，它是一个包含这个元素全部子元素的数组。</p>
+<h4 id="nodeType属性"><a href="#nodeType属性" class="headerlink" title="nodeType属性"></a>nodeType属性</h4><p>每个节点都有<code>nodeType</code>属性，<code>nodeType</code>的值是一个数字：</p>
+<ul>
+<li>元素节点的<code>nodeType</code>属性值是1</li>
+<li>属性节点的<code>nodeType</code>属性值是2</li>
+<li>文本节点的<code>nodeType</code>属性值是3</li>
+</ul>
+<h4 id="nodeValue属性"><a href="#nodeValue属性" class="headerlink" title="nodeValue属性"></a>nodeValue属性</h4><p><code>nodeValue</code>属性用来获取或者设置一个节点的值。</p>
+<p><code>&lt;p&gt;</code>元素里的文本是另一种节点，<code>&lt;p&gt;</code>元素本身的<code>nodeValue</code>是一个空值：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"description"</span>&gt;</span>Choose an image<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> description = <span class="built_in">document</span>.getElementById(<span class="string">"description"</span>);</span><br><span class="line">alert(description.nodeValue);<span class="comment">//输出null</span></span><br><span class="line">alert(description.childNodes[<span class="number">0</span>].nodeValue);<span class="comment">//输出"Choose an image"</span></span><br><span class="line">alert(description.firstChild.nodeValue);<span class="comment">//输出"Choose an image"</span></span><br></pre></td></tr></table></figure>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="平稳退化"><a href="#平稳退化" class="headerlink" title="平稳退化"></a>平稳退化</h3><p>JavaScript使用<code>window</code>对象的<code>open()</code>方法来创建新的浏览器窗口。这个方法有三个参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.open(url,name,feature)</span><br></pre></td></tr></table></figure>
+<p>这三个参数都是可选的：</p>
+<ul>
+<li>第一个参数是想在新窗口打开的URL地址。省略则弹出空白窗口。</li>
+<li>第二个参数是新窗口的名字。可以在代码中通过这个名字与新窗口进行通信。</li>
+<li>第三个参数是一个以逗号分隔的字符串，其内容是新窗口的各种属性。</li>
+</ul>
+<h4 id="”javascript-“伪协议"><a href="#”javascript-“伪协议" class="headerlink" title="”javascript:“伪协议"></a>”javascript:“伪协议</h4><p>”javascript:“伪协议让我们通过一个链接来调用JavaScript函数。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:popUp("</span><span class="attr">http:</span>//<span class="attr">tc9011.com</span>");"&gt;</span>tc9011.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><span id="inline- red">在HTML文档中通过”javascript:“伪协议调用JavaScript代码的做法非常不好。</span></p>
+<h3 id="分离JavaScript"><a href="#分离JavaScript" class="headerlink" title="分离JavaScript"></a>分离JavaScript</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://tc9011.com"</span> <span class="attr">onclick</span>=<span class="string">"popUp(this.href);return false"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript语言不要求事件必须在HTML文档里处理（如上面的<code>onclick</code>事件可以分离到外部JavaScript文件中。），可以在外部的JavaScript文件里面把一个事件添加到HTML文档中某个元素上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getElementById(id).event = active</span><br></pre></td></tr></table></figure>
+<p>如果涉及多个元素，可以用<code>getElementsByTagName</code>和<code>getAttribute</code>把事件添加到有着特定属性的一组元素上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> links = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"a"</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">  <span class="keyword">if</span> (links[i].getAttribute(<span class="string">"class"</span>) == <span class="string">"popup"</span>)&#123;</span><br><span class="line">    links[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      popUp(<span class="keyword">this</span>.getAttribute(<span class="string">"href"</span>));</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码把click操作从HTML文档中分离出来。</p>
+<p>当HTML文档全部加载完毕将触发<code>window.onload</code>事件，这个事件触发时document对象已经存在，这样可以避免HTML没有加载完全时，JavaScript代码获取不到相应的id或者class。</p>
+<h3 id="性能考虑"><a href="#性能考虑" class="headerlink" title="性能考虑"></a>性能考虑</h3><h4 id="尽量减少访问DOM和尽量减少标记"><a href="#尽量减少访问DOM和尽量减少标记" class="headerlink" title="尽量减少访问DOM和尽量减少标记"></a>尽量减少访问DOM和尽量减少标记</h4><p id="div-border-left-red">访问DOM对脚本性能会产生非常大的影响。多次访问相同的DOM，可以先把第一次搜索的结果保存在一个变量中。</p>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.getElementsByTagName(<span class="string">"a"</span>).length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> links = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"a"</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">    <span class="comment">//对每个链接节点做处理</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">------------优化后------------</span><br><span class="line"><span class="keyword">var</span> links = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"a"</span>);</span><br><span class="line"><span class="keyword">if</span> (links.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">    <span class="comment">//对每个链接节点做处理</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="案例研究：图片库改进版"><a href="#案例研究：图片库改进版" class="headerlink" title="案例研究：图片库改进版"></a>案例研究：图片库改进版</h2><h3 id="它支持平稳退化吗"><a href="#它支持平稳退化吗" class="headerlink" title="它支持平稳退化吗"></a>它支持平稳退化吗</h3><p><code>href</code>设置为真实值，在JavaScript被禁用的情况下，链接也能跳转。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"images/1.jpg"</span> <span class="attr">title</span>=<span class="string">"A"</span> <span class="attr">onclick</span>=<span class="string">"showPic(this);return false"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="它的JavaScript与HTML标记是分离的吗"><a href="#它的JavaScript与HTML标记是分离的吗" class="headerlink" title="它的JavaScript与HTML标记是分离的吗"></a>它的JavaScript与HTML标记是分离的吗</h3><p>出现多个<code>window.onload</code>时，只会执行最后一个。可以使用自定义的addLoadEvent函数完成多个函数绑定到<code>window.onload</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oldonload = <span class="built_in">window</span>.onload;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.onload != <span class="string">"function"</span>)&#123;</span><br><span class="line">        <span class="built_in">window</span>.onload = func;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            oldonload();</span><br><span class="line">            func();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">------------使用------------</span><br><span class="line">addLoadEvent(firstFunction);</span><br><span class="line">addLoadEvent(secondFunction);</span><br></pre></td></tr></table></figure>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p><code>nodeName</code>属性总是返回一个大写字母的值，即使元素在HTML文档里面是小写字母。</p>
+<h3 id="键盘访问"><a href="#键盘访问" class="headerlink" title="键盘访问"></a>键盘访问</h3><p>用<code>Tab</code>键移动到某个链接然后按下回车键的动作也会出发<code>onclick</code>事件。</p>
+<h3 id="DOM-Core和HTML-DOM"><a href="#DOM-Core和HTML-DOM" class="headerlink" title="DOM Core和HTML-DOM"></a>DOM Core和HTML-DOM</h3><ul>
+<li>getElementById</li>
+<li>getElementsByTagName</li>
+<li>getAttribute</li>
+<li>setAttribute</li>
+</ul>
+<p>这些方法都是DOM Core的组成部分。它们并不专属于JavaScript，支持DOM和任何一种程序设计语言都可以使用它们。</p>
+<p><code>onclick</code>属性属于HTML-DOM，HTML-DOM只能用来处理web文档。HTML-DOM书写更简短：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">"form"</span>)	--&gt;</span><br><span class="line"><span class="built_in">document</span>.forms</span><br><span class="line">--------分割线--------</span><br><span class="line">element.getAttribute(<span class="string">"src"</span>)	--&gt;</span><br><span class="line">element.src</span><br><span class="line">--------分割线--------</span><br><span class="line"><span class="keyword">var</span> source = whichpic.getAttribute(<span class="string">"href"</span>)	--&gt;</span><br><span class="line"><span class="keyword">var</span> source = whichpic.href</span><br><span class="line">--------分割线--------</span><br><span class="line">placeholder.setAttribute(<span class="string">"src"</span>,source)	--&gt;</span><br><span class="line">placeholder.src = source</span><br></pre></td></tr></table></figure>
+<h2 id="动态创建标记"><a href="#动态创建标记" class="headerlink" title="动态创建标记"></a>动态创建标记</h2><h3 id="一些传统的方法"><a href="#一些传统的方法" class="headerlink" title="一些传统的方法"></a>一些传统的方法</h3><h4 id="document-write"><a href="#document-write" class="headerlink" title="document.write"></a>document.write</h4><p><code>document.write</code>最大的缺点是违背了“行为应该和表现分离”的原则，应该避免使用。</p>
+<h4 id="innerHTML属性"><a href="#innerHTML属性" class="headerlink" title="innerHTML属性"></a>innerHTML属性</h4><p><code>innerHTML</code>无法区分“插入一段HTML内容”和“替换一段HTML内容”，一旦使用这个属性，里面全部内容都将被替换。</p>
+<h3 id="DOM方法"><a href="#DOM方法" class="headerlink" title="DOM方法"></a>DOM方法</h3><p>浏览器实际显示的是DOM节点树，不是物理文档的内容。</p>
+<h4 id="createElement方法"><a href="#createElement方法" class="headerlink" title="createElement方法"></a>createElement方法</h4><p>createElement方法只能创建元素节点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.createElement(nodeName);</span><br></pre></td></tr></table></figure>
+<h4 id="appendChild方法"><a href="#appendChild方法" class="headerlink" title="appendChild方法"></a>appendChild方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.appendChild(child);</span><br></pre></td></tr></table></figure>
+<h4 id="createTextNode方法"><a href="#createTextNode方法" class="headerlink" title="createTextNode方法"></a>createTextNode方法</h4><p>createTextNode方法用来创建文本节点。</p>
+<h3 id="重返图片库"><a href="#重返图片库" class="headerlink" title="重返图片库"></a>重返图片库</h3><blockquote>
+<p>如果元素存在只是为让DOM方法处理，用DOM方法来创建它们才是最合适的。</p>
+</blockquote>
+<p id="div-border-left-yellow">这样是不是太极端了，增加了对DOM的操作，会不会影响性能？</p>
+
+<h4 id="在已有元素前插入一个新元素"><a href="#在已有元素前插入一个新元素" class="headerlink" title="在已有元素前插入一个新元素"></a>在已有元素前插入一个新元素</h4><p><code>insertBefore()</code>方法把一个新元素插入到现有元素的前面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parentElement.insertBefore(newElement,targetElement);</span><br><span class="line">parentElement 等于 targetElement.parentNode</span><br></pre></td></tr></table></figure>
+<h4 id="在现有元素后插入一个新元素"><a href="#在现有元素后插入一个新元素" class="headerlink" title="在现有元素后插入一个新元素"></a>在现有元素后插入一个新元素</h4><h5 id="编写insertAfter函数"><a href="#编写insertAfter函数" class="headerlink" title="编写insertAfter函数"></a>编写insertAfter函数</h5><p>DOM本身没有提供insertAfter函数，可以利用已有DOM方法和属性编写一个：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertAfter</span>(<span class="params">newElement,targetElement</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> parent = targetElement.parentNode;</span><br><span class="line">    <span class="keyword">if</span> (parent.lastChild == targetElement)&#123;</span><br><span class="line">        parent.appendChild(newElement);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        parent.insertBefore(newElement,targetElement.nextSibling);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><h4 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h4><p>XMLHttpRequest对象充当浏览器中的脚本（客户端）与服务器之间的中间人的角色。</p>
+<p><code>onreadystatechange</code>是一个事件处理函数，它会在服务器给XMLHttpRequest对象送回响应的时候被触发执行。在这个处理函数中，可以根据服务器的具体响应做相应的处理。</p>
+<p>服务器在向XMLHttpRequest对象发回响应时，浏览器会在不同阶段更新<code>readyState</code>属性的值：</p>
+<ul>
+<li>0表示未初始化</li>
+<li>1表示正在加载</li>
+<li>2表示加载完毕</li>
+<li>3表示正在交互</li>
+<li>4表示完成</li>
+</ul>
+<p>访问服务器发送回来的数据要通过两个属性完成。一个是<code>responseText</code>属性，这个属性用于保存文本字符串形式的数据。另一个属性是<code>responseXML</code>属性，用于保存<code>content-Type</code>头部中指定为<code>text/xml</code>的数据，其实是一个<code>DocumentFragment</code>对象。</p>
+<h2 id="充实文档的内容"><a href="#充实文档的内容" class="headerlink" title="充实文档的内容"></a>充实文档的内容</h2><h3 id="不应该做什么"><a href="#不应该做什么" class="headerlink" title="不应该做什么"></a>不应该做什么</h3><p id="div-border-left-red">遵循下面两个原则：<br><br>1、渐进增强。应该在最开始根据内容使用标记实现良好的结构，然后再逐步加强这些内容。这些增强工作可以是通过css改进呈现效果，也可以通过DOM添加各种行为。<br><br>2、平稳退化。渐进增强的实现必然支持平稳退化。缺乏必要css和DOM支持的访问者仍然可以访问到核心内容。</p>
+
+<h2 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a>CSS-DOM</h2><h3 id="三位一体的网页"><a href="#三位一体的网页" class="headerlink" title="三位一体的网页"></a>三位一体的网页</h3><h4 id="结构层"><a href="#结构层" class="headerlink" title="结构层"></a>结构层</h4><p>结构层由HTML或XHTML之类的标记语言负责创建。</p>
+<h4 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h4><p>表示层由css负责完成。css描述页面内容应该如何呈现。</p>
+<h4 id="行为层"><a href="#行为层" class="headerlink" title="行为层"></a>行为层</h4><p>行为层负责内容应该如何响应事件这一问题。这是JavaScript和DOM主宰的领域。</p>
+<h3 id="style属性"><a href="#style属性" class="headerlink" title="style属性"></a>style属性</h3><p>每个元素的<code>style</code>属性是都是一个对象。</p>
+<p>引用中间带减号的css属性时，DOM要求用驼峰命名法。例如：<code>font-family</code>变成<code>element.style.fontFamily</code>。</p>
+<h3 id="何时该用DOM脚本设置样式"><a href="#何时该用DOM脚本设置样式" class="headerlink" title="何时该用DOM脚本设置样式"></a>何时该用DOM脚本设置样式</h3><p>为有类似属性的多个元素声明样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type*="text"]</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据元素位置声明样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-of-type</span> &#123;</span><br><span class="line">  <span class="attribute">font-of-size</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要决定是采用纯粹的CSS来解决，还是利用DOM来设置样式，需要考虑以下因素：</p>
+<ul>
+<li>这个问题最简单的解决方案是什么；</li>
+<li>哪种解决方案会得到更多浏览器的支持。</li>
+</ul>
+<h3 id="className属性"><a href="#className属性" class="headerlink" title="className属性"></a>className属性</h3><p>通过className属性直接赋值来设置某个元素的class属性将替换该元素的原有class属性。如要追加class属性，可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elem.className += <span class="string">" intro"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="用JavaScript实现动画效果"><a href="#用JavaScript实现动画效果" class="headerlink" title="用JavaScript实现动画效果"></a>用JavaScript实现动画效果</h2><h3 id="动画基础知识"><a href="#动画基础知识" class="headerlink" title="动画基础知识"></a>动画基础知识</h3><h4 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h4><p><code>position</code>属性的合法值有<code>static</code>、<code>fixed</code>、<code>relative</code>和<code>absolute</code>四种。<code>static</code>是<code>position</code>属性的默认值，意思是有关元素将按照它们在标记里出现的先后顺序出现在浏览器窗口里。<code>relative</code>含义和<code>static</code>相似，区别在于<code>position</code>属性等于<code>relative</code>的元素还可以（通过应用<code>float</code>属性）从文档的正常显示顺序里脱离出来。</p>
+<p>如果把某个元素的<code>position</code>属性设置为<code>absolute</code>，我们就可以把它摆放到容纳它的”容器“的任何位置。这个容器要么是文档本身，要么是一个有着<code>fixed</code>或者<code>absolute</code>属性的父元素。这个元素原始标记里出现的位置与它的显示位置无关，因为它的显示位置由<code>top</code>、<code>left</code>、<code>right</code>和<code>bottom</code>等属性决定。</p>
+<h4 id="时间递增量"><a href="#时间递增量" class="headerlink" title="时间递增量"></a>时间递增量</h4><p>JavaScript函数<code>parseInt</code>可以把字符串里的数值信息提取出来。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">"18 forbidden"</span>);<span class="comment">//返回数值18</span></span><br></pre></td></tr></table></figure>
+<h3 id="实用的动画"><a href="#实用的动画" class="headerlink" title="实用的动画"></a>实用的动画</h3><p>W3C在web内容可访问性指南（Web Content Accessibility Guidelines）7.2节里给出这样的建议：</p>
+<blockquote>
+<p>除非浏览器允许用户”冻结“移动着的内容，否则就应该避免让内容在页面中移动。（优先级2）。如果页面上有移动着的内容，就应该用脚本或插件的机制允许用户”冻结“这种移动或动态更新行为。</p>
+</blockquote>
+<h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><p>CSS的<code>overflow</code>属性用来处理一个元素的尺寸超出其容器尺寸的情况。<code>overflow</code>属性有四个可取值：</p>
+<ul>
+<li>visible：不剪裁溢出的内容。浏览器将把溢出的内容呈现在其容器元素的显示区域以外，全部内容都可见。</li>
+<li>hidden：隐藏溢出的内容。内容只显示在其容器元素的显示区域里，这意味着只有一部分内容可见。</li>
+<li>scroll：类似于hidden，浏览器将对溢出的内容进行隐藏，但是显示一个滚动条以便让用户能够滚动看到内容的其他的地方。</li>
+<li>auto：类似于scroll，但浏览器只在确实发生溢出时才显示滚动条。如果内容没有溢出，就不显示滚动条。</li>
+</ul>
+<p>父元素的<code>position</code>设置为<code>relative</code>，子元素的（0，0）坐标将固定在父元素的左上角。</p>
+<h4 id="变量作用域问题"><a href="#变量作用域问题" class="headerlink" title="变量作用域问题"></a>变量作用域问题</h4><p>属性是只与某个特定元素有关的变量。JavaScript允许我们为元素创建属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.property = value;</span><br></pre></td></tr></table></figure>
+<p>这和创建变量很像，但是区别在于这是属于某个特定元素的变量。</p>
+<p id="div-border-left-red">下面是我自己改写的时候碰到的for循环中的闭包问题，按照错误的改写，for循环中i的值始终为2，要使得for循环每次正常输出，需要先把i的值赋给每个links的i属性，调用时候用this表示当前links来调用i属性。参考资料<a href="http://www.jb51.net/article/87084.htm" rel="external nofollow noopener noreferrer" target="_blank">浅谈JavaScript for循环 闭包</a></p>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">//把下面改写成for循环。</span></span><br><span class="line">	links[<span class="number">0</span>].onmousemove = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        moveElement(<span class="string">"preview"</span>,<span class="number">-110</span>,<span class="number">0</span>,<span class="number">10</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    links[<span class="number">1</span>].onmousemove = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        moveElement(<span class="string">"preview"</span>,<span class="number">-220</span>,<span class="number">0</span>,<span class="number">10</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    links[<span class="number">2</span>].onmousemove = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        moveElement(<span class="string">"preview"</span>,<span class="number">-330</span>,<span class="number">0</span>,<span class="number">10</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">--------------错误改写--------------</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">        links[i].onmousemove = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> x = (i+<span class="number">1</span>)*<span class="number">-110</span>;</span><br><span class="line">            moveElement(<span class="string">"preview"</span>,x,<span class="number">0</span>,<span class="number">10</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">--------------正确改写--------------</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;links.length; i++)&#123;</span><br><span class="line">        links[i].i = i;</span><br><span class="line">        links[i].onmousemove = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> x = (<span class="keyword">this</span>.i+<span class="number">1</span>)*<span class="number">-110</span>;</span><br><span class="line">            moveElement(<span class="string">"preview"</span>,x,<span class="number">0</span>,<span class="number">10</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><p>XHTML语法比HTML严格，如：标签一定要闭合、标签一定要是小写、所有属性都要赋值等。</p>
+<h3 id="几个示例"><a href="#几个示例" class="headerlink" title="几个示例"></a>几个示例</h3><h4 id="音频和视频"><a href="#音频和视频" class="headerlink" title="音频和视频"></a>音频和视频</h4><p>为了保证HTML5的最大兼容性，至少要包含下列三个版本：</p>
+<ul>
+<li>基于H.264和AAC的MP4</li>
+<li>WebM（VP8+Vorbis）</li>
+<li>基于Theora视频和Vorbis音频的Ogg文件</li>
+</ul>
+<p>为了最大程度兼容不支持HTML5的浏览器，一般还要准备一个flash或者QuickTime插件版的视频。</p>
+<p id="div-border-left-green">不同视频格式排序的时候应该把MP4放在第一位，因为IOS4之前版本中的Mobile Safari只能解析一个<code>&lt;video&gt;</code>元素，故把针对IOS格式的放在最前面</p>
+
+<h5 id="自定义控件"><a href="#自定义控件" class="headerlink" title="自定义控件"></a>自定义控件</h5><p><code>&lt;video&gt;</code>元素自定义控件可以通过一些DOM属性来实现，主要包括：</p>
+<ul>
+<li>currentTime，返回当前播放的位置，以秒表示；</li>
+<li>duration，返回媒体的总时长，以秒表示，对流媒体返回无穷大；</li>
+<li>pause，表示媒体是否处于暂停状态；</li>
+</ul>
+<p>此外，还有一些与特定媒体相关的事件，可以用来触发你的脚本。主要事件有：</p>
+<ul>
+<li>play，在媒体播放开始时发生；</li>
+<li>pause，在媒体暂停时发生；</li>
+<li>loadeddata，在媒体可以从当前播放位置开始播放时发生；</li>
+<li>ended，在媒体已播放完成而停止时发生。</li>
+</ul>
+<p>不管创建什么控件，都不要忘了在<code>&lt;video&gt;</code>元素中添加<code>control</code>属性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">"movie.ogv"</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h4><p>新的输入控件类型包括：</p>
+<ul>
+<li>email</li>
+<li>url</li>
+<li>date</li>
+<li>number</li>
+<li>range，用于生成滑动条</li>
+<li>search</li>
+<li>tel</li>
+<li>color，用于选择颜色</li>
+</ul>
+<p>新的属性：</p>
+<ul>
+<li>autocomplete，用于文本输入框添加一组建议的输入项；</li>
+<li>autofocus，用于让表单元素自动获得焦点；</li>
+<li>form，用于对<code>&lt;form&gt;</code>标签外部的表单元素分组；</li>
+<li>min、max和step，用在范围（range）和数值（number）输入框中；</li>
+<li>pattern，用于定义一个正则表达式，以便验证输入的值；</li>
+<li>placeholder</li>
+<li>required，表示必填</li>
+</ul>
+<h2 id="综合示例"><a href="#综合示例" class="headerlink" title="综合示例"></a>综合示例</h2><h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><p>把css可以拆成几个模块，然后用<code>@import</code>导入到一个基本的样式表<code>basic.css</code>中，如果要添加或者删除一个样式，只要编辑<code>basic.css</code>就可以。在html中也只要引入<code>basic.css</code>就行。</p>
+<h4 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h4><p>不管哪个元素应用什么颜色，都要同时给它一个背景颜色。</p>
+<h3 id="JavaScript-1"><a href="#JavaScript-1" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>取到当前页面的URL可以使用<code>window.location.href</code>。</p>
+<h4 id="表单-1"><a href="#表单-1" class="headerlink" title="表单"></a>表单</h4><p>每一个form对象都有一个<code>elements.length</code>属性，这个属性返回表单中包含的表单元素的个数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">form.elements.length</span><br></pre></td></tr></table></figure>
+<p>这个返回值与<code>childNodes.length</code>不一样，后者返回的是元素中包含的所有节点的个数。而form对象的<code>elements.length</code>属性只关注那些属于表单元素的元素，如：input、textarea等。</p>
+<p><code>form.elements</code>是包含了所有表单元素的数组。</p>
+<p><code>elements</code>数组中的每个表单元素都有自己的一组属性。</p>
+<p><code>elements.value</code>保存了表单元素的当前值。</p>
+<p><code>onfocus</code>事件会在用户通过按Tab键或者单击表单字段时被触发。</p>
+<p><code>onblur</code>事件会在用户把焦点移除表单字段时触发。</p>
+<p><code>encodeURIComponent</code>函数把有歧义的字符串转换成对应的ASCⅡ编码。</p>
+<p><img src="/assets/images/《JavaScript DOM编程艺术》学习笔记/20170331149096012698856.png" alt="20170331149096012698856.png"></p>
+<iframe src="https://www.xmind.net/embed/nh6f" width="620px" height="540px"></iframe>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2017/02/25/《JavaScript DOM编程艺术》学习笔记/" title="《JavaScript DOM编程艺术》学习笔记">https://tc9011.com/2017/02/25/《JavaScript DOM编程艺术》学习笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/18/听说你的placeholder想换行？/" rel="next" title="听说你的placeholder想换行？">
+                <i class="fa fa-chevron-left"></i> 听说你的placeholder想换行？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/03/AngularJS2中一种button切换效果的实现（三）/" rel="prev" title="AngularJS2中一种button切换效果的实现（三）">
+                AngularJS2中一种button切换效果的实现（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript语法"><span class="nav-number">1.</span> <span class="nav-text">JavaScript语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">1.2.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算术操作符"><span class="nav-number">1.2.1.</span> <span class="nav-text">算术操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较操作符"><span class="nav-number">1.2.2.</span> <span class="nav-text">比较操作符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">1.3.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">1.4.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内建对象"><span class="nav-number">1.4.1.</span> <span class="nav-text">内建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宿主对象"><span class="nav-number">1.4.2.</span> <span class="nav-text">宿主对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM"><span class="nav-number">2.</span> <span class="nav-text">DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节点"><span class="nav-number">2.1.</span> <span class="nav-text">节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取元素"><span class="nav-number">2.2.</span> <span class="nav-text">获取元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#getElementById"><span class="nav-number">2.2.1.</span> <span class="nav-text">getElementById</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getElementsByTagName"><span class="nav-number">2.2.2.</span> <span class="nav-text">getElementsByTagName</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getElementsByClassName"><span class="nav-number">2.2.3.</span> <span class="nav-text">getElementsByClassName</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取和设置属性"><span class="nav-number">2.3.</span> <span class="nav-text">获取和设置属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#getAttribute"><span class="nav-number">2.3.1.</span> <span class="nav-text">getAttribute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setAttribute"><span class="nav-number">2.3.2.</span> <span class="nav-text">setAttribute</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例研究：JavaScript图片库"><span class="nav-number">3.</span> <span class="nav-text">案例研究：JavaScript图片库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-number">3.1.</span> <span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用这个JavaScript函数"><span class="nav-number">3.2.</span> <span class="nav-text">应用这个JavaScript函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件处理函数"><span class="nav-number">3.2.1.</span> <span class="nav-text">事件处理函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对这个函数进行扩展"><span class="nav-number">3.3.</span> <span class="nav-text">对这个函数进行扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#childNodes属性"><span class="nav-number">3.3.1.</span> <span class="nav-text">childNodes属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodeType属性"><span class="nav-number">3.3.2.</span> <span class="nav-text">nodeType属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodeValue属性"><span class="nav-number">3.3.3.</span> <span class="nav-text">nodeValue属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">4.</span> <span class="nav-text">最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平稳退化"><span class="nav-number">4.1.</span> <span class="nav-text">平稳退化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#”javascript-“伪协议"><span class="nav-number">4.1.1.</span> <span class="nav-text">”javascript:“伪协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分离JavaScript"><span class="nav-number">4.2.</span> <span class="nav-text">分离JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能考虑"><span class="nav-number">4.3.</span> <span class="nav-text">性能考虑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#尽量减少访问DOM和尽量减少标记"><span class="nav-number">4.3.1.</span> <span class="nav-text">尽量减少访问DOM和尽量减少标记</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例研究：图片库改进版"><span class="nav-number">5.</span> <span class="nav-text">案例研究：图片库改进版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#它支持平稳退化吗"><span class="nav-number">5.1.</span> <span class="nav-text">它支持平稳退化吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#它的JavaScript与HTML标记是分离的吗"><span class="nav-number">5.2.</span> <span class="nav-text">它的JavaScript与HTML标记是分离的吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">5.3.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘访问"><span class="nav-number">5.4.</span> <span class="nav-text">键盘访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-Core和HTML-DOM"><span class="nav-number">5.5.</span> <span class="nav-text">DOM Core和HTML-DOM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态创建标记"><span class="nav-number">6.</span> <span class="nav-text">动态创建标记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些传统的方法"><span class="nav-number">6.1.</span> <span class="nav-text">一些传统的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#document-write"><span class="nav-number">6.1.1.</span> <span class="nav-text">document.write</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#innerHTML属性"><span class="nav-number">6.1.2.</span> <span class="nav-text">innerHTML属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM方法"><span class="nav-number">6.2.</span> <span class="nav-text">DOM方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#createElement方法"><span class="nav-number">6.2.1.</span> <span class="nav-text">createElement方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#appendChild方法"><span class="nav-number">6.2.2.</span> <span class="nav-text">appendChild方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createTextNode方法"><span class="nav-number">6.2.3.</span> <span class="nav-text">createTextNode方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重返图片库"><span class="nav-number">6.3.</span> <span class="nav-text">重返图片库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在已有元素前插入一个新元素"><span class="nav-number">6.3.1.</span> <span class="nav-text">在已有元素前插入一个新元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在现有元素后插入一个新元素"><span class="nav-number">6.3.2.</span> <span class="nav-text">在现有元素后插入一个新元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#编写insertAfter函数"><span class="nav-number">6.3.2.1.</span> <span class="nav-text">编写insertAfter函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax"><span class="nav-number">6.4.</span> <span class="nav-text">Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XMLHttpRequest对象"><span class="nav-number">6.4.1.</span> <span class="nav-text">XMLHttpRequest对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#充实文档的内容"><span class="nav-number">7.</span> <span class="nav-text">充实文档的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不应该做什么"><span class="nav-number">7.1.</span> <span class="nav-text">不应该做什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-DOM"><span class="nav-number">8.</span> <span class="nav-text">CSS-DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三位一体的网页"><span class="nav-number">8.1.</span> <span class="nav-text">三位一体的网页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构层"><span class="nav-number">8.1.1.</span> <span class="nav-text">结构层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表示层"><span class="nav-number">8.1.2.</span> <span class="nav-text">表示层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行为层"><span class="nav-number">8.1.3.</span> <span class="nav-text">行为层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#style属性"><span class="nav-number">8.2.</span> <span class="nav-text">style属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时该用DOM脚本设置样式"><span class="nav-number">8.3.</span> <span class="nav-text">何时该用DOM脚本设置样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#className属性"><span class="nav-number">8.4.</span> <span class="nav-text">className属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用JavaScript实现动画效果"><span class="nav-number">9.</span> <span class="nav-text">用JavaScript实现动画效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动画基础知识"><span class="nav-number">9.1.</span> <span class="nav-text">动画基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#位置"><span class="nav-number">9.1.1.</span> <span class="nav-text">位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间递增量"><span class="nav-number">9.1.2.</span> <span class="nav-text">时间递增量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实用的动画"><span class="nav-number">9.2.</span> <span class="nav-text">实用的动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS"><span class="nav-number">9.2.1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量作用域问题"><span class="nav-number">9.2.2.</span> <span class="nav-text">变量作用域问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5"><span class="nav-number">10.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个示例"><span class="nav-number">10.1.</span> <span class="nav-text">几个示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#音频和视频"><span class="nav-number">10.1.1.</span> <span class="nav-text">音频和视频</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义控件"><span class="nav-number">10.1.1.1.</span> <span class="nav-text">自定义控件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表单"><span class="nav-number">10.1.2.</span> <span class="nav-text">表单</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合示例"><span class="nav-number">11.</span> <span class="nav-text">综合示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#css"><span class="nav-number">11.1.</span> <span class="nav-text">css</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色"><span class="nav-number">11.1.1.</span> <span class="nav-text">颜色</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-1"><span class="nav-number">11.2.</span> <span class="nav-text">JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表单-1"><span class="nav-number">11.2.1.</span> <span class="nav-text">表单</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2017/02/25/《JavaScript DOM编程艺术》学习笔记/';
+        this.page.identifier = '2017/02/25/《JavaScript DOM编程艺术》学习笔记/';
+        this.page.title = '《JavaScript DOM编程艺术》学习笔记';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

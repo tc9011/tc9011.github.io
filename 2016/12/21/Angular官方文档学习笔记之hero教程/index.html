@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular官方文档学习笔记之hero教程">
+<meta property="og:url" content="https://tc9011.com/2016/12/21/Angular官方文档学习笔记之hero教程/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之hero教程/blog.jpg">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之hero教程/20161112402632016-11-12_13-40-24.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之hero教程/20161112965072016-11-12_13-56-31.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之hero教程/20161113120092016-11-13_20-49-51.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之hero教程/2016122138842HeroApp.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular官方文档学习笔记之hero教程">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/Angular官方文档学习笔记之hero教程/blog.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2016/12/21/Angular官方文档学习笔记之hero教程/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Angular官方文档学习笔记之hero教程 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2016/12/21/Angular官方文档学习笔记之hero教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Angular官方文档学习笔记之hero教程
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-21 00:11:13" itemprop="dateCreated datePublished" datetime="2016-12-21T00:11:13+08:00">2016-12-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/12/21/Angular官方文档学习笔记之hero教程/" class="leancloud_visitors" data-flag-title="Angular官方文档学习笔记之hero教程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/Angular官方文档学习笔记之hero教程/blog.jpg" alt="2017011547655o_7 1.png"></p>
+<a id="more"></a>
+<h2 id="ES6工具链"><a href="#ES6工具链" class="headerlink" title="ES6工具链"></a>ES6工具链</h2><p><img src="/assets/images/Angular官方文档学习笔记之hero教程/20161112402632016-11-12_13-40-24.png" alt="20161112402632016-11-12_13-40-24.png"></p>
+<p><img src="/assets/images/Angular官方文档学习笔记之hero教程/20161112965072016-11-12_13-56-31.png" alt="20161112965072016-11-12_13-56-31.png"></p>
+<ul>
+<li><strong>systemjs</strong> - 通用模块加载器，支持AMD、CommonJS、ES6等各种格式的JS模块加载</li>
+<li><strong>es6-module-loader</strong> - ES6模块加载器，systemjs会自动加载这个模块</li>
+<li><strong>traceur</strong> - ES6转码器，将ES6代码转换为当前浏览器支持的ES5代码。systemjs会自动加载 这个模块。</li>
+</ul>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p><img src="/assets/images/Angular官方文档学习笔记之hero教程/20161113120092016-11-13_20-49-51.png" alt="20161113120092016-11-13_20-49-51.png"></p>
+<p>根据<a href="https://angular.cn/docs/ts/latest/quickstart.html" rel="external nofollow noopener noreferrer" target="_blank">官方文档</a>的快速起步，按照自己的理解画了上面的流程图（有不对的地方还请指正）。</p>
+<ul>
+<li>包括Angular在内的Angular应用通过NgModules分成不同的代码块，需要哪个块，就import，这样可以减少文件体积。</li>
+<li>每一个Angular应用都至少有一个模块和组件，组件通过与它相关的模板来控制屏幕上的一小块（视图View），main.ts负责初始化应用平台，进行应用引导。</li>
+<li>为了方便测试组件，应用的引导应与组件或者模块分开，这样实现了MVM（model-view-whatever）</li>
+</ul>
+<h2 id="Hero教程"><a href="#Hero教程" class="headerlink" title="Hero教程"></a>Hero教程</h2><p>官网的Hero教程是建立在quickstart上的，所以可以把quickstart直接拿过来用。</p>
+<h3 id="英雄编辑器"><a href="#英雄编辑器" class="headerlink" title="英雄编辑器"></a>英雄编辑器</h3><p>class中可以定义一些变量、方法甚至是构造函数（用于初始化），export出来的class可以被外部使用。</p>
+<p>在Angular中<code>{{}}</code>用来取值。</p>
+<p>一个ts文件中可以定义多个export class，但是官方不提倡。</p>
+<p><code>id:number</code>和<code>hero:Hero = {}</code>都是指定了变量的类型。</p>
+<p>template中双引号改成反引号，可以写成多行形式。</p>
+<p>表单输入双向绑定需要导入FormsModule模块，<code>@NgModule</code>中的import数组是应用中用到的外部模块列表。</p>
+<p>用到Angular自带的模块，在import数组中声明；用到自定义的组件在declarations数组中声明。</p>
+<h3 id="主从结构"><a href="#主从结构" class="headerlink" title="主从结构"></a>主从结构</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HEROES: Hero[] = [</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">11</span>, <span class="attr">name</span>: <span class="string">'Mr. Nice'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">12</span>, <span class="attr">name</span>: <span class="string">'Narco'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">13</span>, <span class="attr">name</span>: <span class="string">'Bombasto'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">14</span>, <span class="attr">name</span>: <span class="string">'Celeritas'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">15</span>, <span class="attr">name</span>: <span class="string">'Magneta'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">16</span>, <span class="attr">name</span>: <span class="string">'RubberMan'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">17</span>, <span class="attr">name</span>: <span class="string">'Dynama'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">18</span>, <span class="attr">name</span>: <span class="string">'Dr IQ'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">19</span>, <span class="attr">name</span>: <span class="string">'Magma'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">20</span>, <span class="attr">name</span>: <span class="string">'Tornado'</span> &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>这段代码中的const是ES6中定义变量的关键字，在ES6中， const 代表一个值的常量索引，变量名字在内存中的指针不能够改变，但是指向这个变量的值 可能 改变。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> names = [ ] ;</span><br><span class="line">names . push ( “Jordan” ) ;</span><br><span class="line"><span class="built_in">console</span> . log ( names ) ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> names = [ ] ;</span><br><span class="line">names = [ ] ; <span class="comment">// Error!</span></span><br></pre></td></tr></table></figure>
+<p><code>*ngFor=&quot;let hero of heroes&quot;</code>中<code>ngFor</code>的<code>*</code>前缀表示<code></code>及其子元素组成了一个主控模板。</p>
+<p><code>ngFor</code>指令在<code>AppComponent.heroes</code>属性返回的<code>heroes</code>数组上迭代，并输出此模板的实例。</p>
+<p>引号中赋值给<code>ngFor</code>的那段文本表示“<em>从heroes数组中取出每个英雄，存入一个局部的hero变量，并让它在相应的模板实例中可用</em>”。</p>
+<p>为一个组件指定样式时，它们的作用域将仅限于该组件。</p>
+<p><code>ngIf</code>指令为<code>false</code>则从 DOM 中移除整段 HTML。</p>
+<p><code>[class.selected]=&quot;hero === selectedHero&quot;</code> 这个写法很有意思，<code>.</code>可以理解为css类选择器，在<code>class</code>上为<code>selected</code>类添加一个属性绑定（绑定了style中的<code>.selected</code>这个样式），当后面的表达式为true时，绑定这个样式，false时不绑定。而<code>[]</code>实现了从数据源(<code>hero === selectedHero</code>表达式)到<code>class</code>属性的单向数据流动。</p>
+<h3 id="多个组件"><a href="#多个组件" class="headerlink" title="多个组件"></a>多个组件</h3><p>可以将需要多次引用的类单独写入一个ts文件中。</p>
+<p><code>&lt;my-hero-detail [hero]=&quot;selectedHero&quot;&gt;&lt;/my-hero-detail&gt;</code>通过标签中的<code>[hero]=&quot;selectedHero&quot;</code>可以在不同组件之间传递数据。在需要引用<code>hero</code>的地方，用<code>@Input() hero: Hero;</code>来引入<code>hero</code>。</p>
+<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><p>当 TypeScript 看到<code>@Injectable()</code>装饰器时，就会记下本服务的元数据。 如果 Angular 需要往这个服务中注入其它依赖，就会使用这些元数据。</p>
+<p><code>HeroService</code>从<code>mock-heroes.ts</code>获取数据，并提供给其他组件使用。其他组件使用<code>HeroService</code>时，用构造函数定义一个私有属性，作为注入<code>HeroService</code>的靶点。</p>
+<p><code>providers</code>数组告诉 Angular，当它创建新的<code>AppComponent</code>组件时，也要创建一个<code>HeroService</code>的新实例。</p>
+<p>可以把<code>HeroService</code>看做中转站，而<code>providers</code>数组告诉 Angular，这是中转站。中转站中记录着哪里的有元数据，并随时准备注入所需要的组件中。</p>
+<p><code>OnInit</code> 接口会在组件刚创建时、每次变化时，以及最终被销毁时被Angular调用。<code>OnInit</code> 接口中会有一个带有初始化逻辑的<code>ngOnInit</code>方法，可以用来初始化。</p>
+<p>承诺，在有了结果时，它承诺会回调我们。 我们请求一个异步服务去做点什么，并且给它一个回调函数。 它会去做（在某个地方），一旦完成，它就会调用我们的回调函数，并通过参数把工作结果或者错误信息传给我们。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getHeroes(): <span class="keyword">void</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.heroService.getHeroes().then(<span class="function"><span class="params">heroes</span> =&gt;</span> <span class="keyword">this</span>.heroes = heroes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法基于承诺的，并在承诺的事情被解决时再行动。 一旦承诺的事情被成功解决，就会显示英雄数据。<strong>then</strong>方法把回调函数作为参数传给承诺对象。</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>路由告诉路由器，当用户点击链接或者把 URL 粘贴到浏览器地址栏时，应该显示哪个视图。</p>
+<p>路由定义包括以下部分：</p>
+<ul>
+<li><strong>path</strong>: 路由器会用它来匹配浏览器地址栏中的地址，如<code>heroes</code>。</li>
+<li><strong>component</strong>: 导航到此路由时，路由器需要创建的组件（<code>HeroesComponent</code>）。</li>
+</ul>
+<p>路由有两种实现方式：</p>
+<p>第一种是通过<code>RouterLink</code>指令，绑定到heroes的路由路径，在app.module.ts中指定了<code>&#39;/heroes&#39;</code>就是指向<code>HeroesComponent</code>的那个路由的路径，并且需要告诉路由把激活的组件显示在<code>&lt;router-outlet&gt;</code>里面。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template: <span class="string">`</span></span><br><span class="line"><span class="string">   &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">   &lt;a routerLink="/heroes"&gt;Heroes&lt;/a&gt;</span></span><br><span class="line"><span class="string">   &lt;router-outlet&gt;&lt;/router-outlet&gt;</span></span><br><span class="line"><span class="string"> `</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    FormsModule,</span><br><span class="line">    RouterModule.forRoot([</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">'heroes'</span>,</span><br><span class="line">        component: HeroesComponent</span><br><span class="line">      &#125;</span><br><span class="line">    ])</span><br><span class="line">  ],</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent,</span><br><span class="line">    HeroDetailComponent,</span><br><span class="line">    HeroesComponent</span><br><span class="line">  ],</span><br><span class="line">  providers: [</span><br><span class="line">    HeroService</span><br><span class="line">  ],</span><br><span class="line">  bootstrap: [ AppComponent ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种是通过函数来实现，触发click事件后，调用gotoDetail函数，该函数将路由导航到detail的组件上。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gotoDetail(): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.router.navigate([<span class="string">'/detail'</span>, <span class="keyword">this</span>.selectedHero.id]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"gotoDetail()"</span>&gt;</span>View Details<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浏览器启动时，在地址栏中使用的路径是<code>/</code>。如果要在应用启动的时候就显示仪表盘，而且希望在浏览器的地址栏看到一个好看的 URL，比如<code>/dashboard</code>，这就需要用到重定向：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: <span class="string">''</span>,</span><br><span class="line">  redirectTo: <span class="string">'/dashboard'</span>,</span><br><span class="line">  pathMatch: <span class="string">'full'</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>设置<code>moduleId</code>属性到<code>module.id</code>后，才能使用templateUrl。</p>
+<p>路径中的冒号 (:) 表示<code>:id</code>是一个占位符:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: <span class="string">'detail/:id'</span>,</span><br><span class="line">  component: HeroDetailComponent</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>通过<code>[routerLink]</code>绑定了一个包含链接参数数组的表达式。 该数组有两个元素，目标路由和一个用来设置当前英雄的 id 值的<strong>路由参数</strong>。这两个元素与上面定义中的 <strong>path</strong> 和 <strong>:id</strong> 对应。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span>  [<span class="attr">routerLink</span>]=<span class="string">"['/detail', hero.id]"</span>  <span class="attr">class</span>=<span class="string">"col-1-4"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>典型<strong>路由模块</strong>值得注意的有：</p>
+<ul>
+<li>将路由抽出到一个变量中。你将来可能会导出它，而且它让<strong>路由模块</strong>模式更加明确。</li>
+<li>添加<code>RouterModule.forRoot(routes)</code>到<code>imports</code>。</li>
+<li>添加<code>RouterModule</code>到<code>exports</code>，这样关联模块的组件可以访问路由的声明，比如<code>RouterLink</code>和<code>RouterOutlet</code>。</li>
+<li>无<code>declarations</code>！声明是关联模块的任务。</li>
+<li>如果你有守卫服务，添加模块<code>providers</code>。</li>
+</ul>
+<p>Angular路由器提供了<code>routerLinkActive</code>指令，我们可以用它来为匹配了活动路由的 HTML 导航元素自动添加一个 CSS 类。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">template: <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">  &lt;nav&gt;</span></span><br><span class="line"><span class="string">    &lt;a routerLink="/dashboard" routerLinkActive="active"&gt;Dashboard&lt;/a&gt;</span></span><br><span class="line"><span class="string">    &lt;a routerLink="/heroes" routerLinkActive="active"&gt;Heroes&lt;/a&gt;</span></span><br><span class="line"><span class="string">  &lt;/nav&gt;</span></span><br><span class="line"><span class="string">  &lt;router-outlet&gt;&lt;/router-outlet&gt;</span></span><br><span class="line"><span class="string">`</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span><span class="selector-class">.active</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#039be5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好不容易走到路由这步，我按照我的理解画了一个脑图：</p>
+<p><img src="/assets/images/Angular官方文档学习笔记之hero教程/2016122138842HeroApp.png" alt="2016122138842HeroApp.png"></p>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><h4 id="准备HTTP服务"><a href="#准备HTTP服务" class="headerlink" title="准备HTTP服务"></a>准备HTTP服务</h4><p><code>@angular/http</code>库中的<code>HttpModule</code>保存着这些 HTTP 相关服务提供商的全集。</p>
+<h4 id="模拟web-API"><a href="#模拟web-API" class="headerlink" title="模拟web API"></a>模拟web API</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Imports for loading &amp; configuring the in-memory web api</span></span><br><span class="line"><span class="keyword">import</span> &#123; InMemoryWebApiModule &#125; <span class="keyword">from</span> <span class="string">'angular-in-memory-web-api'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; InMemoryDataService &#125;  <span class="keyword">from</span> <span class="string">'./in-memory-data.service'</span>;</span><br></pre></td></tr></table></figure>
+<p><code>InMemoryWebApiModule</code>将<code>Http</code>客户端默认的后端服务替换成了<em>内存 Web API</em>服务。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InMemoryWebApiModule.forRoot(InMemoryDataService),</span><br></pre></td></tr></table></figure>
+<p><code>forRoot</code>配置方法需要<code>InMemoryDataService</code>类实例，用来向内存数据库填充数据。</p>
+<h4 id="英雄与HTTP"><a href="#英雄与HTTP" class="headerlink" title="英雄与HTTP"></a>英雄与HTTP</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> heroesUrl = <span class="string">'app/heroes'</span>;  <span class="comment">// URL to web api</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> http: Http</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">getHeroes(): <span class="built_in">Promise</span>&lt;Hero[]&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.http.get(<span class="keyword">this</span>.heroesUrl)</span><br><span class="line">             .toPromise()</span><br><span class="line">             .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json().data <span class="keyword">as</span> Hero[])</span><br><span class="line">             .catch(<span class="keyword">this</span>.handleError);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="HTTP承诺"><a href="#HTTP承诺" class="headerlink" title="HTTP承诺"></a>HTTP承诺</h5><p>Angular 的<code>http.get</code>返回一个<strong>RxJS</strong>的<code>Observable</code>对象。 <em>Observable（可观察对象）</em>是一个管理异步数据流的强力方式。 </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.toPromise()</span><br></pre></td></tr></table></figure>
+<p>利用<code>toPromise</code>操作符把<code>Observable</code>直接转换成<code>Promise</code>对象。Angular 的<code>Observable</code>并没有一个<code>toPromise</code>操作符，需要从 RxJS 库中导入它们。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/toPromise'</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="在then-回调中提取出数据"><a href="#在then-回调中提取出数据" class="headerlink" title="在then 回调中提取出数据"></a>在<em>then</em> 回调中提取出数据</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.then(<span class="function"><span class="params">response</span> =&gt;</span> response.json().data <span class="keyword">as</span> Hero[])</span><br></pre></td></tr></table></figure>
+<p>在 <em>promise</em> 的<code>then</code>回调中，调用 HTTP 的<code>Reponse</code>对象的<code>json</code>方法，以提取出其中的数据。</p>
+<h5 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.catch(<span class="keyword">this</span>.handleError);</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> handleError(error: <span class="built_in">any</span>): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'An error occurred'</span>, error); <span class="comment">// for demo purposes only</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error.message || error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>catch</code>了服务器的失败信息，并把它们传给了错误处理器</p>
+<h4 id="更新英雄详情"><a href="#更新英雄详情" class="headerlink" title="更新英雄详情"></a>更新英雄详情</h4><h5 id="hero服务的update方法"><a href="#hero服务的update方法" class="headerlink" title="hero服务的update方法"></a>hero服务的update方法</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> headers = <span class="keyword">new</span> Headers(&#123;<span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>&#125;);</span><br><span class="line"></span><br><span class="line">update(hero: Hero): <span class="built_in">Promise</span>&lt;Hero&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">`<span class="subst">$&#123;this.heroesUrl&#125;</span>/<span class="subst">$&#123;hero.id&#125;</span>`</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.http</span><br><span class="line">    .put(url, <span class="built_in">JSON</span>.stringify(hero), &#123;headers: <span class="keyword">this</span>.headers&#125;)</span><br><span class="line">    .toPromise()</span><br><span class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> hero)</span><br><span class="line">    .catch(<span class="keyword">this</span>.handleError);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过一个编码在 URL 中的英雄 id 来告诉服务器应该更新哪个英雄。put 的 body 是该英雄的 JSON 字符串，它是通过调用<code>JSON.stringify</code>得到的。 并且在请求头中标记出的 body 的内容类型（<code>application/json</code>）。</p>
+<h4 id="添加英雄"><a href="#添加英雄" class="headerlink" title="添加英雄"></a>添加英雄</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;label&gt;Hero name:&lt;<span class="regexp">/label&gt; &lt;input #heroName /</span>&gt;</span><br><span class="line">  &lt;button (click)=<span class="string">"add(heroName.value); heroName.value=''"</span>&gt;</span><br><span class="line">    Add</span><br><span class="line">  &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">  add(name: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">  name = name.trim();</span><br><span class="line">  <span class="keyword">if</span> (!name) &#123; <span class="keyword">return</span>; &#125;</span><br><span class="line">  <span class="keyword">this</span>.heroService.create(name)</span><br><span class="line">    .then(<span class="function"><span class="params">hero</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.heroes.push(hero);</span><br><span class="line">      <span class="keyword">this</span>.selectedHero = <span class="literal">null</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当指定的名字不为空的时候，点击处理器就会委托 hero 服务来创建一个具有此名字的英雄， 并把这个新的英雄添加到数组中。</p>
+<h4 id="删除一个英雄"><a href="#删除一个英雄" class="headerlink" title="删除一个英雄"></a>删除一个英雄</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;li *ngFor=<span class="string">"let hero of heroes"</span> (click)=<span class="string">"onSelect(hero)"</span></span><br><span class="line">    [<span class="keyword">class</span>.selected]=<span class="string">"hero === selectedHero"</span>&gt;</span><br><span class="line">  &lt;span <span class="keyword">class</span>=<span class="string">"badge"</span>&gt;&#123;&#123;hero.id&#125;&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span&gt;&#123;&#123;hero.name&#125;&#125;&lt;/</span>span&gt;</span><br><span class="line">  &lt;button <span class="keyword">class</span>=<span class="string">"delete"</span></span><br><span class="line">    (click)=<span class="string">"delete(hero); $event.stopPropagation()"</span>&gt;x&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>li&gt;</span><br></pre></td></tr></table></figure>
+<p><code>delete</code>按钮的点击处理器应该阻止点击事件向上冒泡 ，否则它会选中我们要删除的这位英雄。</p>
+<h4 id="可观察对象-Observable"><a href="#可观察对象-Observable" class="headerlink" title="可观察对象 (Observable)"></a>可观察对象 (Observable)</h4><p>一个<em>可观察对象</em>是一个事件流，我们可以用数组型操作符来处理它。</p>
+<p>把<code>Observable</code>转换成了<code>Promise</code>通常是更好地选择，我们通常会要求<code>http.get</code>获取单块数据。只要接收到数据，就算完成。 使用承诺这种形式的结果是让调用方更容易写，并且承诺已经在 JavaScript 程序员中被广泛接受了。</p>
+<h5 id="按名搜索"><a href="#按名搜索" class="headerlink" title="按名搜索"></a>按名搜索</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125;     <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Http, Response &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Hero &#125;           <span class="keyword">from</span> <span class="string">'./hero'</span>;</span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HeroSearchService &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> http: Http</span>) &#123;&#125;</span><br><span class="line">  search(term: <span class="built_in">string</span>): Observable&lt;Hero[]&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.http</span><br><span class="line">               .get(<span class="string">`app/heroes/?name=<span class="subst">$&#123;term&#125;</span>`</span>)</span><br><span class="line">               .map(<span class="function">(<span class="params">r: Response</span>) =&gt;</span> r.json().data <span class="keyword">as</span> Hero[]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不再调用<code>toPromise</code>，而是直接返回<em>可观察对象</em>。</p>
+<h5 id="HeroSearchComponent"><a href="#HeroSearchComponent" class="headerlink" title="HeroSearchComponent"></a>HeroSearchComponent</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"search-component"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h4</span>&gt;</span>Hero Search<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> #<span class="attr">searchBox</span> <span class="attr">id</span>=<span class="string">"search-box"</span> (<span class="attr">keyup</span>)=<span class="string">"search(searchBox.value)"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes | async"</span></span></span><br><span class="line"><span class="tag">         (<span class="attr">click</span>)=<span class="string">"gotoDetail(hero)"</span> <span class="attr">class</span>=<span class="string">"search-result"</span> &gt;</span></span><br><span class="line">      &#123;&#123;hero.name&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>heroes</code>属性现在是英雄列表的<code>Observable</code>对象，而不再只是英雄数组。 <code>*ngFor</code>不能用可观察对象做任何事，除非我们在它后面跟一个<code>async</code> pipe (<code>AsyncPipe</code>)。 这个<code>async</code>管道会订阅到这个可观察对象，并且为<code>*ngFor</code>生成一个英雄数组。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Router &#125;            <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125;        <span class="keyword">from</span> <span class="string">'rxjs/Observable'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Subject &#125;           <span class="keyword">from</span> <span class="string">'rxjs/Subject'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HeroSearchService &#125; <span class="keyword">from</span> <span class="string">'./hero-search.service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Hero &#125; <span class="keyword">from</span> <span class="string">'./hero'</span>;</span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  moduleId: <span class="built_in">module</span>.id,</span><br><span class="line">  selector: <span class="string">'hero-search'</span>,</span><br><span class="line">  templateUrl: <span class="string">'hero-search.component.html'</span>,</span><br><span class="line">  styleUrls: [ <span class="string">'hero-search.component.css'</span> ],</span><br><span class="line">  providers: [HeroSearchService]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HeroSearchComponent <span class="keyword">implements</span> OnInit &#123;</span><br><span class="line">  heroes: Observable&lt;Hero[]&gt;;</span><br><span class="line">  <span class="keyword">private</span> searchTerms = <span class="keyword">new</span> Subject&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> heroSearchService: HeroSearchService,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> router: Router</span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// Push a search term into the observable stream.</span></span><br><span class="line">  search(term: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.searchTerms.next(term);</span><br><span class="line">  &#125;</span><br><span class="line">  ngOnInit(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.heroes = <span class="keyword">this</span>.searchTerms</span><br><span class="line">      .debounceTime(<span class="number">300</span>)        <span class="comment">// wait for 300ms pause in events</span></span><br><span class="line">      .distinctUntilChanged()   <span class="comment">// ignore if next search term is same as previous</span></span><br><span class="line">      .switchMap(<span class="function"><span class="params">term</span> =&gt;</span> term   <span class="comment">// switch to new observable each time</span></span><br><span class="line">        <span class="comment">// return the http search observable</span></span><br><span class="line">        ? <span class="keyword">this</span>.heroSearchService.search(term)</span><br><span class="line">        <span class="comment">// or the observable of empty heroes if no search term</span></span><br><span class="line">        : Observable.of&lt;Hero[]&gt;([]))</span><br><span class="line">      .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> real error handling</span></span><br><span class="line">        <span class="built_in">console</span>.log(error);</span><br><span class="line">        <span class="keyword">return</span> Observable.of&lt;Hero[]&gt;([]);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  gotoDetail(hero: Hero): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> link = [<span class="string">'/detail'</span>, hero.id];</span><br><span class="line">    <span class="keyword">this</span>.router.navigate(link);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="搜索词"><a href="#搜索词" class="headerlink" title="搜索词"></a>搜索词</h6><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> searchTerms = <span class="keyword">new</span> Subject&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Push a search term into the observable stream.</span></span><br><span class="line">search(term: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.searchTerms.next(term);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Subject</code>（主题）是一个<em>可观察的</em>事件流中的生产者。 <code>searchTerms</code>生成一个产生字符串的<code>Observable</code>，用作按名称搜索时的过滤条件。</p>
+<p>每当调用<code>search</code>时都会调用<code>next</code>来把新的字符串放进该主题的<em>可观察</em>流中。</p>
+<h6 id="初始化-HEROES-属性-NGONINIT"><a href="#初始化-HEROES-属性-NGONINIT" class="headerlink" title="初始化 HEROES 属性(NGONINIT)"></a>初始化 <strong>HEROES</strong> 属性(<strong>NGONINIT</strong>)</h6><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">heroes: Observable&lt;Hero[]&gt;;</span><br><span class="line"></span><br><span class="line">ngOnInit(): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.heroes = <span class="keyword">this</span>.searchTerms</span><br><span class="line">    .debounceTime(<span class="number">300</span>)        <span class="comment">// wait for 300ms pause in events</span></span><br><span class="line">    .distinctUntilChanged()   <span class="comment">// ignore if next search term is same as previous</span></span><br><span class="line">    .switchMap(<span class="function"><span class="params">term</span> =&gt;</span> term   <span class="comment">// switch to new observable each time</span></span><br><span class="line">      <span class="comment">// return the http search observable</span></span><br><span class="line">      ? <span class="keyword">this</span>.heroSearchService.search(term)</span><br><span class="line">      <span class="comment">// or the observable of empty heroes if no search term</span></span><br><span class="line">      : Observable.of&lt;Hero[]&gt;([]))</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// <span class="doctag">TODO:</span> real error handling</span></span><br><span class="line">      <span class="built_in">console</span>.log(error);</span><br><span class="line">      <span class="keyword">return</span> Observable.of&lt;Hero[]&gt;([]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Subject</code>也是一个<code>Observable</code>对象。 要把搜索词的流转换成<code>Hero</code>数组的流，并把结果赋值给<code>heroes</code>属性。</p>
+<p>如果我们直接把每一次用户按键都直接传给<code>HeroSearchService</code>，就会发起一场 HTTP 请求风暴。我们不希望占用服务器资源，也不想耗光蜂窝移动网络的流量。</p>
+<p>幸运的是，我们可以在字符串的<code>Observable</code>后面串联一些<code>Observable</code>操作符，来归并这些请求。 我们将对<code>HeroSearchService</code>发起更少的调用，并且仍然获得足够及时的响应。做法如下：</p>
+<ul>
+<li>在传出最终字符串之前，<code>debounceTime(300)</code>将会等待，直到新增字符串的事件暂停了 300 毫秒。 我们实际发起请求的间隔永远不会小于 300ms。</li>
+<li><code>distinctUntilChanged</code>确保只在过滤条件变化时才发送请求， 这样就不会重复请求同一个搜索词了。</li>
+<li><code>switchMap</code>会为每个从<code>debounce</code>和<code>distinctUntilChanged</code>中通过的搜索词调用搜索服务。 它会取消并丢弃以前的搜索可观察对象，只保留最近的。</li>
+</ul>
+<p id="div-border-left-green"><a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmaplatest.md" rel="external nofollow noopener noreferrer" target="_blank">switchMap操作符</a> (以前叫”flatMapLatest”)是非常智能的。<br><br>每次符合条件的按键事件都会触发一次对<code>http</code>方法的调用。即使在发送每个请求前都有 300 毫秒的延迟， 我们仍然可能同时拥有多个在途的 HTTP 请求，并且它们返回的顺序未必就是发送时的顺序。<br><br><code>switchMap</code>保留了原始的请求顺序，并且只返回最近一次 <code>http</code> 调用返回的可观察对象。 这是因为以前的调用都被取消或丢弃了。<br><br>如果搜索框为空，我们还可以短路掉这次<code>http</code>方法调用，并且直接返回一个包含空数组的可观察对象。<br><br>注意，<em>取消</em><code>HeroSearchService</code>的可观察对象并不会实际中止 (abort) 一个未完成的 HTTP 请求， 除非服务支持这个特性，这个问题我们以后再讨论。 目前我们的做法只是丢弃不希望的结果。</p>
+
+<h5 id="导入RxJS操作符"><a href="#导入RxJS操作符" class="headerlink" title="导入RxJS操作符"></a>导入RxJS操作符</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Observable class extensions</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/observable/of'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/observable/throw'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Observable operators</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/catch'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/debounceTime'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/distinctUntilChanged'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/do'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/filter'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/map'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/switchMap'</span>;</span><br></pre></td></tr></table></figure>
+<p>把整个应用中要用的那些 RxJS <code>Observable</code>扩展组合在一起，放在一个单独的 RxJS 导入文件中。我们在顶级的<code>AppModule</code>中导入<code>rxjs-extensions</code>就可以一次性加载它们。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./rxjs-extensions'</span>;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2016/12/21/Angular官方文档学习笔记之hero教程/" title="Angular官方文档学习笔记之hero教程">https://tc9011.com/2016/12/21/Angular官方文档学习笔记之hero教程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/18/JSON那些事/" rel="next" title="JSON那些事">
+                <i class="fa fa-chevron-left"></i> JSON那些事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/24/hexo添加音乐、high一下及一些坑/" rel="prev" title="hexo添加音乐、high一下及一些坑">
+                hexo添加音乐、high一下及一些坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6工具链"><span class="nav-number">1.</span> <span class="nav-text">ES6工具链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">2.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hero教程"><span class="nav-number">3.</span> <span class="nav-text">Hero教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#英雄编辑器"><span class="nav-number">3.1.</span> <span class="nav-text">英雄编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主从结构"><span class="nav-number">3.2.</span> <span class="nav-text">主从结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个组件"><span class="nav-number">3.3.</span> <span class="nav-text">多个组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务"><span class="nav-number">3.4.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">3.5.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">3.6.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备HTTP服务"><span class="nav-number">3.6.1.</span> <span class="nav-text">准备HTTP服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟web-API"><span class="nav-number">3.6.2.</span> <span class="nav-text">模拟web API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#英雄与HTTP"><span class="nav-number">3.6.3.</span> <span class="nav-text">英雄与HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP承诺"><span class="nav-number">3.6.3.1.</span> <span class="nav-text">HTTP承诺</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在then-回调中提取出数据"><span class="nav-number">3.6.3.2.</span> <span class="nav-text">在then 回调中提取出数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误处理"><span class="nav-number">3.6.3.3.</span> <span class="nav-text">错误处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新英雄详情"><span class="nav-number">3.6.4.</span> <span class="nav-text">更新英雄详情</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#hero服务的update方法"><span class="nav-number">3.6.4.1.</span> <span class="nav-text">hero服务的update方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加英雄"><span class="nav-number">3.6.5.</span> <span class="nav-text">添加英雄</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除一个英雄"><span class="nav-number">3.6.6.</span> <span class="nav-text">删除一个英雄</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可观察对象-Observable"><span class="nav-number">3.6.7.</span> <span class="nav-text">可观察对象 (Observable)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#按名搜索"><span class="nav-number">3.6.7.1.</span> <span class="nav-text">按名搜索</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HeroSearchComponent"><span class="nav-number">3.6.7.2.</span> <span class="nav-text">HeroSearchComponent</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#搜索词"><span class="nav-number">3.6.7.2.1.</span> <span class="nav-text">搜索词</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#初始化-HEROES-属性-NGONINIT"><span class="nav-number">3.6.7.2.2.</span> <span class="nav-text">初始化 HEROES 属性(NGONINIT)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#导入RxJS操作符"><span class="nav-number">3.6.7.3.</span> <span class="nav-text">导入RxJS操作符</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2016/12/21/Angular官方文档学习笔记之hero教程/';
+        this.page.identifier = '2016/12/21/Angular官方文档学习笔记之hero教程/';
+        this.page.title = 'Angular官方文档学习笔记之hero教程';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

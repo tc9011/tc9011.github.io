@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ivy-Angular下一代渲染引擎">
+<meta property="og:url" content="https://tc9011.com/2018/11/30/Ivy-Angular下一代渲染引擎/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/The-Ivy-rendering-engine-in-Angular-cover-image.jpg">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_18-49-49.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_21-53-47.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_21-58-22.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_22-03-27.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_22-42-58.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_22-45-56.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-15-58.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-16-24.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-23-06.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-23-24.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-32-42.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-36-22.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-37-51.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-40-50.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-45-42.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-50-14.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-52-49.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-55-08.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-56-23.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-58-19.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-00-48.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-04-05.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-05-02.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-13-14.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-15-12.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-17-43.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-19-13.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ivy-Angular下一代渲染引擎">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/Ivy-Angular下一代渲染引擎/The-Ivy-rendering-engine-in-Angular-cover-image.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2018/11/30/Ivy-Angular下一代渲染引擎/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Ivy-Angular下一代渲染引擎 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2018/11/30/Ivy-Angular下一代渲染引擎/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Ivy-Angular下一代渲染引擎
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-30 18:48:11" itemprop="dateCreated datePublished" datetime="2018-11-30T18:48:11+08:00">2018-11-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/30/Ivy-Angular下一代渲染引擎/" class="leancloud_visitors" data-flag-title="Ivy-Angular下一代渲染引擎">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/Ivy-Angular下一代渲染引擎/The-Ivy-rendering-engine-in-Angular-cover-image.jpg" alt="The-Ivy-rendering-engine-in-Angular-cover-image"></p>
+<a id="more"></a>
+<blockquote>
+<p>截止到2018年11月30号，根据<a href="https://is-angular-ivy-ready.firebaseapp.com/#/status" rel="external nofollow noopener noreferrer" target="_blank">is-angular-ivy-ready</a>显示，Angular Ivy 已经完成了93.46%，基本上接近完工。但是国内对 Ivy 介绍却很少，这次把今年4月ng-conf2018中关于 Angular Ivy 的PPT翻译一下，希望让更多人了解到和 Angular Ivy 有关的一些信息。</p>
+<p>点击可以查看<a href="https://docs.google.com/presentation/d/1zgpjyVkDgUPfGKuxOcU0lLusCiMSfLZZjYHWrFvl71I/edit#slide=id.g26d86d3325_0_0" rel="external nofollow noopener noreferrer" target="_blank">PPT</a></p>
+</blockquote>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_18-49-49.png" alt="2018-11-30_18-49-49"></p>
+<p>正如 Brad 先前提到的，Angular 的价值观以我们的用户，开发者和社区为中心。 Ivy 的目标是为 Angular 的价值观服务。</p>
+<ul>
+<li>Ivy 专注于用户，通过让浏览器下载更少的资源，使应用程序启动更快，来提高用户体验。</li>
+<li>它通过简化 API 和构建系统来帮助开发人员。</li>
+<li>最后，它通过使编译管道更友好来帮助社区，从而为第三方贡献提供了可能性。</li>
+</ul>
+<p>这些目标要求我们对编写代码的方式有不同的看法，并且我们希望与你分享这将为你的应用程序带来的结果和好处。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_21-53-47.png" alt="2018-11-30_21-53-47"></p>
+<p>但首先，不要害怕！ 我们在这里所做的工作是100％向后兼容的，因此你不必对你的应用程序进行任何更改。 你的升级体验将与你对 Angular 团队的期望一样顺畅。 升级版本后，你将获得新的好处，并且你的应用程序仍然能很好的工作。 升级到 Ivy 意味着你的应用程序将继续工作而不会进行任何更改。 将有新的 API让你可以利用 Ivy 的一些更高级的功能。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_21-58-22.png" alt="2018-11-30_21-58-22"></p>
+<p>现在，当我说Ivy向后兼容时，我真的想要强调它的重要性。 在谷歌，我们现在有超过600个应用程序，它们都是构建在新的Angular之上。 我们还有一个版本政策，这意味着我们不允许在旧版本的Angular上保留现有的应用程序。 因为我们每天都在将Angular同步到Google，所以所有应用程序都需要每次同步之后继续工作。 我们几乎不可能做出一个破坏性的改变。 因此，当你获得代码时，你可以确信它已被现实世界的应用程序充分验证过。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_22-03-27.png" alt="2018-11-30_22-03-27"></p>
+<p>Ivy 有很多东西，但 Ivy 背后的一个重要思想就是我们所谓的 “locality”。简而言之，这意味着当编译器翻译模板时，只允许使用对它来说 “local” 的信息。local 意味着只有与组件描述直接关联的信息。这与当前 Angular 渲染管道的全局优化方法形成对比。那么让我们来谈谈 locality 给 Angular 带来的一些好处：</p>
+<ul>
+<li>Locality 允许第三方库将预编译模板发送到 NPM。这很重要，因为对于使用这些库的应用程序来说，它将极大地简化和加速编译。</li>
+<li>有了 locality ，AoT / JIT的区别变得很小，几乎消失了。允许一个人自由地混合使用两者，例如在测试和开发中。对于生产，我们仍然只推荐 AoT。</li>
+<li>Locality 不再需要<code>Metadata.json</code>文件。这极大地简化了第三方库的发布和开发以及与现有工具链的互用性。</li>
+<li>Locality 大大修剪了编译图。这允许简化构建工具并更快地重建大型项目。</li>
+<li>而我个人的最爱：Locality 支持元编程。今天，无法在运行时创建组件，Ivy 将成为可能。一个元编程的例子是高阶组件。 （不仅仅是为了让HOC成为可能而倡导HOC。）</li>
+</ul>
+<p>Locality 只是我们对 Ivy 坚持的一个原则。还有其他原则，但我们没有时间在这里讨论它们。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_22-42-58.png" alt="2018-11-30_22-42-58"></p>
+<blockquote>
+<p>“today”是指2018年4月18日。</p>
+<p>你可以看到Ivy开始于runtime，与模板编译器的工作重叠。一旦完成这些，beta版将开始进行Google的内部验证流程。此验证过程包括确保Ivy不会对使用Angular的600多个内部应用程序进行重大更改。这确保了在Ivy发布之前将完全向后兼容。</p>
+<p>下面是 Ivy 核心开发者 Kara Erickson 的PPT介绍</p>
+</blockquote>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_22-45-56.png" alt="2018-11-30_22-45-56"></p>
+<p>Ivy 那么改变了什么？除了 Locality 之外，主要的变化是新系统的设计考虑了 tree-shaking。换句话说，渲染器代码的重写方式使得你未使用的任何 Angular 代码都可以简单地在构建步骤中被 tree-shaking 掉。这真的令人兴奋，因为这意味着你将留下一个更小的bundle。</p>
+<p>我们正在进行的更改都在幕后 - 所以作为 Angular 开发人员 - 你实际上不必更改你正在编写的代码。但我会花一些时间来解释这个新设计是如何工作的，因为它实际上非常酷，我真的希望你理解为什么你会看到，使用 Ivy 后比用现在版本的 Angular 会得到更好的结果。</p>
+<p>让我们先谈谈 tree-shaking。</p>
+<p>如果你还没有听说过 tree-shaking，那么它本质上是一个构建优化步骤，可确保未使用的代码不会最终出现在你发送到浏览器的最终包中。通常，未使用的代码来自第三方库。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-15-58.png" alt="2018-11-30_23-15-58"></p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-16-24.png" alt="2018-11-30_23-16-24"></p>
+<p>举一个简单的例子，如果你在第三方库中使用<code>someFn</code>，但是在这里没有使用过<code>unusedFn</code>，一个 tree-shaking 工具可以确保<code>unusedFn</code>不会在你最终的 bundle 中。</p>
+<p>有一些工具可以做到这一点，比如：</p>
+<ul>
+<li>rollup，它使用 live code inclusion 来确保未使用的代码不会添加到你的 bundle 中 </li>
+<li>Uglify，它分析已经打包的代码并尝试从中删除没有的代码</li>
+</ul>
+<p>无论你选择哪种工具，它们的功效取决于你编写代码的方式。 我会告诉你我的意思。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-23-06.png" alt="2018-11-30_23-23-06"></p>
+<p>例如，假设你有一个从第三方导入的<code>someFn</code>，它在你的<code>main</code>函数中使用。</p>
+<p>tree-shaking 通常使用引用的静态分析来确定要在 bundle 中保留哪些代码。</p>
+<p>因为<code>someFn</code>在<code>main</code>函数中被引用，所以它将保留在 bundle 中。 <code>UnusedFn</code>不是，所以它不会在最终的 bundle 中。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-23-24.png" alt="2018-11-30_23-23-24"></p>
+<p>但是我们换一个场景，如果只有条件检查通过，你才能使用<code>unusedFn</code>。</p>
+<p>当你运行代码时，条件将最终为<code>false</code>，因此你仍然不需要<code>unusedFn</code>。 它会从 bundle 中删除吗？</p>
+<p>答案是否定的，因为在<code>main</code>中引用了<code>unUsedFn</code>。 请记住，tree-shaking 通常使用引用的静态分析。 它将尝试在不实际运行程序的情况下找出所需内容，并且存在限制。 通常，它必须假设最坏的情况以确保生成的程序是正确的，因此在这种情况下，它不确定该值在运行时将是什么，所以将保留<code>unusedFn</code>。</p>
+<p>因此，当我们编写框架代码时，我们必须考虑避免这种情况。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-32-42.png" alt="2018-11-30_23-32-42"></p>
+<p>Ok，有了上面的铺垫，让我们回到渲染管道以及它是如何被重构的。 首先，快速概述当前渲染器的工作原理。</p>
+<p>目前，你编写的模板 HTML 通过 Angular 编译器运行，并生成代表模板结构的高度优化的JS 代码。 在运行时，此数据结构将传递给 Angular 解释器，Angular 解释器使用数据来确定如何创建DOM。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-36-22.png" alt="2018-11-30_23-36-22"></p>
+<p>在实践中，它看起来像这样。 假设你有一个<code>hello world</code>模板，它只是一个带有<code>class</code>的<code>div</code>。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-37-51.png" alt="2018-11-30_23-37-51"></p>
+<p>当前，编译器可能生成类似这样的东西，一些<code>defs</code>代表模板的结构。 例如，<code>viewDef</code> 包含<code>div</code>的<code>elementDef</code>和<code>hello world</code>的<code>textDef</code>。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-40-50.png" alt="2018-11-30_23-40-50"></p>
+<p>然后在运行时将此定义传递给 Angular 解释器，Angular 使用该<code>def</code>来确定要运行哪些操作以正确生成DOM。</p>
+<p>这非常有效。 唯一的问题是每个Angular模板都经过相同的代码路径，因此解释器不会提前知道它将看到哪种模板。 因此，它需要检查是否需要为其提供的模板执行每个操作。</p>
+<p>正如我们之前所述，因为静态分析的工作方式，这些条件检查在运行时的值是什么并不重要，这里引用的所有函数都将保留在最终的 bundle 中，即使在代码路径中是没用过。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-45-42.png" alt="2018-11-30_23-45-42"></p>
+<p>当我们设计 Ivy 时，我们考虑到了这个问题。 当我们不能提前知道你的模板长什么样子时，我们如何确保未运行的代码不包含在 bundle 中？</p>
+<p>这里有一个聪明的解决方案。 不生成模板数据并将其传递给解释器，然后解释运行哪些操作。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-50-14.png" alt="2018-11-30_23-50-14"></p>
+<p>我们直接生成一组模板指令。 这些指令将完成自己正确创建DOM的工作。 因此，我们不再需要一个解释器来检查是否需要每个操作，并且引用未使用的函数。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-52-49.png" alt="2018-11-30_23-52-49"></p>
+<p>对于和之前相同的模板，我们可能会生成这样的东西。 有三个指令：</p>
+<ul>
+<li>elementStart  - 它将在DOM中创建元素</li>
+<li>text - 将在DOM中创建文本节点</li>
+<li>elementEnd  - 基本上会执行一些内部处理</li>
+</ul>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-55-08.png" alt="2018-11-30_23-55-08"></p>
+<p>所以现在如果你看一下Angular代码，我们不需要进行任何条件检查。 我们只有原子函数来转换DOM，并根据你编写的模板生成。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-56-23.png" alt="2018-11-30_23-56-23"></p>
+<p>因此，如果你没有使用某些Angular功能，例如<code>container</code>或<code>listener</code>或<code>pipe</code>……他们的指令就不会从你编写的模板中生成。 因为它们尚未生成，所以不会有引用，并且可以通过 tree-shaking 安全地删除它们。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-11-30_23-58-19.png" alt="2018-11-30_23-58-19"></p>
+<p>我们已经将这个策略用于我们可以想到的每个功能。因此，如果你不使用<code>queries</code>或结构指令或生命周期钩子，那么可以通过 tree-shaking 工具删除该代码。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-00-48.png" alt="2018-12-01_00-00-48"></p>
+<p>这真的很酷，因为这意味着你只需要关注实际使用的 Angular 特性，同时你的 bundle 大小可以显着缩小。 这反过来可以提高你的应用程序的启动性能，我知道很多人都在关注。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-04-05.png" alt="2018-12-01_00-04-05"></p>
+<p>生成指令的另一个好处是 Ivy 生成的代码更容易阅读和理解。 为什么这很重要？</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-05-02.png" alt="2018-12-01_00-05-02"></p>
+<p>如果你能够理解并完成框架对代码执行的操作，则可以更轻松地调试 Angular 应用程序。</p>
+<blockquote>
+<p>在2018 ng-conf 上 Angular团队给出了一个 ivy 的 todo 应用的 demo :<a href="https://ivy-todo-mvc.firebaseapp.com/" rel="external nofollow noopener noreferrer" target="_blank">ivy-todo-list</a>，这个应用的 bundle 大小是12.2kb，这个 todo app 的 demo 就在github angular 的仓库中，地址：<a href="https://github.com/angular/angular/tree/master/packages/core/test/bundling/todo；" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/angular/angular/tree/master/packages/core/test/bundling/todo；</a></p>
+<p>这个todo 在本地跑起来需要安装 Bazel ， 然后通过 bazel 去运行这个app。 </p>
+</blockquote>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-13-14.png" alt="2018-12-01_00-13-14"></p>
+<p>你喜欢这些演示吗？ 所以非常神奇的东西正在为 Ivy 而来。 我对 Ivy 的承诺感到非常兴奋，这是我们最重要的事情。</p>
+<p>在我们将这个演示文稿包起来之前，我想解决一下我们与 Brad 一起做的旧赌注。 早在2016年5月，是两年前 Brad 向你们所有人做出了这个承诺。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-15-12.png" alt="2018-12-01_00-15-12"></p>
+<p>有些人可能还记得这张幻灯片。 是的，如果我们得到10Kb以下的Angular Hello World，Brad就会答应一块蛋糕。 布拉德没有说明它是 minified 还是压缩后的数字，但可以肯定地说我们击败了两者。</p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-17-43.png" alt="2018-12-01_00-17-43"></p>
+<p>这个 Todo 应用压缩后12.2 Kb。 </p>
+<p><img src="/assets/images/Ivy-Angular下一代渲染引擎/2018-12-01_00-19-13.png" alt="2018-12-01_00-19-13"></p>
+<p>在当前的Angular中，压缩的Hello World大约为36 Kb，而Kara已经发现我们的hello world 最小化后 7.3kb，压缩后 2.7kb。 所以 Ivy 成功地击败了10KB的门槛。 我们不仅仅是刚刚跨过这个门槛，而是大幅度地超过这个门槛。</p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2018/11/30/Ivy-Angular下一代渲染引擎/" title="Ivy-Angular下一代渲染引擎">https://tc9011.com/2018/11/30/Ivy-Angular下一代渲染引擎/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/21/手把手教你生成足迹地图/" rel="next" title="手把手教你生成足迹地图">
+                <i class="fa fa-chevron-left"></i> 手把手教你生成足迹地图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/19/Kubernetes集群部署不完全指南/" rel="prev" title="Kubernetes集群部署不完全指南">
+                Kubernetes集群部署不完全指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2018/11/30/Ivy-Angular下一代渲染引擎/';
+        this.page.identifier = '2018/11/30/Ivy-Angular下一代渲染引擎/';
+        this.page.title = 'Ivy-Angular下一代渲染引擎';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/assets/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+<meta name="google-site-verification" content="dooW3YxuMBP2zaaGiMHAaUgITQQQFJb88vm4Iou99yc">
+  <meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Angular中使用JWT认证">
+<meta property="og:url" content="https://tc9011.com/2018/09/07/在Angular中使用JWT认证/index.html">
+<meta property="og:site_name" content="tc9011&#39;s">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tc9011.com/assets/images/在Angular中使用JWT认证/20180907153633475251129.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/在Angular中使用JWT认证/20180908153641057295925.png">
+<meta property="og:image" content="https://tc9011.com/assets/images/在Angular中使用JWT认证/20180908153641222798262.png">
+<meta property="og:updated_time" content="2019-04-09T02:34:36.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Angular中使用JWT认证">
+<meta name="twitter:image" content="https://tc9011.com/assets/images/在Angular中使用JWT认证/20180907153633475251129.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://tc9011.com/2018/09/07/在Angular中使用JWT认证/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>在Angular中使用JWT认证 | tc9011's</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tc9011's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Notes</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-footroad">
+    <a href="/footroad" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-map"></i> <br>足迹</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tc9011.com/2018/09/07/在Angular中使用JWT认证/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tc9011">
+      <meta itemprop="description" content="释放精神的桎梏">
+      <meta itemprop="image" content="/assets/20161109360612.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tc9011's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">在Angular中使用JWT认证
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-07 23:33:55" itemprop="dateCreated datePublished" datetime="2018-09-07T23:33:55+08:00">2018-09-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术类/" itemprop="url" rel="index"><span itemprop="name">技术类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/07/在Angular中使用JWT认证/" class="leancloud_visitors" data-flag-title="在Angular中使用JWT认证">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/assets/images/在Angular中使用JWT认证/20180907153633475251129.png" alt="20180907153633475251129.png"></p>
+<a id="more"></a>
+<p>项目地址: <a href="https://github.com/tc9011/grading-system" rel="external nofollow noopener noreferrer" target="_blank">grading-system</a></p>
+<p>基于session的认证和基于token的认证的方式已经被广泛使用。在session认证中，服务端会存储一份用户登录信息，这份登录信息会在响应时传递给浏览器并保存为Cookie，在下次请求时，会带上这份登录信息，这样就能识别请求来自哪个用户。</p>
+<p>在基于session的认证中，每个用户都要生成一份session，这份session通常保存在内存中，随着用户量的增加，服务端的开销会增大，而且对分布式应用不是很友好。</p>
+<p>在token认证中，服务端不需要保留用户认证信息。当用户登录时，服务器验证用户信息后会返回一个token，这个token存储在客户端，并且在每次请求的请求头中都带上这个token，这样服务端验证token后就可以返回数据。</p>
+<p>JWT（JSON Web Token）是一个开放标准（RFC 7519），它定义了一种紧凑且独立的方式，可以在各方之间作为JSON对象安全地传输信息。 此信息可以通过数字签名进行验证和信任。特别适用于分布式站点的单点登录（SSO）场景。</p>
+<h2 id="JWT的构成"><a href="#JWT的构成" class="headerlink" title="JWT的构成"></a>JWT的构成</h2><p>JWT由<code>.</code>分隔的三个部分组成，它们是：</p>
+<ul>
+<li>头部（Header）</li>
+<li>荷载（Playload）</li>
+<li>签名（Signature）</li>
+</ul>
+<p>也就是说，JWT只是一个具有以下格式的字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header.payload.signature</span><br></pre></td></tr></table></figure>
+<h3 id="头部"><a href="#头部" class="headerlink" title="头部"></a>头部</h3><p>头部通常由两部分组成：令牌的类型（即JWT）以及正在使用的散列算法，例如HMAC SHA256或RSA。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"alg"</span>: <span class="string">"HS256"</span>,</span><br><span class="line">  <span class="string">"typ"</span>: <span class="string">"JWT"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，对这个JSON进行Base64编码，形成JWT的第一部分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ewogICJhbGciOiAiSFMyNTYiLAogICJ0eXAiOiAiSldUIgp9</span><br></pre></td></tr></table></figure>
+<h3 id="荷载"><a href="#荷载" class="headerlink" title="荷载"></a>荷载</h3><p>JWT的第二部分是荷载，其中包含声明。 声明是关于实体（通常是用户）和其他数据的声明。声明有三种：注册的声明、公开的声明和私有的声明。</p>
+<p>JWT规范定义了七个在标准中注册的声明名称，它们是：</p>
+<ul>
+<li>iss： JWT签发者</li>
+<li>sub： JWT所面向的用户</li>
+<li>aud：接收JWT的一方</li>
+<li>exp：JWT的过期时间，这个过期时间必须要大于签发时间</li>
+<li>nbf：定义在什么时间之前，该JWT都是不可用的.</li>
+<li>iat： JWT的签发时间</li>
+<li>jti： JWT的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。</li>
+</ul>
+<p>对于特定情况，可以使用公共的声明名称。 这些包括：</p>
+<ul>
+<li>auth_time：身份验证发生的时间</li>
+<li>acr：认证上下文类的引用</li>
+<li>nonce：用于将客户端会话与ID Token关联的值</li>
+</ul>
+<p>最后，还有私有的声明名称，可以使用它们来传达与身份相关的信息，例如姓名或部门。</p>
+<p>由于公共和私人的声明未注册，请注意避免名称冲突。</p>
+<p>比如，我们定义一个palyload:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"sub"</span>: <span class="string">"1234567890"</span>,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"tc9011"</span>,</span><br><span class="line">  <span class="attr">"admin"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"exp"</span>: <span class="number">1441594722</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后将其进行base64加密，得到JWT的第二部分:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ewogICJzdWIiOiAiMTIzNDU2Nzg5MCIsCiAgIm5hbWUiOiAidGM5MDExIiwKICAiYWRtaW4iOiB0cnVlLAogICJleHAiOiAxNDQxNTk0NzIyCn0=</span><br></pre></td></tr></table></figure>
+<h3 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h3><p>签名由base64编码后的头、base64编码后的荷载和secret组成。</p>
+<p>例如，将上面的两个编码后的字符串都用句号<code>.</code>连接在一起（头部在前），就形成了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ewogICJhbGciOiAiSFMyNTYiLAogICJ0eXAiOiAiSldUIgp9.ewogICJzdWIiOiAiMTIzNDU2Nzg5MCIsCiAgIm5hbWUiOiAidGM5MDExIiwKICAiYWRtaW4iOiB0cnVlLAogICJleHAiOiAxNDQxNTk0NzIyCn0=</span><br></pre></td></tr></table></figure>
+<p>然后，将上面拼接完的字符串用secret作为秘钥进行HS256加密。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + <span class="string">"."</span> +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret)</span><br></pre></td></tr></table></figure>
+<h2 id="使用JWT"><a href="#使用JWT" class="headerlink" title="使用JWT"></a>使用JWT</h2><p>一般在会在请求头中加入<code>Authorization</code>，并加上<code>Bearer</code>进行标注：</p>
+<p><img src="/assets/images/在Angular中使用JWT认证/20180908153641057295925.png" alt="20180908153641057295925.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'api/v1/user/1'</span>, &#123;</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + token</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>服务端会验证token，如果验证通过就会返回相应的资源。</p>
+<p>不过要注意，因为荷载是base64编码，这种编码可以对称解密，所以在荷载中不应该存放用户的敏感信息，比如密码。所以一般JWT用来向Web传递一些非敏感信息，例如用户名、所属部门等。</p>
+<h2 id="在Angular中使用JWT"><a href="#在Angular中使用JWT" class="headerlink" title="在Angular中使用JWT"></a>在Angular中使用JWT</h2><p>这里我们以Angular6和koa2（使用TypeScript）为例，介绍一下如何在你的Angular应用中使用JWT。</p>
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>首先在<a href="https://jwt.io/" rel="external nofollow noopener noreferrer" target="_blank">jwt.io</a>官网上找到node的JWT的库：<a href="https://github.com/auth0/node-jsonwebtoken" rel="external nofollow noopener noreferrer" target="_blank">jsonwebtoken</a>。</p>
+<p><img src="/assets/images/在Angular中使用JWT认证/20180908153641222798262.png" alt="20180908153641222798262.png"></p>
+<p>可以看到官网把这个库对标准注册声明字段的支持情况以及加密方式的支持情况都列出来了。除了这个库，还需要使用koa一个中间件：<a href="https://github.com/koajs/jwt" rel="external nofollow noopener noreferrer" target="_blank">koa-jwt</a>，用来对HTTP请求进行JWT认证。你可以通过下面命令安装这两个库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i koa-jwt jsonwebtoken --save</span><br></pre></td></tr></table></figure>
+<p>在<code>app.ts</code>中：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> jwt <span class="keyword">from</span> <span class="string">'koa-jwt'</span>;</span><br><span class="line"></span><br><span class="line">app.use(jwt(&#123;</span><br><span class="line">      secret: Secret</span><br><span class="line">    &#125;).unless(&#123;</span><br><span class="line">      path: [<span class="regexp">/\/register/</span>, <span class="regexp">/\/login/</span>, <span class="regexp">/\/groups/</span>],</span><br><span class="line">    &#125;));</span><br></pre></td></tr></table></figure>
+<p>这里的secret就是你自己定义的秘钥，<code>unless</code>方法用来排除一些不需要进行JWT认证的api。koa-jwt中间件需要放在路由中间件之前，这样就可以对所有路由（除了<code>unless</code>中设置的路由外）进行JWT的检查。只有正确之后才能正确的访问。</p>
+<p>除此之外，你还要自定义一个401错误处理的中间件，如果没有token，或者token失效，该中间件会给出对应的错误信息。如果没有自定义中间件的话，会直接将 <code>koa-jwt</code> 暴露的错误信息直接返回给用户。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> errorHandle = <span class="function">(<span class="params">ctx, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> next().catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err.status === <span class="number">401</span>) &#123;</span><br><span class="line">      ctx.status = <span class="number">401</span>;</span><br><span class="line">      handleError(&#123;ctx, message: <span class="string">'登录过期，请重新登录'</span>, err: err.originalError ? err.originalError.message : err.message&#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">throw</span> err;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后把这个中间件放在koa-jwt之前：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.use(errorHandle);</span><br><span class="line"></span><br><span class="line">app.use(jwt(&#123;</span><br><span class="line">    secret: Secret</span><br><span class="line">&#125;).unless(&#123;</span><br><span class="line">    path: [<span class="regexp">/\/register/</span>, <span class="regexp">/\/login/</span>, <span class="regexp">/\/groups/</span>],</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<p>在用户登陆时候，生成token，返回给客户端：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成 token 返回给客户端</span></span><br><span class="line"><span class="keyword">const</span> token = jsonwebtoken.sign(&#123;</span><br><span class="line">    user: &#123;</span><br><span class="line">        workNumber: user.workNumber,</span><br><span class="line">        realName: user.realName,</span><br><span class="line">        group: user.group,</span><br><span class="line">        role: user.role</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置 token 过期时间</span></span><br><span class="line">    exp: <span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>) + (<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>),   <span class="comment">// 1天</span></span><br><span class="line">&#125;, Secret);</span><br><span class="line"></span><br><span class="line">handleSuccess(&#123;</span><br><span class="line">    ctx,</span><br><span class="line">    message: <span class="string">'登陆成功!'</span>,</span><br><span class="line">    response: &#123;</span><br><span class="line">        token,</span><br><span class="line">        lifeTime: <span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>) + (<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>)   <span class="comment">// 1天</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，在使用 <code>jsonwebtoken.sign()</code> 时，需要传入的 <code>secret</code> 参数，这里的 <code>secret</code> 必须要与 前面设置 <code>jwt()</code> 中的 <code>secret</code> 一致。</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>在Angular中，我们需要使用<a href="https://github.com/auth0/angular2-jwt" rel="external nofollow noopener noreferrer" target="_blank">@auth0/angular2-jwt</a>这个库来帮助我们在Angular中处理JWT:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @auth0/angular-jwt --save</span><br></pre></td></tr></table></figure>
+<p>在<code>app.module.ts</code>中引入<code>JwtModule</code>这个模块（注意，引入该模块的同时也要引入<code>HttpClientModule</code>模块）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; JwtModule &#125; <span class="keyword">from</span> <span class="string">'@auth0/angular-jwt'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpClientModule &#125; <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">tokenGetter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> localStorage.getItem(<span class="string">'token'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  bootstrap: [AppComponent],</span><br><span class="line">  imports: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    HttpClientModule,</span><br><span class="line">    JwtModule.forRoot(&#123;</span><br><span class="line">      config: &#123;</span><br><span class="line">        tokenGetter: tokenGetter,</span><br><span class="line">        whitelistedDomains: [<span class="string">'localhost:3001'</span>],</span><br><span class="line">        blacklistedRoutes: [<span class="string">'localhost:3001/auth/'</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>JwtModule</code>的<code>config</code>中：</p>
+<p><code>tokenGetter</code>：从localStorage中获取token；</p>
+<p><code>whitelistedDomains</code>：允许发送认证的请求的域名；</p>
+<p><code>blacklistedRoutes</code>：你不希望替换header中<code>Authorization</code>信息的api列表。</p>
+<p>接着创建一个全局的<code>auth.service.ts</code>服务，方便在登陆的时候获取用户相关信息及权限，这个服务中有个<code>login</code>方法，用来处理登陆后返回的token信息，并把token存到LocalStorage中，这样在token失效前，下次用户登陆时就不需要输入用户名和密码：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">login(loginInfo: LoginInfo): Observable&lt;<span class="built_in">boolean</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.passportService.postLogin(loginInfo).pipe(map(</span><br><span class="line">        (res: LoginRes) =&gt; &#123;</span><br><span class="line">            <span class="comment">// 登陆成功后获取token，并存到localStorage</span></span><br><span class="line">            <span class="keyword">this</span>.storageService.setLocalStorage(<span class="string">'token'</span>, res.token);</span><br><span class="line">            <span class="keyword">const</span> decodedUser = <span class="keyword">this</span>.decodeUserFromToken(res.token);</span><br><span class="line">            <span class="keyword">this</span>.setCurrentUser(decodedUser);</span><br><span class="line">            <span class="keyword">this</span>.msg.success(<span class="string">'登录成功!'</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.loggedIn;</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">                                                         );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个<code>login</code>方法中，<code>decodeUserFromToken</code>封装了<code>@auth0/angular2-jwt</code>中提供的<code>decodeToken</code>方法，注意<code>decodeToken</code>方法解析出来的只是服务端<code>jsonwebtoken.sign()</code>中的JSON对象，所以需要通过<code>.</code>操作获取<code>jsonwebtoken.sign()</code>中定义的<code>user</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">decodeUserFromToken(token): User &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.jwtHelperService.decodeToken(token).user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个服务中，定义了两个变量<code>loggedIn</code>和<code>isAdmin</code>，用来标识用户是否登录和其相应的权限，方便在Angular路由中控制可以访问的视图。</p>
+<p>有登录当然就有登出，登出时只需把token从LocalStorage中移除，并把几个变量重置即可：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logout(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.storageService.removeLocalStorage(<span class="string">'token'</span>);</span><br><span class="line">    <span class="keyword">this</span>.loggedIn = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.isAdmin = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.currentUser = <span class="keyword">new</span> User();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>AuthService</code>的完整代码如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable, Injector &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Router &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; JwtHelperService &#125; <span class="keyword">from</span> <span class="string">'@auth0/angular-jwt'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; map &#125; <span class="keyword">from</span> <span class="string">'rxjs/operators'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; LoginInfo, LoginRes, User &#125; <span class="keyword">from</span> <span class="string">'../../views/passport/interfaces/passport'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; PassportService &#125; <span class="keyword">from</span> <span class="string">'../../views/passport/services/passport.service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; StorageService &#125; <span class="keyword">from</span> <span class="string">'../storage/storage.service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NzMessageService &#125; <span class="keyword">from</span> <span class="string">'ng-zorro-antd'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthService &#123;</span><br><span class="line">  <span class="keyword">public</span> loggedIn = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">public</span> isAdmin = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">public</span> currentUser: User = <span class="keyword">new</span> User();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> jwtHelperService: JwtHelperService,</span></span><br><span class="line"><span class="params">              <span class="keyword">private</span> router: Router,</span></span><br><span class="line"><span class="params">              <span class="keyword">private</span> injector: Injector,</span></span><br><span class="line"><span class="params">              <span class="keyword">private</span> passportService: PassportService,</span></span><br><span class="line"><span class="params">              <span class="keyword">private</span> storageService: StorageService</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> token = localStorage.getItem(<span class="string">'token'</span>);</span><br><span class="line">    <span class="keyword">if</span> (token) &#123;</span><br><span class="line">      <span class="keyword">const</span> decodedUser = <span class="keyword">this</span>.decodeUserFromToken(token);</span><br><span class="line">      <span class="keyword">this</span>.setCurrentUser(decodedUser);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> msg(): NzMessageService &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.injector.get(NzMessageService);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  login(loginInfo: LoginInfo): Observable&lt;<span class="built_in">boolean</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.passportService.postLogin(loginInfo).pipe(map(</span><br><span class="line">      (res: LoginRes) =&gt; &#123;</span><br><span class="line">          <span class="keyword">this</span>.storageService.setLocalStorage(<span class="string">'token'</span>, res.token);</span><br><span class="line">          <span class="keyword">const</span> decodedUser = <span class="keyword">this</span>.decodeUserFromToken(res.token);</span><br><span class="line">          <span class="keyword">this</span>.setCurrentUser(decodedUser);</span><br><span class="line">          <span class="keyword">this</span>.msg.success(<span class="string">'登录成功!'</span>);</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>.loggedIn;</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  logout(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.storageService.removeLocalStorage(<span class="string">'token'</span>);</span><br><span class="line">    <span class="keyword">this</span>.loggedIn = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.isAdmin = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.currentUser = <span class="keyword">new</span> User();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  decodeUserFromToken(token): User &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.jwtHelperService.decodeToken(token).user;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setCurrentUser(decodedUser): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.loggedIn = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">this</span>.currentUser.workNumber = decodedUser.workNumber;</span><br><span class="line">    <span class="keyword">this</span>.currentUser.realName = decodedUser.realName;</span><br><span class="line">    <span class="keyword">this</span>.currentUser.group = decodedUser.group;</span><br><span class="line">    <span class="keyword">this</span>.currentUser.role = decodedUser.role;</span><br><span class="line">    <span class="keyword">this</span>.isAdmin = decodedUser.role &gt; <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">delete</span> decodedUser.role;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此，在你的Angular应用中就引入了JWT认证，当然，你也可以不使用<code>@auth0/angular2-jwt</code>，自己手写一个HTTP拦截器，手动设置每次请求的header：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line"></span><br><span class="line">    intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;,</span><br><span class="line">              next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> token = localStorage.getItem(<span class="string">"token"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (token) &#123;</span><br><span class="line">            <span class="keyword">const</span> cloned = req.clone(&#123;</span><br><span class="line">                headers: req.headers.set(<span class="string">"Authorization"</span>,</span><br><span class="line">                    <span class="string">"Bearer "</span> + token)</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> next.handle(cloned);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> next.handle(req);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过这样的话，token Base64解码也需要自己手写，稍微麻烦一点。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JWT因为是基于JSON的，所以通用性很强，很多语言已经存在jwt相关的库。不过使用JWT的时候需要注意以下几点：</p>
+<ul>
+<li>保存好secret秘钥，这个秘钥只能在服务端存在</li>
+<li>给token设置一个过期时间，因为一旦token生成，它就永远有效，除非token密钥被更改或过期</li>
+<li>在payload中只能存储一些业务逻辑所必要的非敏感信息</li>
+</ul>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/assets/20170708149950994182145.jpg" alt="tc9011 wechat" style="width: 200px; max-width: 100%">
+    <div>欢迎订阅我的微信公众号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/20170313148941207221533.png" alt="tc9011 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/20170313148941208922392.png" alt="tc9011 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>tc9011</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tc9011.com/2018/09/07/在Angular中使用JWT认证/" title="在Angular中使用JWT认证">https://tc9011.com/2018/09/07/在Angular中使用JWT认证/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/22/windows下几款好用的免费软件/" rel="next" title="windows下几款好用的免费软件">
+                <i class="fa fa-chevron-left"></i> windows下几款好用的免费软件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/20/【译】Angular7 - CLI提示、虚拟滚动、拖放等/" rel="prev" title="【译】Angular7 - CLI提示、虚拟滚动、拖放等">
+                【译】Angular7 - CLI提示、虚拟滚动、拖放等 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/20161109360612.JPG" alt="tc9011">
+            
+              <p class="site-author-name" itemprop="name">tc9011</p>
+              <p class="site-description motion-element" itemprop="description">释放精神的桎梏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tc9011" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/tc9011" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/tc9011" target="_blank" title="知乎" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tc9011@126.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT的构成"><span class="nav-number">1.</span> <span class="nav-text">JWT的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头部"><span class="nav-number">1.1.</span> <span class="nav-text">头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#荷载"><span class="nav-number">1.2.</span> <span class="nav-text">荷载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签名"><span class="nav-number">1.3.</span> <span class="nav-text">签名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JWT"><span class="nav-number">2.</span> <span class="nav-text">使用JWT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Angular中使用JWT"><span class="nav-number">3.</span> <span class="nav-text">在Angular中使用JWT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端"><span class="nav-number">3.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端"><span class="nav-number">3.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tc9011</span>
+
+  
+
+  
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59390422";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tc9011.com/2018/09/07/在Angular中使用JWT认证/';
+        this.page.identifier = '2018/09/07/在Angular中使用JWT认证/';
+        this.page.title = '在Angular中使用JWT认证';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tc9011.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("bJngNJnlwjbQrKqBGbs8Ryox-gzGzoHsz", "6HjkL4ak2gcid1rbN4GOht34");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
